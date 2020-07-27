@@ -154,6 +154,17 @@ input[type="reset"] {
 	padding: 12px;
 }
 
+/* Contact: Links */
+#contact-info-details a:link {
+	color: #3d4c53;
+}
+#contact-info-details a:hover {
+	color: #f1433f;
+}
+#contact-info-details a:visited {
+	color: #3d4c53;
+}
+
 /* || FOOTER || */
 footer {
 	position: fixed;
