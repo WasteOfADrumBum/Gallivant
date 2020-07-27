@@ -67,6 +67,8 @@
         <section id="search-bar">
             <h1>Flights</h1>
 
+            <!-- Departure -->
+
             <form action="">
                 <label for="departing-loc">
                     <h2>Leaving:</h2>
@@ -74,18 +76,21 @@
                 <i class="fa fa-plane" aria-hidden="true"></i>
                 Departing Location
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                <input type="text" id="fname" name="departing-loc" placeholder="Departure">
+                <input type="text" id="departing-loc" name="departing-loc" placeholder="Departure" required>
                 <label for="departing-date">Date Departing:</label>
                 <input type="date" id="departing-date" name="departing-date">
-                <label for="arriving-loc">
+
+                <!-- Destination -->
+
+                <label for="arriving-loc" required>
                     <h2>Destination:</h2>
                 </label>
                 <i class="fa fa-plane" aria-hidden="true"></i>
                 Destination Location
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                <input type="text" id="lname" name="arriving-loc" placeholder="Destination">
+                <input type="text" id="arriving-loc" name="arriving-loc" placeholder="Destination" required>
                 <label for="arriving-date">Date Arriving:</label>
-                <input type="date" id="arriving-date" name="arriving-date">
+                <input type="date" id="arriving-date" name="arriving-date" required>
                 <input type="submit" id="submit-btn" value="Go Galiivanting">
             </form>
 
