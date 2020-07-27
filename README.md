@@ -1,7 +1,6 @@
 # Gallivant
  Team #4 - Project #1
 
-
 Project 1 Application Requirements
 
 • Must use at least two server-side APIs
@@ -34,5 +33,5 @@ Presentation   10%
 Submission on BCS
 
 You are required to submit the following:
-• The URL of the deployed application: 
-• The URL of the GitHub repository: 
+• The URL of the deployed application: https://wasteofadrumbum.github.io/Gallivant/
+• The URL of the GitHub repository: https://github.com/WasteOfADrumBum/Gallivant
