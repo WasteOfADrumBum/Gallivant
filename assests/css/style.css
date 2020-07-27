@@ -1,0 +1,175 @@
+/* 
+Color Scheme: https://www.colorcombos.com/color-scheme-375.html 
+#F1433F | #F7E967 | #A9CF54 | #70B7BA | #3D4C53
+*/
+
+/* || GLOBAL || */
+
+/* <h#> */
+
+h1 {
+	color: #f1433f;
+	border-bottom: 3px solid #f7e967;
+}
+
+h2 {
+	color: #a9cf54;
+}
+
+/* || HEADER || */
+
+header .container {
+	position: relative;
+	color: white;
+	padding-top: 25px;
+	background-color: #70b7ba;
+	border-bottom: 8px solid #3d4c53;
+	box-shadow: 0 20px 20px -20px #333;
+	margin-bottom: 15px;
+}
+
+#gallivant-logo {
+	width: 30%;
+}
+
+/* || NAV || */
+
+nav {
+	float: right;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.nav-link {
+	text-align: center;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#nav-home {
+	padding-right: 25px;
+}
+
+#nav-contact {
+	padding-right: 50px;
+}
+
+/* Header: Links */
+header .container a:link {
+	color: white;
+}
+header .container a:hover {
+	color: #f1433f;
+}
+header .container a:visited {
+	color: white;
+}
+
+/* || BODY || */
+
+body {
+	color: #3d4c53;
+	background-color: whitesmoke;
+}
+
+/* || WRAPPER || */
+
+#wrapper {
+	margin: 15px;
+}
+
+/* || SEARCH BAR || */
+
+#search-bar {
+	padding: 15px;
+	float: left;
+	width: 25%;
+}
+
+/* || CONTENT */
+
+#content-container {
+	padding: 15px;
+	float: right;
+	width: 75%;
+}
+
+/* || FOOTER || */
+footer {
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	color: white;
+	padding: 25px 15px 25px;
+	background-color: #70b7ba;
+	border-top: 8px solid #3d4c53;
+	box-shadow: 0 20px 20px 20px #333;
+}
+
+/* Footer: Links */
+footer a:link {
+	color: white;
+}
+footer a:hover {
+	color: #f1433f;
+}
+footer a:visited {
+	color: white;
+}
+
+/* || MEDIA QUERIES || */
+
+@media screen and (max-width: 1024px) {
+	/* Laptops */
+}
+
+@media screen and (max-width: 768px) {
+	/* Tablets */
+	#search-bar {
+		float: none;
+		width: 100%;
+	}
+
+	#content-container {
+		float: none;
+		width: 100%;
+	}
+	#nav-contact {
+		padding-right: 35px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	/* Phones */
+	header {
+		text-align: center;
+	}
+	header .container {
+		position: static;
+	}
+
+	#gallivant-logo {
+		width: 70%;
+	}
+
+	nav {
+		float: none;
+		position: relative;
+		right: 0;
+	}
+
+	.nav-link {
+		padding-right: 7px;
+	}
+
+	#nav-contact {
+		padding-right: 0px;
+		padding-left: 7px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	/* Older Phones */
+}
