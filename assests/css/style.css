@@ -221,7 +221,9 @@ footer a:visited {
 		float: none;
 		width: 100%;
 	}
-
+	#gallivant-logo-bg {
+		width: 70%;
+	}
 	#content-container {
 		float: none;
 		width: 100%;
@@ -245,6 +247,9 @@ footer a:visited {
 	}
 	#gallivant-logo {
 		width: 70%;
+	}
+	#gallivant-logo-bg {
+		width: 100%;
 	}
 	nav {
 		float: none;
