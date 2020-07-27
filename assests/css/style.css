@@ -128,10 +128,8 @@ input[type="submit"] {
 }
 
 #contact-form-container {
+	clear: both;
 	margin-bottom: 35px;
-}
-
-#contact-form {
 	float: none;
 }
 
