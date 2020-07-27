@@ -145,6 +145,14 @@ input[type="submit"] {
 
 #contact-info-details {
 	float: none;
+	letter-spacing: 2px;
+	text-align: left;
+	line-height: 26px;
+}
+
+#contact-info-details hr {
+	max-width: 250px;
+	margin: -14px 0px 5px;
 }
 
 input[type="reset"] {
@@ -176,6 +184,7 @@ footer {
 	background-color: #70b7ba;
 	border-top: 8px solid #3d4c53;
 	box-shadow: 0 20px 20px 20px #333;
+	font-size: small;
 }
 
 /* Footer: Links */
@@ -187,6 +196,17 @@ footer a:hover {
 }
 footer a:visited {
 	color: white;
+}
+
+#footer-contact {
+	font-size: large;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+}
+#footer-contact a {
+	border-left: 1px solid white;
+	padding-left: 7px;
 }
 
 /* || MEDIA QUERIES || */
@@ -209,6 +229,10 @@ footer a:visited {
 	#nav-contact {
 		padding-right: 35px;
 	}
+	#footer-contact {
+		letter-spacing: 2px;
+		margin-bottom: 16px;
+	}
 }
 
 @media screen and (max-width: 640px) {
@@ -219,43 +243,43 @@ footer a:visited {
 	header .container {
 		position: static;
 	}
-
 	#gallivant-logo {
 		width: 70%;
 	}
-
 	nav {
 		float: none;
 		position: relative;
 		right: 0;
 	}
-
 	.nav-link {
 		padding-right: 7px;
 	}
-
 	#nav-contact {
 		padding-right: 0px;
 		padding-left: 7px;
 	}
-
 	#contact-info {
 		float: nonw;
 		width: 100%;
 	}
-
 	#logo-container-contact {
 		float: none;
 		width: 100%;
 	}
-
 	#contact-form #name,
 	#email {
 		width: 100%;
 	}
-
 	#contact-form #message {
 		width: 100%;
+	}
+	#footer-contact {
+		letter-spacing: 1px;
+		margin-bottom: 10px;
+	}
+	#footer-contact a {
+		border-left: none;
+		padding-left: 0px;
 	}
 }
 
