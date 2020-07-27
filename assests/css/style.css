@@ -76,7 +76,7 @@ body {
 /* || WRAPPER || */
 
 #wrapper {
-	margin: 35px;
+	margin: 15px;
 	/* Footer's distance from bottom of wrapper */
 	margin-bottom: 180px;
 }
@@ -84,7 +84,7 @@ body {
 /* || SEARCH BAR || */
 
 #search-bar {
-	padding: 15px;
+	padding: 25px;
 	float: left;
 	width: 25%;
 }
@@ -99,7 +99,7 @@ input[type="submit"] {
 /* || CONTENT || */
 
 #content-container {
-	padding: 15px;
+	padding: 25px;
 	float: right;
 	width: 75%;
 	/* Footer's distance from bottom of container */
@@ -117,6 +117,7 @@ input[type="submit"] {
 /* CONTACT */
 
 #contact-info {
+	padding: 25px;
 	float: left;
 	width: 70%;
 }
@@ -131,6 +132,7 @@ input[type="submit"] {
 	clear: both;
 	margin-bottom: 35px;
 	float: none;
+	padding: 25px;
 }
 
 #contact-form #name,
@@ -144,6 +146,7 @@ input[type="submit"] {
 }
 
 #contact-info-details {
+	padding: 25px;
 	float: none;
 	letter-spacing: 2px;
 	text-align: left;
