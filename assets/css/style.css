@@ -5,6 +5,10 @@ Color Scheme: https://www.colorcombos.com/color-scheme-375.html
 
 /* || GLOBAL || */
 
+html {
+	height: 100%;
+}
+
 /* <h1> */
 
 h1 {
@@ -70,13 +74,17 @@ header .container a:visited {
 /* || BODY || */
 
 body {
+	height: 100%;
+	margin: 0;
 	color: #3d4c53;
 	background-color: whitesmoke;
+	flex-direction: column;
 }
 
 /* || WRAPPER || */
 
 #wrapper {
+	min-height: 100%;
 	margin: 15px;
 }
 
@@ -269,7 +277,8 @@ footer a:visited {
 	}
 	#logo-container-contact {
 		float: none;
-		width: 100%;
+		width: 80%;
+		margin: auto;
 	}
 	#contact-form #name,
 	#email {
