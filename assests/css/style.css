@@ -78,8 +78,6 @@ body {
 
 #wrapper {
 	margin: 15px;
-	/* Footer's distance from bottom of wrapper */
-	margin-bottom: 180px;
 }
 
 /* || SEARCH BAR || */
@@ -103,8 +101,6 @@ input[type="submit"] {
 	padding: 25px;
 	float: right;
 	width: 75%;
-	/* Footer's distance from bottom of container */
-	margin-bottom: 150px;
 }
 
 #logo-container {
@@ -178,9 +174,8 @@ input[type="reset"] {
 }
 
 /* || FOOTER || */
+
 footer {
-	position: fixed;
-	bottom: 0;
 	text-align: center;
 	width: 100%;
 	color: white;
