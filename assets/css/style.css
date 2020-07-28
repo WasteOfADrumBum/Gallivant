@@ -176,6 +176,7 @@ input[type="reset"] {
 /* || FOOTER || */
 
 footer {
+	clear: both;
 	text-align: center;
 	width: 100%;
 	color: white;
