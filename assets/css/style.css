@@ -5,7 +5,7 @@ Color Scheme: https://www.colorcombos.com/color-scheme-375.html
 
 /* || GLOBAL || */
 
-/* <h#> */
+/* <h1> */
 
 h1 {
 	color: #f1433f;
@@ -289,3 +289,4 @@ footer a:visited {
 
 @media screen and (max-width: 320px) {
 	/* Older Phones */
+}
