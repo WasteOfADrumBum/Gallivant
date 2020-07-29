@@ -53,11 +53,13 @@ nav {
 }
 
 #nav-home {
-	padding-right: 25px;
+	padding-right: 15px;
 }
 
 #nav-contact {
 	padding-right: 50px;
+	border-left: 1px solid white;
+	padding-left: 15px;
 }
 
 /* Header: Links */
@@ -161,6 +163,13 @@ input[type="submit"] {
 #contact-info-details hr {
 	max-width: 250px;
 	margin: -14px 0px 5px;
+}
+
+#contact-info-details b {
+	font-size: 20px;
+}
+#contact-info-details i {
+	font-size: 18px;
 }
 
 input[type="reset"] {
@@ -270,6 +279,7 @@ footer a:visited {
 	#nav-contact {
 		padding-right: 0px;
 		padding-left: 7px;
+		border: none;
 	}
 	#contact-info {
 		float: nonw;
