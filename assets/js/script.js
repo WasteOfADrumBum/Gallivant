@@ -1,15 +1,15 @@
 /* -- ||  Contac.html Logo/Icon Image || -- */
 
-// Change #gallivant-logo-contact from Logo -to-> Icon on window < 640px
+// Change #gallivant-logo-contact from Logo -to-> Icon on window < 768px
 function checkResolution() {
-	if ($(window).innerWidth() < 640) {
+	if ($(window).innerWidth() < 768) {
 		// window < 640px = Icon
 		$("#gallivant-logo-contact").attr(
 			"src",
 			"assets/images/gallivant-icon.png",
 		);
 	} else {
-		// window > 640px = Logo
+		// window > 768px = Logo
 		$("#gallivant-logo-contact").attr(
 			"src",
 			"assets/images/gallivant-logo.png",

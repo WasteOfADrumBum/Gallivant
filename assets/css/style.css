@@ -143,7 +143,8 @@ input[type="submit"] {
 }
 
 #contact-form #name,
-#email {
+#email,
+#subject {
 	width: 20%;
 }
 
@@ -252,6 +253,23 @@ footer a:visited {
 		letter-spacing: 2px;
 		margin-bottom: 16px;
 	}
+	#contact-form #name,
+	#email,
+	#subject {
+		width: 100%;
+	}
+	#contact-form #message {
+		width: 100%;
+	}
+	#contact-info {
+		float: none;
+		width: 100%;
+	}
+	#logo-container-contact {
+		float: none;
+		width: 80%;
+		margin: auto;
+	}
 }
 
 @media screen and (max-width: 640px) {
@@ -281,22 +299,7 @@ footer a:visited {
 		padding-left: 7px;
 		border: none;
 	}
-	#contact-info {
-		float: nonw;
-		width: 100%;
-	}
-	#logo-container-contact {
-		float: none;
-		width: 80%;
-		margin: auto;
-	}
-	#contact-form #name,
-	#email {
-		width: 100%;
-	}
-	#contact-form #message {
-		width: 100%;
-	}
+
 	#footer-contact {
 		letter-spacing: 1px;
 		margin-bottom: 10px;
