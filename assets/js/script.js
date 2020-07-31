@@ -67,7 +67,7 @@ $(document).ready(function () {
 	console.log("Departing City:", formData[0].value);
 
 	function searchWeather(formData) {
-		console.log("-- || Start Sygic function || --");
+		console.log("-- || Start Sygic Darture Function || --");
 
 		$.ajax({
 			type: "GET",
@@ -99,13 +99,13 @@ $(document).ready(function () {
 	console.log("Arriving City:", formData[2].value);
 
 	function searchWeather(formData) {
-		console.log("-- || Start Sygic function || --");
+		console.log("-- || Start Sygic Arrival Function || --");
 
 		$.ajax({
 			type: "GET",
 			url:
 				"https://api.sygictravelapi.com/1.0/en/places/list?query=" +
-				formData[0].value +
+				formData[2].value +
 				"API-KEY-HERE",
 			dataType: "json",
 			success: function (data) {
