@@ -55,8 +55,83 @@ $(document).ready(function () {
 		$("#display_" + datum.name).html(datum.value);
 	});
 	console.log("formData Array:", formData);
+
+	/* -- || Places API || -- */
+	/* © Joshua M. Small */
+
+	console.log("-- || Sygic API || --");
+
+	/* Departing Location */
+	console.log("Departing City:", formData[0].value);
+
+	function searchWeather(formData) {
+		console.log("-- || Start Sygic function || --");
+
+		$.ajax({
+			type: "GET",
+			url:
+				"https://api.sygictravelapi.com/1.0/en/places/list?query=" +
+				formData[0].value +
+				"API-KEY-HERE",
+			dataType: "json",
+			success: function (data) {
+				console.log("-- || Sygic Data || --");
+				console.log(data);
+			},
+			error: function (xhr, status, error) {
+				alert(
+					"Result: " +
+						status +
+						" " +
+						error +
+						" " +
+						xhr.status +
+						" " +
+						xhr.statusText,
+				);
+			},
+		});
+	}
+
+	/* Arriving Location */
+	console.log("Arriving City:", formData[2].value);
+
+	function searchWeather(formData) {
+		console.log("-- || Start Sygic function || --");
+
+		$.ajax({
+			type: "GET",
+			url:
+				"https://api.sygictravelapi.com/1.0/en/places/list?query=" +
+				formData[0].value +
+				"API-KEY-HERE",
+			dataType: "json",
+			success: function (data) {
+				console.log("-- || Sygic Data || --");
+				console.log(data);
+			},
+			error: function (xhr, status, error) {
+				alert(
+					"Result: " +
+						status +
+						" " +
+						error +
+						" " +
+						xhr.status +
+						" " +
+						xhr.statusText,
+				);
+			},
+		});
+	}
+
+	/* -- ||  Skyscanner Flight Search || -- */
+	/* © Tanner Cook */
+
+	console.log("-- || Skyscanner Flight Search API || --");
+
+	/* -- ||  Open Weather Map || -- */
+	/* © Garrett Dobson */
+
+	console.log("-- || Open Weather Map API || --");
 });
-
-/* -- ||  Skyscanner Flight Search || -- */
-
-/* -- ||  Open Weather Map || -- */
