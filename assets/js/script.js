@@ -1,4 +1,5 @@
 /* -- ||  Contac.html Logo/Icon Image || -- */
+/* © Joshua M. Small */
 
 // Change #gallivant-logo-contact from Logo -to-> Icon on window < 768px
 function checkResolution() {
@@ -27,6 +28,7 @@ $(document).ready(function () {
 });
 
 /* -- || Form (#loc-date-form) || -- */
+/* © Joshua M. Small */
 
 /* Captures index.html formData to be used on results.html */
 $(document).ready(function () {
