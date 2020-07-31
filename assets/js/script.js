@@ -16,7 +16,7 @@ function checkResolution() {
 		);
 	}
 }
-
+console.log("Hello World");
 // Check img on window resize
 $(window).resize(function () {
 	checkResolution();
