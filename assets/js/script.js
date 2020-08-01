@@ -66,7 +66,7 @@ $(document).ready(function () {
 	/* Departing Location */
 	console.log("Departing City:", formData[0].value);
 
-	function searchWeather(formData) {
+	function searchPoi(formData) {
 		console.log("-- || Start TomTom Darture Function || --");
 
 		$.ajax({
@@ -74,22 +74,24 @@ $(document).ready(function () {
 			url:
 				"https://api.tomtom.com/search/2/poiSearch/" +
 				formData[0].value +
-				".jason?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
+				".json?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
 			success: function (data) {
 				console.log("-- || TomTom Data || --");
-				console.log(data);
+				console.log(data.results[1].poi.name);
+				console.log(data.results[1].poi.phone);
+				console.log(data.results[1].poi.url);
 			},
 			error: function (xhr, status, error) {
 				alert(
 					"Result: " +
-						status +
-						" " +
-						error +
-						" " +
-						xhr.status +
-						" " +
-						xhr.statusText,
+					status +
+					" " +
+					error +
+					" " +
+					xhr.status +
+					" " +
+					xhr.statusText,
 				);
 			},
 		});
@@ -98,7 +100,7 @@ $(document).ready(function () {
 	/* Arriving Location */
 	console.log("Arriving City:", formData[2].value);
 
-	function searchWeather(formData) {
+	function searchPoi(formData) {
 		console.log("-- || Start TomTom Arrival Function || --");
 
 		$.ajax({
@@ -106,22 +108,24 @@ $(document).ready(function () {
 			url:
 				"https://api.tomtom.com/search/2/poiSearch/" +
 				formData[2].value +
-				".jason?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
+				".json?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
 			success: function (data) {
 				console.log("-- || TomTom Data || --");
-				console.log(data);
+				console.log(data.results[1].poi.name);
+				console.log(data.results[1].poi.phone);
+				console.log(data.results[1].poi.url);
 			},
 			error: function (xhr, status, error) {
 				alert(
 					"Result: " +
-						status +
-						" " +
-						error +
-						" " +
-						xhr.status +
-						" " +
-						xhr.statusText,
+					status +
+					" " +
+					error +
+					" " +
+					xhr.status +
+					" " +
+					xhr.statusText,
 				);
 			},
 		});
@@ -132,18 +136,29 @@ $(document).ready(function () {
 
 	var submitBtn = document.getElementById("submit-btn");
 
-$("button").on("click", function(){
-  var goGalivanting = $(this).attr(submitBtn)
-  var queryURL = "" + ""
+	$("button").on("click", function () {
 
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-	}) .then(function(response) {
+		var queryFlightURL = "http://api.aviationstack.com/v1/flights?access_key=e6881625e7026da63114e2559be73272"
 
-	})
+		$.ajax({
+			url: queryFlightURL,
+			dataType: 'json',
+			method: "GET",
+			success: function (apiResponse) {
+				if (Array.isArray(apiResponse['results'])) {
+					apiResponse['results'].forEach(flight => {
+						if (!flight['live']['is_ground']) {
+							console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
+								`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
+								`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
+						};
+					});
+				};
+			}
+		});
+	});
 
-});
+	
 
 	console.log("-- || Skyscanner Flight Search API || --");
 
