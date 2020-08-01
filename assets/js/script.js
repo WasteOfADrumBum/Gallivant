@@ -85,13 +85,13 @@ $(document).ready(function () {
 			error: function (xhr, status, error) {
 				alert(
 					"Result: " +
-						status +
-						" " +
-						error +
-						" " +
-						xhr.status +
-						" " +
-						xhr.statusText,
+					status +
+					" " +
+					error +
+					" " +
+					xhr.status +
+					" " +
+					xhr.statusText,
 				);
 			},
 		});
@@ -119,13 +119,13 @@ $(document).ready(function () {
 			error: function (xhr, status, error) {
 				alert(
 					"Result: " +
-						status +
-						" " +
-						error +
-						" " +
-						xhr.status +
-						" " +
-						xhr.statusText,
+					status +
+					" " +
+					error +
+					" " +
+					xhr.status +
+					" " +
+					xhr.statusText,
 				);
 			},
 		});
@@ -137,14 +137,28 @@ $(document).ready(function () {
 	var submitBtn = document.getElementById("submit-btn");
 
 	$("button").on("click", function () {
-		var goGalivanting = $(this).attr(submitBtn);
-		var queryURL = "" + "";
+
+		var queryFlightURL = "http://api.aviationstack.com/v1/flights?access_key=e6881625e7026da63114e2559be73272"
 
 		$.ajax({
-			url: queryURL,
+			url: queryFlightURL,
+			dataType: 'json',
 			method: "GET",
-		}).then(function (response) {});
+			success: function (apiResponse) {
+				if (Array.isArray(apiResponse['results'])) {
+					apiResponse['results'].forEach(flight => {
+						if (!flight['live']['is_ground']) {
+							console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
+								`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
+								`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
+						};
+					});
+				};
+			}
+		});
 	});
+
+	
 
 	console.log("-- || Skyscanner Flight Search API || --");
 
