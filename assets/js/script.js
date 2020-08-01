@@ -165,5 +165,15 @@ $(document).ready(function () {
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
 
+		var queryWeatherURL = "https://openweathermap.org/forecast5" + formData[0] + "&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
+
+		$.ajax({
+			url: queryWeatherURL,
+			method: "GET",
+			dataType: "json"
+		}) .then(function(response) {
+
+		});
+
 	console.log("-- || Open Weather Map API || --");
 });
