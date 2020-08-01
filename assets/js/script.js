@@ -66,7 +66,7 @@ $(document).ready(function () {
 	/* Departing Location */
 	console.log("Departing City:", formData[0].value);
 
-	function searchWeather(formData) {
+	function searchPoi(formData) {
 		console.log("-- || Start TomTom Darture Function || --");
 
 		$.ajax({
@@ -74,11 +74,13 @@ $(document).ready(function () {
 			url:
 				"https://api.tomtom.com/search/2/poiSearch/" +
 				formData[0].value +
-				".jason?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
+				".json?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
 			success: function (data) {
 				console.log("-- || TomTom Data || --");
-				console.log(data);
+				console.log(data.results[1].poi.name);
+				console.log(data.results[1].poi.phone);
+				console.log(data.results[1].poi.url);
 			},
 			error: function (xhr, status, error) {
 				alert(
@@ -98,7 +100,7 @@ $(document).ready(function () {
 	/* Arriving Location */
 	console.log("Arriving City:", formData[2].value);
 
-	function searchWeather(formData) {
+	function searchPoi(formData) {
 		console.log("-- || Start TomTom Arrival Function || --");
 
 		$.ajax({
@@ -106,11 +108,13 @@ $(document).ready(function () {
 			url:
 				"https://api.tomtom.com/search/2/poiSearch/" +
 				formData[2].value +
-				".jason?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
+				".json?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
 			success: function (data) {
 				console.log("-- || TomTom Data || --");
-				console.log(data);
+				console.log(data.results[1].poi.name);
+				console.log(data.results[1].poi.phone);
+				console.log(data.results[1].poi.url);
 			},
 			error: function (xhr, status, error) {
 				alert(
@@ -132,18 +136,15 @@ $(document).ready(function () {
 
 	var submitBtn = document.getElementById("submit-btn");
 
-$("button").on("click", function(){
-  var goGalivanting = $(this).attr(submitBtn)
-  var queryURL = "" + ""
+	$("button").on("click", function () {
+		var goGalivanting = $(this).attr(submitBtn);
+		var queryURL = "" + "";
 
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-	}) .then(function(response) {
-
-	})
-
-});
+		$.ajax({
+			url: queryURL,
+			method: "GET",
+		}).then(function (response) {});
+	});
 
 	console.log("-- || Skyscanner Flight Search API || --");
 
