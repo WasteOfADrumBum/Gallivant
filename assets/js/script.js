@@ -130,6 +130,21 @@ $(document).ready(function () {
 	/* -- ||  Skyscanner Flight Search || -- */
 	/* © Tanner Cook */
 
+	var submitBtn = document.getElementById("submit-btn");
+
+$("button").on("click", function(){
+  var goGalivanting = $(this).attr(submitBtn)
+  var queryURL = "" + ""
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+	}) .then(function(response) {
+
+	})
+
+});
+
 	console.log("-- || Skyscanner Flight Search API || --");
 
 	/* -- ||  Open Weather Map || -- */
