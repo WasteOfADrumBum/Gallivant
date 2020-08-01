@@ -61,23 +61,23 @@ $(document).ready(function () {
 	/* -- || Places API || -- */
 	/* © Joshua M. Small */
 
-	console.log("-- || Sygic API || --");
+	console.log("-- || TomTom API || --");
 
 	/* Departing Location */
 	console.log("Departing City:", formData[0].value);
 
 	function searchWeather(formData) {
-		console.log("-- || Start Sygic function || --");
+		console.log("-- || Start TomTom Darture Function || --");
 
 		$.ajax({
 			type: "GET",
 			url:
-				"https://api.sygictravelapi.com/1.0/en/places/list?query=" +
+				"https://api.tomtom.com/search/2/poiSearch/" +
 				formData[0].value +
-				"API-KEY-HERE",
+				".jason?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
 			success: function (data) {
-				console.log("-- || Sygic Data || --");
+				console.log("-- || TomTom Data || --");
 				console.log(data);
 			},
 			error: function (xhr, status, error) {
@@ -99,17 +99,17 @@ $(document).ready(function () {
 	console.log("Arriving City:", formData[2].value);
 
 	function searchWeather(formData) {
-		console.log("-- || Start Sygic function || --");
+		console.log("-- || Start TomTom Arrival Function || --");
 
 		$.ajax({
 			type: "GET",
 			url:
-				"https://api.sygictravelapi.com/1.0/en/places/list?query=" +
-				formData[0].value +
-				"API-KEY-HERE",
+				"https://api.tomtom.com/search/2/poiSearch/" +
+				formData[2].value +
+				".jason?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
 			success: function (data) {
-				console.log("-- || Sygic Data || --");
+				console.log("-- || TomTom Data || --");
 				console.log(data);
 			},
 			error: function (xhr, status, error) {
@@ -129,6 +129,21 @@ $(document).ready(function () {
 
 	/* -- ||  Skyscanner Flight Search || -- */
 	/* © Tanner Cook */
+
+	var submitBtn = document.getElementById("submit-btn");
+
+$("button").on("click", function(){
+  var goGalivanting = $(this).attr(submitBtn)
+  var queryURL = "" + ""
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+	}) .then(function(response) {
+
+	})
+
+});
 
 	console.log("-- || Skyscanner Flight Search API || --");
 
