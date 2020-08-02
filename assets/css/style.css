@@ -362,6 +362,13 @@ footer a:visited {
 		border-left: none;
 		padding-left: 0px;
 	}
+	.d-attractions-api,
+	.r-attractions-api {
+		flex-direction: column;
+	}
+	.poiContainer {
+		width: 100%;
+	}
 }
 
 @media screen and (max-width: 320px) {
