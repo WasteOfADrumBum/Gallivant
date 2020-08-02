@@ -155,6 +155,21 @@ input[type="submit"] {
 	color: #a9cf54;
 }
 
+.poiTitle {
+	flex: none;
+	text-transform: uppercase;
+	margin-top: 15px;
+}
+
+.r-attractions-api-title,
+.d-attractions-api-title {
+	color: #a9cf54;
+	font-size: 1.5rem;
+	border-bottom: 4px solid #f7e967;
+	margin-bottom: 7px;
+	max-width: 95%;
+}
+
 /* CONTACT */
 
 #contact-info {
@@ -348,5 +363,5 @@ footer a:visited {
 	/* Older Phones */
 }
 
-/* CSS Primary Front-end Layout/Styling/Color Scheme © Joshua M. Small */
+/* CSS Primary Front-end Layout/Styling/Color Scheme, Initial Commit & POI © Joshua M. Small */
 /* CSS results.html Layout and content styling © Chelsea Haviland */

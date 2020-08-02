@@ -88,7 +88,15 @@ $(document).ready(function () {
 				console.log("Data:", data);
 
 				// empty any existing content
-				$(".r-attractions-api").empty();
+				$(".d-attractions-api").empty();
+
+				var aTitle = $("<div>", {
+					class: "poiTitle",
+					id: "aPoiTitle",
+				});
+				aTitle.text(formData[0].value + "'s Attractions:");
+
+				$(".d-attractions-api-title").append(aTitle);
 
 				console.log("-- || POI Arrival Loop || --");
 				for (var i = 0; i < 5; i++) {
@@ -195,6 +203,14 @@ $(document).ready(function () {
 
 				// empty any existing content
 				$(".r-attractions-api").empty();
+
+				var rTitle = $("<div>", {
+					class: "poiTitle",
+					id: "rPoiTitle",
+				});
+				rTitle.text(formData[2].value + "'s Attractions:");
+
+				$(".r-attractions-api-title").append(rTitle);
 
 				console.log("-- || POI Return Loop || --");
 				for (var i = 0; i < 5; i++) {
