@@ -153,6 +153,11 @@ input[type="submit"] {
 
 .poiCategory {
 	color: #a9cf54;
+	border-top: 1px solid #3d4c53;
+	border-bottom: 1px solid #3d4c53;
+	padding: 2px;
+	margin-bottom: 10px;
+	font-weight: bold;
 }
 
 .poiTitle {
