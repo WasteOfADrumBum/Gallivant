@@ -80,6 +80,9 @@ $(document).ready(function () {
 				"&v=20180323&limit=10&near=" +
 				formData[0].value,
 			data: {},
+			beforeSend: function (jqXHR, settings) {
+				console.log("ajax URL:", settings.url);
+			},
 			success: function (data) {
 				console.log("-- || POI Arrival Data || --");
 				console.log("Data:", data);
@@ -99,7 +102,7 @@ $(document).ready(function () {
 
 					// POI Name
 					console.log("Name:", data.response.groups[0].items[i].venue.name);
-					var aName = $("<h5>", {
+					var aName = $("<div>", {
 						class: "poiName",
 						id: "aPoiName",
 					});
@@ -110,13 +113,12 @@ $(document).ready(function () {
 						"Address:",
 						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
-					var aAddress = $("<p>", {
+					var aAddress = $("<div>", {
 						class: "poiAddress",
 						id: "aPoiAddress",
 					});
 					aAddress.text(
-						"Address: " +
-							data.response.groups[0].items[i].venue.location.formattedAddress,
+						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
 
 					// POI Category
@@ -124,13 +126,12 @@ $(document).ready(function () {
 						"Category:",
 						data.response.groups[0].items[i].venue.categories[0].name,
 					);
-					var aCategory = $("<p>", {
+					var aCategory = $("<div>", {
 						class: "poiCategory",
 						id: "aPoiCategory",
 					});
 					aCategory.text(
-						"Category: " +
-							data.response.groups[0].items[i].venue.categories[0].name,
+						data.response.groups[0].items[i].venue.categories[0].name,
 					);
 
 					// POI IMG
@@ -139,7 +140,7 @@ $(document).ready(function () {
 						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
 						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
 					);
-					var aImg = $("<p>", {
+					var aImg = $("<div>", {
 						class: "poiImg",
 						id: "aPoiImg",
 					});
@@ -154,7 +155,7 @@ $(document).ready(function () {
 					aImg.append(aImgRender);
 
 					// Append Info
-					aContainer.append(aName, aAddress, aCategory, aImgRender);
+					aContainer.append(aName, aImgRender, aCategory, aAddress);
 
 					// Merge and display
 					$(".d-attractions-api").append(aContainer);
@@ -185,6 +186,9 @@ $(document).ready(function () {
 				"&v=20180323&limit=10&near=" +
 				formData[2].value,
 			data: {},
+			beforeSend: function (jqXHR, settings) {
+				console.log("ajax URL:", settings.url);
+			},
 			success: function (data) {
 				console.log("-- || POI Return Data || --");
 				console.log("Data:", data);
@@ -204,7 +208,7 @@ $(document).ready(function () {
 
 					// POI Name
 					console.log("Name:", data.response.groups[0].items[i].venue.name);
-					var rName = $("<h5>", {
+					var rName = $("<div>", {
 						class: "poiName",
 						id: "rPoiName",
 					});
@@ -215,13 +219,12 @@ $(document).ready(function () {
 						"Address:",
 						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
-					var rAddress = $("<p>", {
+					var rAddress = $("<div>", {
 						class: "poiAddress",
 						id: "rPoiAddress",
 					});
 					rAddress.text(
-						"Address: " +
-							data.response.groups[0].items[i].venue.location.formattedAddress,
+						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
 
 					// POI Category
@@ -229,13 +232,12 @@ $(document).ready(function () {
 						"Category:",
 						data.response.groups[0].items[i].venue.categories[0].name,
 					);
-					var rCategory = $("<p>", {
+					var rCategory = $("<div>", {
 						class: "poiCategory",
 						id: "rPoiCategory",
 					});
 					rCategory.text(
-						"Category: " +
-							data.response.groups[0].items[i].venue.categories[0].name,
+						data.response.groups[0].items[i].venue.categories[0].name,
 					);
 
 					// POI IMG
@@ -244,7 +246,7 @@ $(document).ready(function () {
 						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
 						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
 					);
-					var rImg = $("<p>", {
+					var rImg = $("<div>", {
 						class: "poiImg",
 						id: "rPoiImg",
 					});
@@ -259,7 +261,7 @@ $(document).ready(function () {
 					rImg.append(rImgRender);
 
 					// Append Info
-					rContainer.append(rName, rAddress, rCategory, rImgRender);
+					rContainer.append(rName, rImgRender, rCategory, rAddress);
 
 					// Merge and display
 					$(".r-attractions-api").append(rContainer);

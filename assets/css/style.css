@@ -28,7 +28,7 @@ header .container {
 	color: white;
 	padding-top: 25px;
 	background-color: #70b7ba;
-	border-bottom: 8px solid #3d4c53; 
+	border-bottom: 8px solid #3d4c53;
 	box-shadow: 0 20px 20px -20px #333;
 	margin-bottom: 30px;
 }
@@ -119,6 +119,40 @@ input[type="submit"] {
 
 #gallivant-logo-bg {
 	width: 50%;
+}
+
+/* POI */
+
+.d-attractions-api,
+.r-attractions-api {
+	display: flex;
+	flex-direction: row;
+}
+
+.poiContainer {
+	background-color: #70b7ba;
+	border: 2px solid #3d4c53;
+	width: 18%;
+	margin: 5px;
+	text-align: center;
+	padding: 10px;
+	color: white;
+}
+
+.poiName {
+	color: #f7e967;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+	font-size: large;
+}
+
+.poiContainer img {
+	margin: 5px;
+}
+
+.poiCategory {
+	color: #a9cf54;
 }
 
 /* CONTACT */
