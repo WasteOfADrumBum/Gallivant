@@ -58,75 +58,216 @@ $(document).ready(function () {
 	});
 	console.log("formData Array:", formData);
 
-	/* -- || Places API || -- */
+	/* -- || POI API || -- */
 	/* © Joshua M. Small */
 
-	console.log("-- || TomTom API || --");
+	console.log("-- || POI API || --");
 
 	/* Departing Location */
 	console.log("Departing City:", formData[0].value);
+	var poi1 = searchPoi1(formData);
 
-	function searchPoi(formData) {
-		console.log("-- || Start TomTom Darture Function || --");
+	function searchPoi1(formData) {
+		console.log("-- || Start POI Arrival Function || --");
 
 		$.ajax({
-			type: "GET",
-			url:
-				"https://api.tomtom.com/search/2/poiSearch/" +
-				formData[0].value +
-				".json?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
+			url:
+				"https://api.foursquare.com/v2/venues/explore?client_id=" +
+				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
+				"&client_secret=" +
+				"H204CRKMTCFR355HCXOFMINYFHR01PQX0MDRADXO52XF44YW" +
+				"&v=20180323&limit=10&near=" +
+				formData[0].value,
+			data: {},
 			success: function (data) {
-				console.log("-- || TomTom Data || --");
-				console.log(data.results[1].poi.name);
-				console.log(data.results[1].poi.phone);
-				console.log(data.results[1].poi.url);
+				console.log("-- || POI Arrival Data || --");
+				console.log("Data:", data);
+
+				// empty any existing content
+				$(".r-attractions-api").empty();
+
+				console.log("-- || POI Arrival Loop || --");
+				for (var i = 0; i < 5; i++) {
+					console.log("Loop #", i);
+
+					// div container
+					var aContainer = $("<div>", {
+						class: "poiContainer",
+						id: "aPoiContainer",
+					});
+
+					// POI Name
+					console.log("Name:", data.response.groups[0].items[i].venue.name);
+					var aName = $("<h5>", {
+						class: "poiName",
+						id: "aPoiName",
+					});
+					aName.text(data.response.groups[0].items[i].venue.name);
+
+					// POI Address
+					console.log(
+						"Address:",
+						data.response.groups[0].items[i].venue.location.formattedAddress,
+					);
+					var aAddress = $("<p>", {
+						class: "poiAddress",
+						id: "aPoiAddress",
+					});
+					aAddress.text(
+						"Address: " +
+							data.response.groups[0].items[i].venue.location.formattedAddress,
+					);
+
+					// POI Category
+					console.log(
+						"Category:",
+						data.response.groups[0].items[i].venue.categories[0].name,
+					);
+					var aCategory = $("<p>", {
+						class: "poiCategory",
+						id: "aPoiCategory",
+					});
+					aCategory.text(
+						"Category: " +
+							data.response.groups[0].items[i].venue.categories[0].name,
+					);
+
+					// POI IMG
+					console.log(
+						"Pic URL:",
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
+						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+					);
+					var aImg = $("<p>", {
+						class: "poiImg",
+						id: "aPoiImg",
+					});
+					// Render Icon
+					var aImgRender = $("<img>");
+					aImgRender.attr(
+						"src",
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix +
+							"100" +
+							data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+					);
+					aImg.append(aImgRender);
+
+					// Append Info
+					aContainer.append(aName, aAddress, aCategory, aImgRender);
+
+					// Merge and display
+					$(".d-attractions-api").append(aContainer);
+				}
 			},
-			error: function (xhr, status, error) {
-				alert(
-					"Result: " +
-					status +
-					" " +
-					error +
-					" " +
-					xhr.status +
-					" " +
-					xhr.statusText,
-				);
+
+			// Code for handling errors
+			error: function (jqXHR, textStatus, errorThrown) {
+				alert("Result: " + jqXHR + " " + textStatus + " " + errorThrown);
 			},
 		});
 	}
 
 	/* Arriving Location */
 	console.log("Arriving City:", formData[2].value);
+	var poi2 = searchPoi2(formData);
 
-	function searchPoi(formData) {
-		console.log("-- || Start TomTom Arrival Function || --");
+	function searchPoi2(formData) {
+		console.log("-- || Start POI Return Function || --");
 
 		$.ajax({
-			type: "GET",
-			url:
-				"https://api.tomtom.com/search/2/poiSearch/" +
-				formData[2].value +
-				".json?key=2ldcEAG1gRhb4wp7nHMzcFTU5TGnBshZ&en-US",
 			dataType: "json",
+			url:
+				"https://api.foursquare.com/v2/venues/explore?client_id=" +
+				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
+				"&client_secret=" +
+				"H204CRKMTCFR355HCXOFMINYFHR01PQX0MDRADXO52XF44YW" +
+				"&v=20180323&limit=10&near=" +
+				formData[2].value,
+			data: {},
 			success: function (data) {
-				console.log("-- || TomTom Data || --");
-				console.log(data.results[1].poi.name);
-				console.log(data.results[1].poi.phone);
-				console.log(data.results[1].poi.url);
+				console.log("-- || POI Return Data || --");
+				console.log("Data:", data);
+
+				// empty any existing content
+				$(".r-attractions-api").empty();
+
+				console.log("-- || POI Return Loop || --");
+				for (var i = 0; i < 5; i++) {
+					console.log("Loop #", i);
+
+					// div container
+					var rContainer = $("<div>", {
+						class: "poiContainer",
+						id: "rPoiContainer",
+					});
+
+					// POI Name
+					console.log("Name:", data.response.groups[0].items[i].venue.name);
+					var rName = $("<h5>", {
+						class: "poiName",
+						id: "rPoiName",
+					});
+					rName.text(data.response.groups[0].items[i].venue.name);
+
+					// POI Address
+					console.log(
+						"Address:",
+						data.response.groups[0].items[i].venue.location.formattedAddress,
+					);
+					var rAddress = $("<p>", {
+						class: "poiAddress",
+						id: "rPoiAddress",
+					});
+					rAddress.text(
+						"Address: " +
+							data.response.groups[0].items[i].venue.location.formattedAddress,
+					);
+
+					// POI Category
+					console.log(
+						"Category:",
+						data.response.groups[0].items[i].venue.categories[0].name,
+					);
+					var rCategory = $("<p>", {
+						class: "poiCategory",
+						id: "rPoiCategory",
+					});
+					rCategory.text(
+						"Category: " +
+							data.response.groups[0].items[i].venue.categories[0].name,
+					);
+
+					// POI IMG
+					console.log(
+						"Pic URL:",
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
+						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+					);
+					var rImg = $("<p>", {
+						class: "poiImg",
+						id: "rPoiImg",
+					});
+					// Render Icon
+					var rImgRender = $("<img>");
+					rImgRender.attr(
+						"src",
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix +
+							"100" +
+							data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+					);
+					rImg.append(rImgRender);
+
+					// Append Info
+					rContainer.append(rName, rAddress, rCategory, rImgRender);
+
+					// Merge and display
+					$(".r-attractions-api").append(rContainer);
+				}
 			},
-			error: function (xhr, status, error) {
-				alert(
-					"Result: " +
-					status +
-					" " +
-					error +
-					" " +
-					xhr.status +
-					" " +
-					xhr.statusText,
-				);
+			error: function (jqXHR, textStatus, errorThrown) {
+				// Code for handling errors
+				alert("Result: " + jqXHR + " " + textStatus + " " + errorThrown);
 			},
 		});
 	}
@@ -137,43 +278,44 @@ $(document).ready(function () {
 	var submitBtn = document.getElementById("submit-btn");
 
 	$("button").on("click", function () {
-
-		var queryFlightURL = "http://api.aviationstack.com/v1/flights?access_key=e6881625e7026da63114e2559be73272"
+		var queryFlightURL =
+			"http://api.aviationstack.com/v1/flights?access_key=e6881625e7026da63114e2559be73272";
 
 		$.ajax({
 			url: queryFlightURL,
-			dataType: 'json',
+			dataType: "json",
 			method: "GET",
 			success: function (apiResponse) {
-				if (Array.isArray(apiResponse['results'])) {
-					apiResponse['results'].forEach(flight => {
-						if (!flight['live']['is_ground']) {
-							console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-								`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-								`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
-						};
+				if (Array.isArray(apiResponse["results"])) {
+					apiResponse["results"].forEach((flight) => {
+						if (!flight["live"]["is_ground"]) {
+							console.log(
+								`${flight["airline"]["name"]} flight ${flight["flight"]["iata"]}`,
+								`from ${flight["departure"]["airport"]} (${flight["departure"]["iata"]})`,
+								`to ${flight["arrival"]["airport"]} (${flight["arrival"]["iata"]}) is in the air.`,
+							);
+						}
 					});
-				};
-			}
+				}
+			},
 		});
 	});
-
-	
 
 	console.log("-- || Skyscanner Flight Search API || --");
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
 
-		var queryWeatherURL = "https://openweathermap.org/forecast5" + formData[0] + "&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
+	var queryWeatherURL =
+		"https://openweathermap.org/forecast5" +
+		formData[0] +
+		"&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
 
-		$.ajax({
-			url: queryWeatherURL,
-			method: "GET",
-			dataType: "json"
-		}) .then(function(response) {
-
-		});
+	$.ajax({
+		url: queryWeatherURL,
+		method: "GET",
+		dataType: "json",
+	}).then(function (response) {});
 
 	console.log("-- || Open Weather Map API || --");
 });
