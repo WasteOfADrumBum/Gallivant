@@ -127,6 +127,7 @@ input[type="submit"] {
 .r-attractions-api {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-around;
 }
 
 .poiContainer {
@@ -172,7 +173,6 @@ input[type="submit"] {
 	font-size: 1.5rem;
 	border-bottom: 4px solid #f7e967;
 	margin-bottom: 7px;
-	max-width: 95%;
 }
 
 /* CONTACT */
