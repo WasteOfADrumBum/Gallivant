@@ -28,7 +28,7 @@ header .container {
 	color: white;
 	padding-top: 25px;
 	background-color: #70b7ba;
-	border-bottom: 8px solid #3d4c53; 
+	border-bottom: 8px solid #3d4c53;
 	box-shadow: 0 20px 20px -20px #333;
 	margin-bottom: 30px;
 }
@@ -119,6 +119,60 @@ input[type="submit"] {
 
 #gallivant-logo-bg {
 	width: 50%;
+}
+
+/* POI */
+
+.d-attractions-api,
+.r-attractions-api {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.poiContainer {
+	background-color: #70b7ba;
+	border: 2px solid #3d4c53;
+	width: 18%;
+	margin: 5px;
+	text-align: center;
+	padding: 10px;
+	color: white;
+}
+
+.poiName {
+	color: #f7e967;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+	font-size: large;
+}
+
+.poiContainer img {
+	margin: 5px;
+}
+
+.poiCategory {
+	color: #a9cf54;
+	border-top: 1px solid #3d4c53;
+	border-bottom: 1px solid #3d4c53;
+	padding: 2px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.poiTitle {
+	flex: none;
+	text-transform: uppercase;
+	margin-top: 15px;
+}
+
+.r-attractions-api-title,
+.d-attractions-api-title {
+	color: #a9cf54;
+	font-size: 1.5rem;
+	border-bottom: 4px solid #f7e967;
+	margin-bottom: 7px;
 }
 
 /* CONTACT */
@@ -308,11 +362,18 @@ footer a:visited {
 		border-left: none;
 		padding-left: 0px;
 	}
+	.d-attractions-api,
+	.r-attractions-api {
+		flex-direction: column;
+	}
+	.poiContainer {
+		width: 100%;
+	}
 }
 
 @media screen and (max-width: 320px) {
 	/* Older Phones */
 }
 
-/* CSS Primary Front-end Layout/Styling/Color Scheme © Joshua M. Small */
+/* CSS Primary Front-end Layout/Styling/Color Scheme, Initial Commit & POI © Joshua M. Small */
 /* CSS results.html Layout and content styling © Chelsea Haviland */
