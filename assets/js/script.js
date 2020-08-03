@@ -53,7 +53,6 @@ $(document).ready(function () {
 	// Min Return Date
 	$("#departing-date").on("change", function () {
 		$("#returning-date").attr("min", $(this).val());
-		console.log("Min Return Date: ", dateMin);
 	});
 
 	// Max Date (+1 year)
