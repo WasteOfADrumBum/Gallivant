@@ -31,6 +31,7 @@ $(document).ready(function () {
 /* © Joshua M. Small */
 
 $(document).ready(function () {
+	// Todays Date
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth() + 1;
@@ -41,8 +42,24 @@ $(document).ready(function () {
 	if (mm < 10) {
 		mm = "0" + mm;
 	}
-	var rightnow = yy + "-" + mm + "-" + dd;
-	$(".form-date").attr("min", rightnow);
+	var rightNow = yy + "-" + mm + "-" + dd;
+	// Set Todays Date
+	$("#departing-date").attr("value", rightNow);
+	console.log("Today's Date: ", rightNow);
+	// min Departure Date
+	$(".form-date").attr("min", rightNow);
+	console.log("Min. Departure Date: ", rightNow);
+
+	// Min Return Date
+	$("#departing-date").on("change", function () {
+		$("#returning-date").attr("min", $(this).val());
+		console.log("Min Return Date: ", dateMin);
+	});
+
+	// Max Date (+1 year)
+	var dateMax = yy + 1 + "-" + mm + "-" + dd;
+	$(".form-date").attr("max", dateMax);
+	console.log("Max Date: ", dateMax);
 });
 
 /* -- || Form (#loc-date-form) || -- */
