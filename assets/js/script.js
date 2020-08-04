@@ -132,26 +132,47 @@ $(document).ready(function () {
 
 	var submitBtn = document.getElementById("submit-btn");
 
-	$("button").on("click", function () {
+	function searchFlight (response) {
+		console.log("-- Start Flight Search--")
 		var queryFlightURL = "http://api.aviationstack.com/v1/flights?access_key=e6881625e7026da63114e2559be73272"
+		var flight = $(this).attr("Go Galivanting")
+		var formData = JSON.parse(localStorage.getItem("formData"))
+		var departLoc = formData[0].value;
+		var departDate = formData[1].value;
+		var arrivalLoc = formData[2].value;
+		var arrivalDate = formData[3].value;
+		var departingFlightData = $(".d-flight-api");
+		var flightInfo =  flightpull.data[i].departure.airport
+
 
 		$.ajax({
 			url: queryFlightURL,
 			dataType: 'json',
 			method: "GET",
-			success: function (apiResponse) {
-				if (Array.isArray(apiResponse['results'])) {
-					apiResponse['results'].forEach(flight => {
-						if (!flight['live']['is_ground']) {
-							console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-								`from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-								`to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
-						};
-					});
-				};
-			}
+			data: {departDate, departLoc},
+			success: function (flightpull) {
+				console.log("-- || Start AviationStack Departure || --");
+				console.log("This is your Departure City " + departLoc + "!")
+				console.log("This is your Departure Date " + departDate + "!")
+				console.log(flightpull)
+				for(var i = 0; i<flightpull.data.length;i++) {
+					if(departLoc === flightpull.data[i].arrival.airport)
+					$(".d-flight-api").append(`<div class='card'> Your closest Airport: "${flightpull.data[i].departure.airport}</div>`)
+
+				}
+
+				// $.each(data, function(i, departingFlightData) {
+				// 	departingFlightData.append("<div>Flight Data: " + departingFlightData.name + "</div>");
+				// });
+
+				
+			},
+			error: function () {
+				alert('error loading');
+			},
 		});
-	});
+	};
+	searchFlight();
 
 	
 
