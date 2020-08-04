@@ -357,6 +357,9 @@ $(document).ready(function () {
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
+	console.log("Hello world");
+
+	$("button").on("click", function () {
 
 	var queryWeatherURL =
 		"https://openweathermap.org/forecast5" +
@@ -370,4 +373,8 @@ $(document).ready(function () {
 	}).then(function (response) {});
 
 	console.log("-- || Open Weather Map API || --");
+	})
+
+
+	console.log("Hello World");
 });
