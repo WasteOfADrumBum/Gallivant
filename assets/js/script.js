@@ -164,6 +164,9 @@ $(document).ready(function () {
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
+	console.log("Hello world");
+
+	$("button").on("click", function () {
 
 		var queryWeatherURL = "https://openweathermap.org/forecast5" + formData[0] + "&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
 
@@ -176,4 +179,8 @@ $(document).ready(function () {
 		});
 
 	console.log("-- || Open Weather Map API || --");
+	})
+
+
+	console.log("Hello World");
 });
