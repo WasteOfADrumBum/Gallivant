@@ -45,10 +45,11 @@ $(document).ready(function () {
 	var rightNow = yy + "-" + mm + "-" + dd;
 	// Set Todays Date
 	$("#departing-date").attr("value", rightNow);
-	console.log("Today's Date: ", rightNow);
+	//console.log("Today's Date: ", rightNow);
 	// min Departure Date
 	$(".form-date").attr("min", rightNow);
-	console.log("Min. Departure Date: ", rightNow);
+	//console.log("Min. Departure Date: ", rightNow);
+
 	// Min Return Date
 	$("#departing-date").on("change", function () {
 		$("#returning-date").attr("min", $(this).val());
@@ -56,7 +57,7 @@ $(document).ready(function () {
 	// Max Date (+1 year)
 	var dateMax = yy + 1 + "-" + mm + "-" + dd;
 	$(".form-date").attr("max", dateMax);
-	console.log("Max Date: ", dateMax);
+	//console.log("Max Date: ", dateMax);
 });
 
 /* -- || Form (#loc-date-form) || -- */
@@ -88,12 +89,12 @@ $(document).ready(function () {
 	$.each(formData, function (i, datum) {
 		$("#display_" + datum.name).html(datum.value);
 	});
-	console.log("formData Array:", formData);
+	//console.log("formData Array:", formData);
 
 	/* -- || POI API || -- */
 	/* © Joshua M. Small */
 
-	console.log("-- || POI API || --");
+	//console.log("-- || POI API || --");
 
 	// ES6: Generate HTML structure
 	function genAPOIHTML(name, prefix, suffix, category, formattedAddress) {
@@ -108,11 +109,11 @@ $(document).ready(function () {
 	}
 
 	/* Departing Location */
-	console.log("Departing City:", formData[0].value);
+	//console.log("Departing City:", formData[0].value);
 	var poi1 = searchPoi1(formData);
 
 	function searchPoi1(formData) {
-		console.log("-- || Start POI Arrival Function || --");
+		//console.log("-- || Start POI Arrival Function || --");
 
 		$.ajax({
 			dataType: "json",
@@ -128,8 +129,8 @@ $(document).ready(function () {
 				console.log("ajax URL:", settings.url);
 			},
 			success: function (data) {
-				console.log("-- || POI Arrival Data || --");
-				console.log("Data:", data);
+				// console.log("-- || POI Arrival Data || --");
+				// console.log("Data:", data);
 
 				// empty any existing content
 				$(".r-attractions-api").empty();
@@ -143,30 +144,74 @@ $(document).ready(function () {
 
 				$(".r-attractions-api-title").append(aTitle);
 
-				console.log("-- || POI Arrival Loop || --");
+				//console.log("-- || POI Arrival Loop || --");
 				for (var i = 0; i < 5; i++) {
-					console.log(
-						"A Loop #",
-						i,
-						"| Name:",
-						data.response.groups[0].items[i].venue.name,
-						"| Pic URL:",
-						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
-						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
-						"| Category:",
+					//console.log("Loop #", i);
+
+					// div container
+					var aContainer = $("<div>", {
+						class: "poiContainer",
+						id: "aPoiContainer",
+					});
+
+					// POI Name
+					// console.log("Name:", data.response.groups[0].items[i].venue.name);
+					var aName = $("<div>", {
+						class: "poiName",
+						id: "aPoiName",
+					});
+					aName.text(data.response.groups[0].items[i].venue.name);
+
+					// POI Address
+					// console.log(
+					// 	"Address:",
+					// 	data.response.groups[0].items[i].venue.location.formattedAddress,
+					// );
+					var aAddress = $("<div>", {
+						class: "poiAddress",
+						id: "aPoiAddress",
+					});
+					aAddress.text(
+						data.response.groups[0].items[i].venue.location.formattedAddress,
+					);
+
+					// POI Category
+					// console.log(
+					// 	"Category:",
+					// 	data.response.groups[0].items[i].venue.categories[0].name,
+					// );
+					var aCategory = $("<div>", {
+						class: "poiCategory",
+						id: "aPoiCategory",
+					});
+					aCategory.text(
 						data.response.groups[0].items[i].venue.categories[0].name,
 						"| Address:",
 						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
 
-					// Append Info
-					var aContainer = genAPOIHTML(
-						data.response.groups[0].items[i].venue.name,
-						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
+          // POI IMG
+					// console.log(
+					// 	"Pic URL:",
+					// 	data.response.groups[0].items[i].venue.categories[0].icon.prefix,
+					// 	data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+					// );
+					var aImg = $("<div>", {
+						class: "poiImg",
+						id: "aPoiImg",
+					});
+					// Render Icon
+					var aImgRender = $("<img>");
+					aImgRender.attr(
+						"src",
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix +
+						"100" +
 						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
-						data.response.groups[0].items[i].venue.categories[0].name,
-						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
+					aImg.append(aImgRender);
+
+					// Append Info
+					aContainer.append(aName, aImgRender, aCategory, aAddress);
 
 					// Merge and display
 					$(".r-attractions-api").append(aContainer);
@@ -181,7 +226,7 @@ $(document).ready(function () {
 	}
 
 	/* Arriving Location */
-	console.log("Arriving City:", formData[2].value);
+	//console.log("Arriving City:", formData[2].value);
 	var poi2 = searchPoi2(formData);
 
 	function searchPoi2(formData) {
@@ -243,6 +288,22 @@ $(document).ready(function () {
 						data.response.groups[0].items[i].venue.categories[0].name,
 						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
+					var rImg = $("<div>", {
+						class: "poiImg",
+						id: "rPoiImg",
+					});
+					// Render Icon
+					var rImgRender = $("<img>");
+					rImgRender.attr(
+						"src",
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix +
+						"100" +
+						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+					);
+					rImg.append(rImgRender);
+
+					// Append Info
+					rContainer.append(rName, rImgRender, rCategory, rAddress);
 
 					// Merge and display
 					$(".d-attractions-api").append(rContainer);
@@ -259,68 +320,145 @@ $(document).ready(function () {
 	/* © Tanner Cook */
 
 	var submitBtn = document.getElementById("submit-btn");
+	searchFlight();
 
-	function searchFlight(response) {
-		console.log("-- Start Flight Search--");
-		var queryFlightURL =
-			"http://api.aviationstack.com/v1/flights?access_key=e6881625e7026da63114e2559be73272";
-		var flight = $(this).attr("Go Galivanting");
-		var formData = JSON.parse(localStorage.getItem("formData"));
+	function searchFlight() {
+		console.log("-- Start Flight Search--")
+		var flight = $(this).attr("Go Galivanting")
+		var formData = JSON.parse(localStorage.getItem("formData"))
 		var departLoc = formData[0].value;
 		var departDate = formData[1].value;
 		var arrivalLoc = formData[2].value;
 		var arrivalDate = formData[3].value;
-		var departingFlightData = $(".d-flight-api");
-		var flightInfo = flightpull.data[i].departure.airport;
+		var flightApiCodeDep = "https://api.skypicker.com/locations?term=" + departLoc + "&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
+		var flightApiCodeArr = "https://api.skypicker.com/locations?term=" + arrivalLoc + "&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
+		var apiCodeDepart;
+		var apiCodeArrival;
 
-		$.ajax({
-			url: queryFlightURL,
-			dataType: "json",
-			method: "GET",
-			data: { departDate, departLoc },
-			success: function (flightpull) {
-				console.log("-- || Start AviationStack Departure || --");
-				console.log("This is your Departure City " + departLoc + "!");
-				console.log("This is your Departure Date " + departDate + "!");
-				console.log(flightpull);
-				for (var i = 0; i < flightpull.data.length; i++) {
-					if (departLoc === flightpull.data[i].arrival.airport)
-						$(".d-flight-api").append(
-							`<div class='card'> Your closest Airport: "${flightpull.data[i].departure.airport}</div>`,
-						);
+		getFlightInfo();
+
+		function getFlightInfo() {
+			var flightData = [];
+			$.ajax({
+				url: flightApiCodeDep,
+				dateType: 'json',
+				method: 'GET',
+				success: function (codeDData) {
+					console.log(codeDData)
+
+					apiCodeDepart = codeDData.locations[0].code
+					console.log("departing code:", apiCodeDepart)
+
+
+					$.ajax({
+						url: flightApiCodeArr,
+						dateType: 'json',
+						method: 'GET',
+						success: function (codeAData) {
+							apiCodeArrival = codeAData.locations[0].code;
+							console.log("arrival code:", apiCodeArrival)
+
+							var arriveRearrange = arrivalDate.split('-');
+							arrivalDate = "";
+							arrivalDate = arrivalDate.concat(arriveRearrange[2]+"/");
+							arrivalDate = arrivalDate.concat(arriveRearrange[1]+"/");
+							arrivalDate = arrivalDate.concat(arriveRearrange[0]);
+							console.log(arrivalDate);
+
+							var departRearrange = departDate.split('-');
+							departDate = "";
+							departDate = departDate.concat(departRearrange[2]+"/");
+							departDate = departDate.concat(departRearrange[1]+"/");
+							departDate = departDate.concat(departRearrange[0]);
+							console.log(departDate)
+
+							var flightApiArrivingAir = "https://api.skypicker.com/flights?fly_from=airport:" + apiCodeArrival + "&fly_to=airport:" + apiCodeDepart + "&date_from=" + arrivalDate + "&date_to=" + arrivalDate + "&partner=picky&v=3"
+
+							var flightApiDepartingAir = "https://api.skypicker.com/flights?fly_from=airport:" + apiCodeDepart + "&fly_to=airport:" + apiCodeArrival + "&date_from=" + departDate + "&date_to=" + departDate + "&partner=picky&v=3"
+
+
+							$.ajax({
+								url: flightApiDepartingAir,
+								dataType: "json",
+								method: "GET",
+								success: function (data) {
+									console.log(flightApiDepartingAir)
+									console.log("-- || Start AviationStack Departure || --");
+									console.log("This is your Departure City " + departLoc + "!")
+									console.log("This is your Departure Date " + departDate + "!")
+									console.log(data)
+									var utcSeconds = data.data[0].route[0].dTimeUTC
+									var departTime = new Date(0);
+									departTime.setUTCSeconds(utcSeconds)
+									var arrivalTime = new Date(0);
+									arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC)
+									$('.d-flight-api').append(`<h2>${data.data[0].cityFrom}</h2>`);
+									$('.d-flight-api').append(`<p>${apiCodeDepart}</>`);
+									$('.d-flight-api').append(`<p>${departTime}</p>`);
+									$('.d-flight-api').append(`<p>${apiCodeArrival}</p>`);
+									$('.d-flight-api').append(`<p>${arrivalTime}</p>`);
+
+
+									$.ajax({
+										url: flightApiArrivingAir,
+										dateType: 'json',
+										method: 'GET',
+										success: function (data) {
+											var utcSeconds = data.data[0].route[0].dTimeUTC
+											var departTime = new Date(0);
+											departTime.setUTCSeconds(utcSeconds)
+											var arrivalTime = new Date(0);
+											arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC)
+											$('.r-flight-api').append(`<h2>${data.data[0].cityFrom}</h2>`);
+											$('.r-flight-api').append(`<p>${apiCodeDepart}</>`);
+											$('.r-flight-api').append(`<p>${departTime}</p>`);
+											$('.r-flight-api').append(`<p>${apiCodeArrival}</p>`);
+											$('.r-flight-api').append(`<p>${arrivalTime}</p>`);
+		
+		
+
+										}
+
+									});
+
+								},
+								error: function (xhr, ajaxOptions, thrownError) {
+									alert(xhr.status);
+									alert(thrownError);
+								},
+							});
+
+						}
+
+
+					})
 				}
-
-				// $.each(data, function(i, departingFlightData) {
-				// 	departingFlightData.append("<div>Flight Data: " + departingFlightData.name + "</div>");
-				// });
-			},
-			error: function () {
-				alert("error loading");
-			},
-		});
-	}
-	searchFlight();
-
-	console.log("-- || Skyscanner Flight Search API || --");
-
-	/* -- ||  Open Weather Map || -- */
-	/* © Garrett Dobson */
-	console.log("Hello world");
-
-	$("button").on("click", function () {
-		var queryWeatherURL =
-			"https://openweathermap.org/forecast5" +
-			formData[0] +
-			"&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
-
-		$.ajax({
-			url: queryWeatherURL,
-			method: "GET",
-			dataType: "json",
-		}).then(function (response) {});
+			});
+		};
 
 		console.log("-- || Open Weather Map API || --");
 	});
 
-	console.log("Hello World");
-});
+		/* -- ||  Open Weather Map || -- */
+		/* © Garrett Dobson */
+	
+
+		$("button").on("click", function () {
+
+			var queryWeatherURL =
+				"https://openweathermap.org/forecast5" +
+				formData[0] +
+				"&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
+
+			$.ajax({
+				url: queryWeatherURL,
+				method: "GET",
+				dataType: "json",
+			}).then(function (response) { });
+
+			console.log("-- || Open Weather Map API || --");
+		})
+
+
+	}
+})
