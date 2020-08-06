@@ -30,6 +30,8 @@ $(document).ready(function () {
 /* -- || Form Date Restriction || -- */
 /* © Joshua M. Small */
 
+console.log("Hello World");
+
 $(document).ready(function () {
 	// Todays Date
 	var today = new Date();
@@ -326,7 +328,7 @@ $(document).ready(function () {
 
 	/* -- ||  Skyscanner Flight Search || -- */
 	/* © Tanner Cook */
-
+/*
 	var submitBtn = document.getElementById("submit-btn");
   
 	function searchFlight (response) {
@@ -369,29 +371,103 @@ $(document).ready(function () {
 		});
 	};
 	searchFlight();
+	*/
 
 	console.log("-- || Skyscanner Flight Search API || --");
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
+
+	
+	//need to run the current weather for today & set the current date as well as the future dates ******
+	//need to setup divs in html to reflect where the JS will populate the info - done
+	// need to style results page w / weather data 
+	// technically need 4 current weather functions
+	//need to figure out how to modify date info so it can be displayed
+
+	
+
 	console.log("Hello world");
 
-	$("button").on("click", function () {
+	//Global weather variables
 
-	var queryWeatherURL =
-		"https://openweathermap.org/forecast5" +
-		formData[0] +
-		"&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
+	var imperialUnits = "&units=imperial";
+	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
+	var searchValueDestination = formData[2].value;
+	var searchValueDepart = formData[0].value;
 
-	$.ajax({
-		url: queryWeatherURL,
-		method: "GET",
-		dataType: "json",
-	}).then(function (response) {});
+	
+	//forecast
+	function genForecastHTML(name, temp, humidity, speed) {
+		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
+					<div class="card-body">
+						<h5 class="card-title">${name}</h5>
+						<p class="card-text">Temperature: ${temp}°F</p>
+						<p class="card-text">Humidity: ${humidity}%</p>
+						<p class="card-text">Wind Speed: ${speed}MPH</p>
+					</div>
+				</div>`;
+	
+				return forecastWeather;
+	}
 
-	console.log("-- || Open Weather Map API || --");
-	})
+	function getForecast(searchValueDestination) {
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
+    $.ajax({
+      type: "GET",
+      url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
+      dataType: "json",
+      success: function(data) {
+        // overwrite any existing content with title and empty row
+				console.log("forecast works");
+				console.log(forecastURL + searchValueDestination + imperialUnits + apiWeatherKey);
+        console.log(data);
+        console.log(data.list);
+        
+        // loop over all forecasts (by 3-hour increments)
+        for (var i = 0; i < data.list.length; i++) {
+          // only look at forecasts around 3:00pm
+          if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+            // create html elements for a bootstrap card
+            console.log(data);
 
+            var fiveDayForecast = genForecastHTML(data.city.name, data.list[0].main.temp, data.list[0].main.humidity, data.list[0].wind.speed);
 
-	console.log("Hello World");
+      $("#forecast").append(fiveDayForecast);
+          }
+        }
+      }
+    });
+  }
+	getForecast(searchValueDestination);
+
+	//departing day weather
+	searchWeather(searchValueDepart);
+
+	function searchWeather(searchValueDepart) {
+		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+		
+		$.ajax({
+			url: queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				console.log(queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey);
+				console.log("current weather works");
+				console.log(data);
+
+				var currentWeather = `<div class="card bg-light" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">${data.name}</h5>
+          <p class="card-text">Temperature: ${data.main.temp}°F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+          <p class="card-text">Wind Speed: ${data.wind.speed}MPH</p>
+        </div>
+      </div>`;
+
+        $("#today").html(currentWeather);
+		
+			}
+		})
+	}
 });
