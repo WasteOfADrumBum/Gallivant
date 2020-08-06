@@ -45,11 +45,10 @@ $(document).ready(function () {
 	var rightNow = yy + "-" + mm + "-" + dd;
 	// Set Todays Date
 	$("#departing-date").attr("value", rightNow);
-	//console.log("Today's Date: ", rightNow);
+	console.log("Today's Date: ", rightNow);
 	// min Departure Date
 	$(".form-date").attr("min", rightNow);
-	//console.log("Min. Departure Date: ", rightNow);
-
+	console.log("Min. Departure Date: ", rightNow);
 	// Min Return Date
 	$("#departing-date").on("change", function () {
 		$("#returning-date").attr("min", $(this).val());
@@ -57,7 +56,7 @@ $(document).ready(function () {
 	// Max Date (+1 year)
 	var dateMax = yy + 1 + "-" + mm + "-" + dd;
 	$(".form-date").attr("max", dateMax);
-	//console.log("Max Date: ", dateMax);
+	console.log("Max Date: ", dateMax);
 });
 
 /* -- || Form (#loc-date-form) || -- */
@@ -89,12 +88,12 @@ $(document).ready(function () {
 	$.each(formData, function (i, datum) {
 		$("#display_" + datum.name).html(datum.value);
 	});
-	//console.log("formData Array:", formData);
+	console.log("formData Array:", formData);
 
 	/* -- || POI API || -- */
 	/* © Joshua M. Small */
 
-	//console.log("-- || POI API || --");
+	console.log("-- || FourSquare POI API || --");
 
 	// ES6: Generate HTML structure
 	function genAPOIHTML(name, prefix, suffix, category, formattedAddress) {
@@ -109,11 +108,11 @@ $(document).ready(function () {
 	}
 
 	/* Departing Location */
-	//console.log("Departing City:", formData[0].value);
+	console.log("Departing City:", formData[0].value);
 	var poi1 = searchPoi1(formData);
 
 	function searchPoi1(formData) {
-		//console.log("-- || Start POI Arrival Function || --");
+		console.log("-- || Start POI Arrival Function || --");
 
 		$.ajax({
 			dataType: "json",
@@ -129,8 +128,8 @@ $(document).ready(function () {
 				console.log("ajax URL:", settings.url);
 			},
 			success: function (data) {
-				// console.log("-- || POI Arrival Data || --");
-				// console.log("Data:", data);
+				console.log("-- || POI Arrival Data || --");
+				console.log("Data:", data);
 
 				// empty any existing content
 				$(".r-attractions-api").empty();
@@ -144,74 +143,30 @@ $(document).ready(function () {
 
 				$(".r-attractions-api-title").append(aTitle);
 
-				//console.log("-- || POI Arrival Loop || --");
+				console.log("-- || POI Arrival Loop || --");
 				for (var i = 0; i < 5; i++) {
-					//console.log("Loop #", i);
-
-					// div container
-					var aContainer = $("<div>", {
-						class: "poiContainer",
-						id: "aPoiContainer",
-					});
-
-					// POI Name
-					// console.log("Name:", data.response.groups[0].items[i].venue.name);
-					var aName = $("<div>", {
-						class: "poiName",
-						id: "aPoiName",
-					});
-					aName.text(data.response.groups[0].items[i].venue.name);
-
-					// POI Address
-					// console.log(
-					// 	"Address:",
-					// 	data.response.groups[0].items[i].venue.location.formattedAddress,
-					// );
-					var aAddress = $("<div>", {
-						class: "poiAddress",
-						id: "aPoiAddress",
-					});
-					aAddress.text(
-						data.response.groups[0].items[i].venue.location.formattedAddress,
-					);
-
-					// POI Category
-					// console.log(
-					// 	"Category:",
-					// 	data.response.groups[0].items[i].venue.categories[0].name,
-					// );
-					var aCategory = $("<div>", {
-						class: "poiCategory",
-						id: "aPoiCategory",
-					});
-					aCategory.text(
+					console.log(
+						"A Loop #",
+						i,
+						"| Name:",
+						data.response.groups[0].items[i].venue.name,
+						"| Pic URL:",
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
+						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+						"| Category:",
 						data.response.groups[0].items[i].venue.categories[0].name,
 						"| Address:",
 						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
 
-          // POI IMG
-					// console.log(
-					// 	"Pic URL:",
-					// 	data.response.groups[0].items[i].venue.categories[0].icon.prefix,
-					// 	data.response.groups[0].items[i].venue.categories[0].icon.suffix,
-					// );
-					var aImg = $("<div>", {
-						class: "poiImg",
-						id: "aPoiImg",
-					});
-					// Render Icon
-					var aImgRender = $("<img>");
-					aImgRender.attr(
-						"src",
-						data.response.groups[0].items[i].venue.categories[0].icon.prefix +
-						"100" +
-						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
-					);
-					aImg.append(aImgRender);
-
 					// Append Info
-					aContainer.append(aName, aImgRender, aCategory, aAddress);
+					var aContainer = genAPOIHTML(
+						data.response.groups[0].items[i].venue.name,
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
+						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+						data.response.groups[0].items[i].venue.categories[0].name,
+						data.response.groups[0].items[i].venue.location.formattedAddress,
+					);
 
 					// Merge and display
 					$(".r-attractions-api").append(aContainer);
@@ -226,7 +181,7 @@ $(document).ready(function () {
 	}
 
 	/* Arriving Location */
-	//console.log("Arriving City:", formData[2].value);
+	console.log("Arriving City:", formData[2].value);
 	var poi2 = searchPoi2(formData);
 
 	function searchPoi2(formData) {
@@ -288,22 +243,6 @@ $(document).ready(function () {
 						data.response.groups[0].items[i].venue.categories[0].name,
 						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
-					var rImg = $("<div>", {
-						class: "poiImg",
-						id: "rPoiImg",
-					});
-					// Render Icon
-					var rImgRender = $("<img>");
-					rImgRender.attr(
-						"src",
-						data.response.groups[0].items[i].venue.categories[0].icon.prefix +
-						"100" +
-						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
-					);
-					rImg.append(rImgRender);
-
-					// Append Info
-					rContainer.append(rName, rImgRender, rCategory, rAddress);
 
 					// Merge and display
 					$(".d-attractions-api").append(rContainer);
