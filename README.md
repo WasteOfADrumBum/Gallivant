@@ -6,13 +6,22 @@ Team #4 - Project #1
 
 ## Application Requirements
 
-- Must use at least two server-side APIs: Skyscanner Flight Search & Open Weather Map
+- Must use at least two server-side APIs:
 
-- Must use a CSS framework _other than_ Bootstrap: Foundation
+  - Skypicker
+  - Open Weather Map
+  - FourSquare
+
+- Must use a CSS framework _other than_ Bootstrap:
+
+  - Foundation
 
 - Must be interactive (i.e: accept and respond to user input)
 
-- Use at least one new third-party API: Skyscanner Flight Search
+- Use at least one new third-party API:
+
+  - Skypicker
+  - FourSquare
 
 - Must have a polished UI
 
@@ -55,7 +64,9 @@ Presentation Link: https://docs.google.com/presentation/d/1FaQh9nJ1G6jkV4hFx-MvD
 You are required to submit the following:
 
 - The URL of the deployed application
-  https://wasteofadrumbum.github.io/Gallivant/
+
+  - https://wasteofadrumbum.github.io/Gallivant/
 
 - The URL of the GitHub repository
-  https://github.com/WasteOfADrumBum/Gallivant
+
+  - https://github.com/WasteOfADrumBum/Gallivant
