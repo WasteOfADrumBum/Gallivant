@@ -131,6 +131,60 @@ $(document).ready(function () {
 		$("#rtn-trip-container").show();
 	});
 
+	/* -- || UnSplach API || -- */
+
+	function searchPicture(formData) {
+		$.ajax({
+			type: "GET",
+			url:
+				"https://api.unsplash.com/search/photos/?client_id=" +
+				"DlLo3jJvn5zyAKmxFu4A5tczXvAgDss4YSwR1hVVr7U" +
+				"&collections=travel,city&orientation=landscape&query=" +
+				formData[2].value,
+			dataType: "json",
+			success: function (data) {
+				console.log("Picture Data:", data);
+
+				// empty any existing content
+				$(".d-picture-api").empty();
+
+				// Create IMG
+				var dImg = $("<img>", { id: "d-img-div" });
+				dImg.attr("src", data.results[0].urls.regular);
+				console.log("IMG URL:", data.results[0].urls.regular);
+
+				// Append Info
+				$(".d-picture-api").append(dImg);
+			},
+		});
+
+		$.ajax({
+			type: "GET",
+			url:
+				"https://api.unsplash.com/search/photos/?client_id=" +
+				"DlLo3jJvn5zyAKmxFu4A5tczXvAgDss4YSwR1hVVr7U" +
+				"&collections=travel,city&orientationlandscape&query=" +
+				formData[0].value,
+			dataType: "json",
+			success: function (data) {
+				console.log("Picture Data:", data);
+
+				// empty any existing content
+				$(".r-picture-api").empty();
+
+				// Create IMG
+				var rImg = $("<img>", { id: "r-img-div" });
+				rImg.attr("src", data.results[0].urls.regular);
+				console.log("IMG URL:", data.results[0].urls.regular);
+
+				// Append Info
+				$(".r-picture-api").append(rImg);
+			},
+		});
+	}
+
+	searchPicture(formData);
+
 	/* -- || FourSquare POI API || -- */
 	/* © Joshua M. Small */
 
