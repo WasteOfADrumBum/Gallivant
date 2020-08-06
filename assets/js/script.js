@@ -1,4 +1,4 @@
-/* -- ||  Contac.html Logo/Icon Image || -- */
+/* -- ||  Contact.html Logo/Icon Image || -- */
 /* © Joshua M. Small */
 
 // Change #gallivant-logo-contact from Logo -to-> Icon on window < 768px
@@ -29,8 +29,6 @@ $(document).ready(function () {
 
 /* -- || Form Date Restriction || -- */
 /* © Joshua M. Small */
-
-console.log("Hello World");
 
 $(document).ready(function () {
 	// Todays Date
@@ -92,7 +90,7 @@ $(document).ready(function () {
 	});
 	console.log("formData Array:", formData);
 
-	/* -- || POI API || -- */
+	/* -- || FourSquare POI API || -- */
 	/* © Joshua M. Small */
 
 	console.log("-- || FourSquare POI API || --");
@@ -259,20 +257,26 @@ $(document).ready(function () {
 
 	/* -- ||  Skyscanner Flight Search || -- */
 	/* © Tanner Cook */
-/*
+
 	var submitBtn = document.getElementById("submit-btn");
 	searchFlight();
 
 	function searchFlight() {
-		console.log("-- Start Flight Search--")
-		var flight = $(this).attr("Go Galivanting")
-		var formData = JSON.parse(localStorage.getItem("formData"))
+		console.log("-- Start Flight Search--");
+		var flight = $(this).attr("Go Galivanting");
+		var formData = JSON.parse(localStorage.getItem("formData"));
 		var departLoc = formData[0].value;
 		var departDate = formData[1].value;
 		var arrivalLoc = formData[2].value;
 		var arrivalDate = formData[3].value;
-		var flightApiCodeDep = "https://api.skypicker.com/locations?term=" + departLoc + "&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
-		var flightApiCodeArr = "https://api.skypicker.com/locations?term=" + arrivalLoc + "&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
+		var flightApiCodeDep =
+			"https://api.skypicker.com/locations?term=" +
+			departLoc +
+			"&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
+		var flightApiCodeArr =
+			"https://api.skypicker.com/locations?term=" +
+			arrivalLoc +
+			"&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
 		var apiCodeDepart;
 		var apiCodeArrival;
 
@@ -282,134 +286,135 @@ $(document).ready(function () {
 			var flightData = [];
 			$.ajax({
 				url: flightApiCodeDep,
-				dateType: 'json',
-				method: 'GET',
+				dateType: "json",
+				method: "GET",
 				success: function (codeDData) {
-					console.log(codeDData)
-
-					apiCodeDepart = codeDData.locations[0].code
-					console.log("departing code:", apiCodeDepart)
-
+					console.log(codeDData);
+					apiCodeDepart = codeDData.locations[0].code;
+					console.log("departing code:", apiCodeDepart);
 
 					$.ajax({
 						url: flightApiCodeArr,
-						dateType: 'json',
-						method: 'GET',
+						dateType: "json",
+						method: "GET",
 						success: function (codeAData) {
 							apiCodeArrival = codeAData.locations[0].code;
-							console.log("arrival code:", apiCodeArrival)
+							console.log("arrival code:", apiCodeArrival);
 
-							var arriveRearrange = arrivalDate.split('-');
+							var arriveRearrange = arrivalDate.split("-");
 							arrivalDate = "";
-							arrivalDate = arrivalDate.concat(arriveRearrange[2]+"/");
-							arrivalDate = arrivalDate.concat(arriveRearrange[1]+"/");
+							arrivalDate = arrivalDate.concat(arriveRearrange[2] + "/");
+							arrivalDate = arrivalDate.concat(arriveRearrange[1] + "/");
 							arrivalDate = arrivalDate.concat(arriveRearrange[0]);
 							console.log(arrivalDate);
 
-							var departRearrange = departDate.split('-');
+							var departRearrange = departDate.split("-");
 							departDate = "";
-							departDate = departDate.concat(departRearrange[2]+"/");
-							departDate = departDate.concat(departRearrange[1]+"/");
+							departDate = departDate.concat(departRearrange[2] + "/");
+							departDate = departDate.concat(departRearrange[1] + "/");
 							departDate = departDate.concat(departRearrange[0]);
-							console.log(departDate)
+							console.log(departDate);
 
-							var flightApiArrivingAir = "https://api.skypicker.com/flights?fly_from=airport:" + apiCodeArrival + "&fly_to=airport:" + apiCodeDepart + "&date_from=" + arrivalDate + "&date_to=" + arrivalDate + "&partner=picky&v=3"
+							var flightApiArrivingAir =
+								"https://api.skypicker.com/flights?fly_from=airport:" +
+								apiCodeArrival +
+								"&fly_to=airport:" +
+								apiCodeDepart +
+								"&date_from=" +
+								arrivalDate +
+								"&date_to=" +
+								arrivalDate +
+								"&partner=picky&v=3";
 
-							var flightApiDepartingAir = "https://api.skypicker.com/flights?fly_from=airport:" + apiCodeDepart + "&fly_to=airport:" + apiCodeArrival + "&date_from=" + departDate + "&date_to=" + departDate + "&partner=picky&v=3"
-
+							var flightApiDepartingAir =
+								"https://api.skypicker.com/flights?fly_from=airport:" +
+								apiCodeDepart +
+								"&fly_to=airport:" +
+								apiCodeArrival +
+								"&date_from=" +
+								departDate +
+								"&date_to=" +
+								departDate +
+								"&partner=picky&v=3";
 
 							$.ajax({
 								url: flightApiDepartingAir,
 								dataType: "json",
 								method: "GET",
 								success: function (data) {
-									console.log(flightApiDepartingAir)
+									console.log(flightApiDepartingAir);
 									console.log("-- || Start AviationStack Departure || --");
-									console.log("This is your Departure City " + departLoc + "!")
-									console.log("This is your Departure Date " + departDate + "!")
-									console.log(data)
-									var utcSeconds = data.data[0].route[0].dTimeUTC
+									console.log("This is your Departure City " + departLoc + "!");
+									console.log(
+										"This is your Departure Date " + departDate + "!",
+									);
+									console.log(data);
+									var utcSeconds = data.data[0].route[0].dTimeUTC;
 									var departTime = new Date(0);
-									departTime.setUTCSeconds(utcSeconds)
+									departTime.setUTCSeconds(utcSeconds);
 									var arrivalTime = new Date(0);
-									arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC)
-									$('.d-flight-api').append(`<h2>${data.data[0].cityFrom}</h2>`);
-									$('.d-flight-api').append(`<p>${apiCodeDepart}</>`);
-									$('.d-flight-api').append(`<p>${departTime}</p>`);
-									$('.d-flight-api').append(`<p>${apiCodeArrival}</p>`);
-									$('.d-flight-api').append(`<p>${arrivalTime}</p>`);
-
+									arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
+									$(".d-flight-api").append(
+										`<h2>${data.data[0].cityFrom}</h2>`,
+									);
+									$(".d-flight-api").append(`<p>${apiCodeDepart}</>`);
+									$(".d-flight-api").append(`<p>${departTime}</p>`);
+									$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
+									$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
 
 									$.ajax({
 										url: flightApiArrivingAir,
-										dateType: 'json',
-										method: 'GET',
+										dateType: "json",
+										method: "GET",
 										success: function (data) {
-											var utcSeconds = data.data[0].route[0].dTimeUTC
+											var utcSeconds = data.data[0].route[0].dTimeUTC;
 											var departTime = new Date(0);
-											departTime.setUTCSeconds(utcSeconds)
+											departTime.setUTCSeconds(utcSeconds);
 											var arrivalTime = new Date(0);
-											arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC)
-											$('.r-flight-api').append(`<h2>${data.data[0].cityFrom}</h2>`);
-											$('.r-flight-api').append(`<p>${apiCodeDepart}</>`);
-											$('.r-flight-api').append(`<p>${departTime}</p>`);
-											$('.r-flight-api').append(`<p>${apiCodeArrival}</p>`);
-											$('.r-flight-api').append(`<p>${arrivalTime}</p>`);
-		
-		
-
-										}
-
+											arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
+											$(".r-flight-api").append(
+												`<h2>${data.data[0].cityFrom}</h2>`,
+											);
+											$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
+											$(".r-flight-api").append(`<p>${departTime}</p>`);
+											$(".r-flight-api").append(`<p>${apiCodeArrival}</p>`);
+											$(".r-flight-api").append(`<p>${arrivalTime}</p>`);
+										},
 									});
-
 								},
 								error: function (xhr, ajaxOptions, thrownError) {
 									alert(xhr.status);
+									alert(ajaxOptions);
 									alert(thrownError);
 								},
 							});
-
-						}
-
-
-					})
-				}
+						},
+					});
+				},
 			});
-		};
+		}
+	}
 
-				// $.each(data, function(i, departingFlightData) {
-				// 	departingFlightData.append("<div>Flight Data: " + departingFlightData.name + "</div>");
-				// });
-
-				
-			},
-			error: function () {
-				alert('error loading');
-			},
-		});
-	};
 	searchFlight();
-	*/
-
-	console.log("-- || Skyscanner Flight Search API || --");
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
 
-	//need to run the current weather for today & set the current date as well as the future dates ******
-	//need to setup divs in html to reflect where the JS will populate the info - done
-	// need to style results page w / weather data 
+	console.log("-- || Open Weather Map API || --");
+
+	// need to run the current weather for today & set the current date as well as the future dates ******
+	// need to setup divs in html to reflect where the JS will populate the info - done
+	// need to style results page w / weather data
 	// technically need 4 current weather functions
-	//need to figure out how to modify date info so it can be displayed
+	// need to figure out how to modify date info so it can be displayed
 
-	//Global weather variables
-
+	// Global weather variables
 	var imperialUnits = "&units=imperial";
 	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
 	var searchValueDestination = formData[2].value;
 	var searchValueDepart = formData[0].value;
-	
-	//forecast
+
+	// forecast
 	function genForecastHTML(name, temp, humidity, speed) {
 		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
 					<div class="card-body">
@@ -419,51 +424,61 @@ $(document).ready(function () {
 						<p class="card-text">Wind Speed: ${speed}MPH</p>
 					</div>
 				</div>`;
-	
-				return forecastWeather;
+
+		return forecastWeather;
 	}
+
 	function getForecast(searchValueDestination) {
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
-    $.ajax({
-      type: "GET",
-      url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
-      dataType: "json",
-      success: function(data) {
-        // overwrite any existing content with title and empty row
+		var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
+		$.ajax({
+			type: "GET",
+			url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
+			dataType: "json",
+			success: function (data) {
+				// overwrite any existing content with title and empty row
 				console.log("forecast works");
-				console.log(forecastURL + searchValueDestination + imperialUnits + apiWeatherKey);
-        console.log(data);
-        console.log(data.list);
-        
-        // loop over all forecasts (by 3-hour increments)
-        for (var i = 0; i < data.list.length; i++) {
-          // only look at forecasts around 3:00pm
-          if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-            // create html elements for a bootstrap card
-            console.log(data);
+				console.log(
+					forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
+				);
+				console.log(data);
+				console.log(data.list);
 
-            var fiveDayForecast = genForecastHTML(data.city.name, data.list[0].main.temp, data.list[0].main.humidity, data.list[0].wind.speed);
+				// loop over all forecasts (by 3-hour increments)
+				for (var i = 0; i < data.list.length; i++) {
+					// only look at forecasts around 3:00pm
+					if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+						// create html elements for a bootstrap card
+						console.log(data);
 
-      $("#forecast").append(fiveDayForecast);
-          }
-        }
-      }
-    });
-  }
+						var fiveDayForecast = genForecastHTML(
+							data.city.name,
+							data.list[0].main.temp,
+							data.list[0].main.humidity,
+							data.list[0].wind.speed,
+						);
+
+						$("#forecast").append(fiveDayForecast);
+					}
+				}
+			},
+		});
+	}
+
 	getForecast(searchValueDestination);
-
 	//departing day weather
 	searchWeather(searchValueDepart);
 
 	function searchWeather(searchValueDepart) {
 		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-		
+
 		$.ajax({
 			url: queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
 			type: "GET",
 			dataType: "json",
-			success: function(data) {
-				console.log(queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey);
+			success: function (data) {
+				console.log(
+					queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
+				);
 				console.log("current weather works");
 				console.log(data);
 
@@ -476,10 +491,8 @@ $(document).ready(function () {
         </div>
       </div>`;
 
-        $("#today").html(currentWeather);
-		
-			}
-		})
+				$("#today").html(currentWeather);
+			},
+		});
 	}
 });
-
