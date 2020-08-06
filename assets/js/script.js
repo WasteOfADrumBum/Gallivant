@@ -255,8 +255,10 @@ $(document).ready(function () {
 		});
 	}
 
-	/* -- ||  Skyscanner Flight Search || -- */
+	/* -- || Skyscanner Flight Search || -- */
 	/* © Tanner Cook */
+
+	console.log("-- || Skyscanner Flight Search || --");
 
 	var submitBtn = document.getElementById("submit-btn");
 	searchFlight();
