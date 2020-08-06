@@ -137,6 +137,7 @@ input[type="submit"] {
 	margin-right: -30px;
 	padding: 30px;
 	margin-bottom: 30px;
+	text-align: center;
 }
 
 #int-select {
@@ -431,12 +432,24 @@ footer a:visited {
 		border-left: none;
 		padding-left: 0px;
 	}
+	#trip-selection {
+		flex-direction: column;
+	}
 	.d-attractions-api,
 	.r-attractions-api {
 		flex-direction: column;
 	}
+	.poiTitle {
+		text-align: center;
+	}
 	.poiContainer {
 		width: 100%;
+	}
+	.d-weather-api #forecast {
+		flex-direction: column;
+	}
+	.card-forecast {
+		width: 100% !important;
 	}
 }
 
