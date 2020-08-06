@@ -25,12 +25,10 @@ $(window).resize(function () {
 // Check img on window load
 $(document).ready(function () {
 	checkResolution();
-});
 
-/* -- || Form Date Restriction || -- */
-/* © Joshua M. Small */
+	/* -- || Form Date Restriction || -- */
+	/* © Joshua M. Small */
 
-$(document).ready(function () {
 	// Todays Date
 	var today = new Date();
 	var dd = today.getDate();
@@ -57,13 +55,11 @@ $(document).ready(function () {
 	var dateMax = yy + 1 + "-" + mm + "-" + dd;
 	$(".form-date").attr("max", dateMax);
 	console.log("Max Date: ", dateMax);
-});
 
-/* -- || Form (#loc-date-form) || -- */
-/* © Joshua M. Small */
+	/* -- || Form (#loc-date-form) || -- */
+	/* © Joshua M. Small */
 
-/* Captures index.html formData to be used on results.html */
-$(document).ready(function () {
+	/* Captures index.html formData to be used on results.html */
 	// Instead of listening to button click, always listen to form submit event
 	$("#loc-date-form").submit(function () {
 		// Create an array of objects called `formData`
