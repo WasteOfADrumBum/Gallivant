@@ -134,8 +134,6 @@ $(document).ready(function () {
 	/* -- || UnSplach API || -- */
 
 	function searchPicture(formData) {
-		console.log("-- || UnSplash Picture Search 1 || --");
-
 		$.ajax({
 			type: "GET",
 			url:
@@ -145,7 +143,6 @@ $(document).ready(function () {
 				formData[2].value,
 			dataType: "json",
 			success: function (data) {
-				console.log("-- || Departure Picture Data || --");
 				console.log("Picture Data:", data);
 
 				// empty any existing content
@@ -154,6 +151,8 @@ $(document).ready(function () {
 				// Create IMG
 				var dImg = $("<img>", { id: "d-img-div" });
 				dImg.attr("src", data.results[0].urls.regular);
+				console.log("IMG URL:", data.results[0].urls.regular);
+
 				// Append Info
 				$(".d-picture-api").append(dImg);
 			},
@@ -168,7 +167,6 @@ $(document).ready(function () {
 				formData[0].value,
 			dataType: "json",
 			success: function (data) {
-				console.log("-- || Picture Data || --");
 				console.log("Picture Data:", data);
 
 				// empty any existing content
@@ -177,6 +175,8 @@ $(document).ready(function () {
 				// Create IMG
 				var rImg = $("<img>", { id: "r-img-div" });
 				rImg.attr("src", data.results[0].urls.regular);
+				console.log("IMG URL:", data.results[0].urls.regular);
+
 				// Append Info
 				$(".r-picture-api").append(rImg);
 			},
