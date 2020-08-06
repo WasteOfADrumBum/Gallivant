@@ -25,12 +25,10 @@ $(window).resize(function () {
 // Check img on window load
 $(document).ready(function () {
 	checkResolution();
-});
 
-/* -- || Form Date Restriction || -- */
-/* © Joshua M. Small */
+	/* -- || Form Date Restriction || -- */
+	/* © Joshua M. Small */
 
-$(document).ready(function () {
 	// Todays Date
 	var today = new Date();
 	var dd = today.getDate();
@@ -57,13 +55,11 @@ $(document).ready(function () {
 	var dateMax = yy + 1 + "-" + mm + "-" + dd;
 	$(".form-date").attr("max", dateMax);
 	console.log("Max Date: ", dateMax);
-});
 
-/* -- || Form (#loc-date-form) || -- */
-/* © Joshua M. Small */
+	/* -- || Form (#loc-date-form) || -- */
+	/* © Joshua M. Small */
 
-/* Captures index.html formData to be used on results.html */
-$(document).ready(function () {
+	/* Captures index.html formData to be used on results.html */
 	// Instead of listening to button click, always listen to form submit event
 	$("#loc-date-form").submit(function () {
 		// Create an array of objects called `formData`
@@ -89,6 +85,51 @@ $(document).ready(function () {
 		$("#display_" + datum.name).html(datum.value);
 	});
 	console.log("formData Array:", formData);
+
+	/* Trip Selection Title Change */
+	/* © Joshua M. Small */
+
+	// genSelectTitles() must be before int/rtn-select functions
+	function genSelectTitles(formData) {
+		// empty any existing content
+		$("#trip-selection").empty();
+
+		console.log("Create Trip Selection Titles");
+
+		$("#trip-selection").append(
+			"<div id='int-select'><a>" +
+				formData[0].value +
+				" - to - " +
+				formData[2].value +
+				"</a></div>",
+			"<div id='rtn-select'><a>" +
+				formData[2].value +
+				" - to - " +
+				formData[0].value +
+				"</a></div>",
+		);
+	}
+
+	genSelectTitles(formData);
+
+	/* -- || Trip Container Display || -- */
+	/* © Joshua M. Small */
+
+	$("#int-select").click(function () {
+		document.getElementById("int-select").style.textShadow =
+			"2px 2px 1px black";
+		document.getElementById("rtn-select").style.textShadow = "none";
+		$("#int-trip-container").show();
+		$("#rtn-trip-container").hide();
+	});
+
+	$("#rtn-select").click(function () {
+		document.getElementById("int-select").style.textShadow = "none";
+		document.getElementById("rtn-select").style.textShadow =
+			"2px 2px 1px black";
+		$("#int-trip-container").hide();
+		$("#rtn-trip-container").show();
+	});
 
 	/* -- || FourSquare POI API || -- */
 	/* © Joshua M. Small */
@@ -119,7 +160,7 @@ $(document).ready(function () {
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
 				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
 				"&client_secret=" +
-				"H204CRKMTCFR355HCXOFMINYFHR01PQX0MDRADXO52XF44YW" +
+				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
 				"&v=20180323&limit=10&near=" +
 				formData[0].value,
 			data: {},
@@ -203,7 +244,7 @@ $(document).ready(function () {
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
 				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
 				"&client_secret=" +
-				"H204CRKMTCFR355HCXOFMINYFHR01PQX0MDRADXO52XF44YW" +
+				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
 				"&v=20180323&limit=10&near=" +
 				formData[2].value,
 			data: {},
