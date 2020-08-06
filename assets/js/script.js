@@ -141,7 +141,7 @@ $(document).ready(function () {
 			url:
 				"https://api.unsplash.com/search/photos/?client_id=" +
 				"DlLo3jJvn5zyAKmxFu4A5tczXvAgDss4YSwR1hVVr7U" +
-				"&collections=travel,city&query=" +
+				"&collections=travel,city&orientation=landscape&query=" +
 				formData[2].value,
 			dataType: "json",
 			success: function (data) {
@@ -164,7 +164,7 @@ $(document).ready(function () {
 			url:
 				"https://api.unsplash.com/search/photos/?client_id=" +
 				"DlLo3jJvn5zyAKmxFu4A5tczXvAgDss4YSwR1hVVr7U" +
-				"&collections=travel,city&query=" +
+				"&collections=travel,city&orientationlandscape&query=" +
 				formData[0].value,
 			dataType: "json",
 			success: function (data) {
