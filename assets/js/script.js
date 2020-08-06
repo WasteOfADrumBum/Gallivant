@@ -54,7 +54,6 @@ $(document).ready(function () {
 	$("#departing-date").on("change", function () {
 		$("#returning-date").attr("min", $(this).val());
 	});
-
 	// Max Date (+1 year)
 	var dateMax = yy + 1 + "-" + mm + "-" + dd;
 	$(".form-date").attr("max", dateMax);
@@ -97,6 +96,18 @@ $(document).ready(function () {
 
 	//console.log("-- || POI API || --");
 
+	// ES6: Generate HTML structure
+	function genAPOIHTML(name, prefix, suffix, category, formattedAddress) {
+		var resultsPOI = `<div class="poiContainer" id="rPoiContainer">
+				<div class="poiName" id="rPoiName">${name}</div>
+				<img src="${prefix}100${suffix}">
+				<div class="poiCategory" id="rPoiCategory">${category}</div>
+				<div class="poiAddress" id="rPoiAddress">${formattedAddress}</div>
+			</div>`;
+
+		return resultsPOI;
+	}
+
 	/* Departing Location */
 	//console.log("Departing City:", formData[0].value);
 	var poi1 = searchPoi1(formData);
@@ -124,6 +135,7 @@ $(document).ready(function () {
 				// empty any existing content
 				$(".r-attractions-api").empty();
 
+				// Create POI Title
 				var aTitle = $("<div>", {
 					class: "poiTitle",
 					id: "aPoiTitle",
@@ -174,9 +186,11 @@ $(document).ready(function () {
 					});
 					aCategory.text(
 						data.response.groups[0].items[i].venue.categories[0].name,
+						"| Address:",
+						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
 
-					// POI IMG
+          // POI IMG
 					// console.log(
 					// 	"Pic URL:",
 					// 	data.response.groups[0].items[i].venue.categories[0].icon.prefix,
@@ -218,6 +232,18 @@ $(document).ready(function () {
 	function searchPoi2(formData) {
 		console.log("-- || Start POI Return Function || --");
 
+		// empty any existing content
+		$(".r-attractions-api").empty();
+
+		// Create POI Title
+		var dTitle = $("<div>", {
+			class: "poiTitle",
+			id: "aPoiTitle",
+		});
+		dTitle.text(formData[2].value + "'s Attractions:");
+
+		$(".d-attractions-api-title").append(dTitle);
+
 		$.ajax({
 			dataType: "json",
 			url:
@@ -238,63 +264,29 @@ $(document).ready(function () {
 				// empty any existing content
 				$(".d-attractions-api").empty();
 
-				var rTitle = $("<div>", {
-					class: "poiTitle",
-					id: "rPoiTitle",
-				});
-				rTitle.text(formData[2].value + "'s Attractions:");
-
-				$(".d-attractions-api-title").append(rTitle);
-
 				console.log("-- || POI Return Loop || --");
 				for (var i = 0; i < 5; i++) {
-					console.log("Loop #", i);
-
-					// div container
-					var rContainer = $("<div>", {
-						class: "poiContainer",
-						id: "rPoiContainer",
-					});
-
-					// POI Name
-					console.log("Name:", data.response.groups[0].items[i].venue.name);
-					var rName = $("<div>", {
-						class: "poiName",
-						id: "rPoiName",
-					});
-					rName.text(data.response.groups[0].items[i].venue.name);
-
-					// POI Address
 					console.log(
-						"Address:",
-						data.response.groups[0].items[i].venue.location.formattedAddress,
-					);
-					var rAddress = $("<div>", {
-						class: "poiAddress",
-						id: "rPoiAddress",
-					});
-					rAddress.text(
-						data.response.groups[0].items[i].venue.location.formattedAddress,
-					);
-
-					// POI Category
-					console.log(
-						"Category:",
-						data.response.groups[0].items[i].venue.categories[0].name,
-					);
-					var rCategory = $("<div>", {
-						class: "poiCategory",
-						id: "rPoiCategory",
-					});
-					rCategory.text(
-						data.response.groups[0].items[i].venue.categories[0].name,
-					);
-
-					// POI IMG
-					console.log(
-						"Pic URL:",
+						"R Loop #",
+						i,
+						"| Name:",
+						data.response.groups[0].items[i].venue.name,
+						"| Pic URL:",
 						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
 						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+						"| Category:",
+						data.response.groups[0].items[i].venue.categories[0].name,
+						"| Address:",
+						data.response.groups[0].items[i].venue.location.formattedAddress,
+					);
+
+					// Append Info
+					var rContainer = genAPOIHTML(
+						data.response.groups[0].items[i].venue.name,
+						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
+						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
+						data.response.groups[0].items[i].venue.categories[0].name,
+						data.response.groups[0].items[i].venue.location.formattedAddress,
 					);
 					var rImg = $("<div>", {
 						class: "poiImg",
@@ -440,19 +432,12 @@ $(document).ready(function () {
 
 
 					})
-
 				}
 			});
 		};
 
-
-
-
-
-
-
-
-
+		console.log("-- || Open Weather Map API || --");
+	});
 
 		/* -- ||  Open Weather Map || -- */
 		/* © Garrett Dobson */
