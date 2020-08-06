@@ -240,6 +240,8 @@ input[type="submit"] {
 	font-weight: bold;
 	letter-spacing: 1.5px;
 	font-size: large;
+	padding-bottom: 2px;
+	border-bottom: 1px solid #3d4c53;
 }
 
 /* CONTACT */

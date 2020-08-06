@@ -90,6 +90,31 @@ $(document).ready(function () {
 	});
 	console.log("formData Array:", formData);
 
+	/* Trip Selection Title Change */
+
+	// genSelectTitles() must be before int/rtn-select functions
+	function genSelectTitles(formData) {
+		// empty any existing content
+		$("#trip-selection").empty();
+
+		console.log("Create Trip Selection Titles");
+
+		$("#trip-selection").append(
+			"<div id='int-select'><a>" +
+				formData[0].value +
+				" - to - " +
+				formData[2].value +
+				"</a></div>",
+			"<div id='rtn-select'><a>" +
+				formData[2].value +
+				" - to - " +
+				formData[0].value +
+				"</a></div>",
+		);
+	}
+
+	genSelectTitles(formData);
+
 	/* -- || Trip Container Display || -- */
 
 	$("#int-select").click(function () {
@@ -99,6 +124,7 @@ $(document).ready(function () {
 		$("#int-trip-container").show();
 		$("#rtn-trip-container").hide();
 	});
+
 	$("#rtn-select").click(function () {
 		document.getElementById("int-select").style.textShadow = "none";
 		document.getElementById("rtn-select").style.textShadow =
