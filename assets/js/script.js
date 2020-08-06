@@ -93,7 +93,7 @@ $(document).ready(function () {
 	/* -- || POI API || -- */
 	/* © Joshua M. Small */
 
-	console.log("-- || POI API || --");
+	console.log("-- || FourSquare POI API || --");
 
 	// ES6: Generate HTML structure
 	function genAPOIHTML(name, prefix, suffix, category, formattedAddress) {
