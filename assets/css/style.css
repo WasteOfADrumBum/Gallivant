@@ -175,6 +175,18 @@ input[type="submit"] {
 	margin-bottom: 7px;
 }
 
+/* Weather Styling ----------------------------------Chelsea this is all the styling I've done for weather and it obviously doesn't match the rest haha*/ 
+
+.card-forecast {
+	display: inline-flex;
+	color: #a9cf54;
+	border-top: 1px solid #3d4c53;
+	border-bottom: 1px solid #3d4c53;
+	padding: 2px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
 /* CONTACT */
 
 #contact-info {
