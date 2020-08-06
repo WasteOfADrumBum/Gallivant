@@ -87,6 +87,7 @@ $(document).ready(function () {
 	console.log("formData Array:", formData);
 
 	/* Trip Selection Title Change */
+	/* © Joshua M. Small */
 
 	// genSelectTitles() must be before int/rtn-select functions
 	function genSelectTitles(formData) {
@@ -112,6 +113,7 @@ $(document).ready(function () {
 	genSelectTitles(formData);
 
 	/* -- || Trip Container Display || -- */
+	/* © Joshua M. Small */
 
 	$("#int-select").click(function () {
 		document.getElementById("int-select").style.textShadow =
