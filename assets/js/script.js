@@ -90,6 +90,23 @@ $(document).ready(function () {
 	});
 	console.log("formData Array:", formData);
 
+	/* -- || Trip Container Display || -- */
+
+	$("#int-select").click(function () {
+		document.getElementById("int-select").style.textShadow =
+			"2px 2px 1px black";
+		document.getElementById("rtn-select").style.textShadow = "none";
+		$("#int-trip-container").show();
+		$("#rtn-trip-container").hide();
+	});
+	$("#rtn-select").click(function () {
+		document.getElementById("int-select").style.textShadow = "none";
+		document.getElementById("rtn-select").style.textShadow =
+			"2px 2px 1px black";
+		$("#int-trip-container").hide();
+		$("#rtn-trip-container").show();
+	});
+
 	/* -- || FourSquare POI API || -- */
 	/* © Joshua M. Small */
 
@@ -119,7 +136,7 @@ $(document).ready(function () {
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
 				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
 				"&client_secret=" +
-				"H204CRKMTCFR355HCXOFMINYFHR01PQX0MDRADXO52XF44YW" +
+				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
 				"&v=20180323&limit=10&near=" +
 				formData[0].value,
 			data: {},
@@ -203,7 +220,7 @@ $(document).ready(function () {
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
 				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
 				"&client_secret=" +
-				"H204CRKMTCFR355HCXOFMINYFHR01PQX0MDRADXO52XF44YW" +
+				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
 				"&v=20180323&limit=10&near=" +
 				formData[2].value,
 			data: {},

@@ -72,34 +72,42 @@
     </header>
 
     <div id="wrapper" class="container">
-        <!-- Initial Trip -->
-        <div class="d-flight-api"></div>
-        <div class="d-weather-api">
-            <!--need departing weather-->
-            <!--need arriving weather-->
-            <!--need forecast from arriving location-->
-            <div id="forecast" class="mt-3"></div>
-            
+        <!-- Trip Selection -->
+        <div id="trip-selection">
+            <div id="int-select"><a>Initial Trip</a></div>
+            <div id="rtn-select"><a>Return Trip</a></div>
         </div>
-        <!-- POI Containers -->
-        <div class="d-attractions-api-title"></div>
-        <div class="d-attractions-api"></div>
+
+        <!-- Initial Trip -->
+        <section id="int-trip-container">
+
+            <div class="d-flight-api"></div>
+            <div class="d-weather-api">
+                <!--need departing weather-->
+                <!--need arriving weather-->
+                <!--need forecast from arriving location-->
+                <div id="forecast" class="mt-3"></div>
+            </div>
+            <!-- POI Containers -->
+            <div class="d-attractions-api-title"></div>
+            <div class="d-attractions-api"></div>
+        </section>
 
         <!-- Return Trip -->
-        <div class="r-flight-api"></div>
-        <div class="r-weather-api"></div>
-        <!-- POI Containers -->
-        <div class="r-attractions-api-title">
-            <!--need departing weather-->
-            <!--need arriving weather-->
-        </div>
-        <div class="r-attractions-api"></div>
-
-        <!--8/4 Garrett Update-->
-        <div class="col-lg-9">
-            <div id="today" class="mt-3"></div>
-          </div>
-        </div>
+        <section id="rtn-trip-container">
+            <div class="r-flight-api"></div>
+            <div class="r-weather-api">
+                <!--8/4 Garrett Update-->
+                <div class="col-lg-9">
+                    <div id="today" class="mt-3"></div>
+                </div>
+                <!--need departing weather-->
+                <!--need arriving weather-->
+            </div>
+            <!-- POI Containers -->
+            <div class="r-attractions-api-title"></div>
+            <div class="r-attractions-api"></div>
+        </section>
     </div>
 
     <!-- || JAVASCRIPT || -->
