@@ -109,7 +109,6 @@ $(document).ready(function () {
 
 	/* Departing Location */
 	console.log("Departing City:", formData[0].value);
-	var poi1 = searchPoi1(formData);
 
 	function searchPoi1(formData) {
 		console.log("-- || Start POI Arrival Function || --");
@@ -182,7 +181,6 @@ $(document).ready(function () {
 
 	/* Arriving Location */
 	console.log("Arriving City:", formData[2].value);
-	var poi2 = searchPoi2(formData);
 
 	function searchPoi2(formData) {
 		console.log("-- || Start POI Return Function || --");
@@ -254,6 +252,10 @@ $(document).ready(function () {
 			},
 		});
 	}
+
+	// Call Functions
+	searchPoi1(formData);
+	searchPoi2(formData);
 
 	/* -- || Skyscanner Flight Search || -- */
 	/* © Tanner Cook */
