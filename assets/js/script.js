@@ -259,68 +259,145 @@ $(document).ready(function () {
 	/* © Tanner Cook */
 
 	var submitBtn = document.getElementById("submit-btn");
+	searchFlight();
 
-	function searchFlight(response) {
-		console.log("-- Start Flight Search--");
-		var queryFlightURL =
-			"http://api.aviationstack.com/v1/flights?access_key=e6881625e7026da63114e2559be73272";
-		var flight = $(this).attr("Go Galivanting");
-		var formData = JSON.parse(localStorage.getItem("formData"));
+	function searchFlight() {
+		console.log("-- Start Flight Search--")
+		var flight = $(this).attr("Go Galivanting")
+		var formData = JSON.parse(localStorage.getItem("formData"))
 		var departLoc = formData[0].value;
 		var departDate = formData[1].value;
 		var arrivalLoc = formData[2].value;
 		var arrivalDate = formData[3].value;
-		var departingFlightData = $(".d-flight-api");
-		var flightInfo = flightpull.data[i].departure.airport;
+		var flightApiCodeDep = "https://api.skypicker.com/locations?term=" + departLoc + "&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
+		var flightApiCodeArr = "https://api.skypicker.com/locations?term=" + arrivalLoc + "&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
+		var apiCodeDepart;
+		var apiCodeArrival;
 
-		$.ajax({
-			url: queryFlightURL,
-			dataType: "json",
-			method: "GET",
-			data: { departDate, departLoc },
-			success: function (flightpull) {
-				console.log("-- || Start AviationStack Departure || --");
-				console.log("This is your Departure City " + departLoc + "!");
-				console.log("This is your Departure Date " + departDate + "!");
-				console.log(flightpull);
-				for (var i = 0; i < flightpull.data.length; i++) {
-					if (departLoc === flightpull.data[i].arrival.airport)
-						$(".d-flight-api").append(
-							`<div class='card'> Your closest Airport: "${flightpull.data[i].departure.airport}</div>`,
-						);
+		getFlightInfo();
+
+		function getFlightInfo() {
+			var flightData = [];
+			$.ajax({
+				url: flightApiCodeDep,
+				dateType: 'json',
+				method: 'GET',
+				success: function (codeDData) {
+					console.log(codeDData)
+
+					apiCodeDepart = codeDData.locations[0].code
+					console.log("departing code:", apiCodeDepart)
+
+
+					$.ajax({
+						url: flightApiCodeArr,
+						dateType: 'json',
+						method: 'GET',
+						success: function (codeAData) {
+							apiCodeArrival = codeAData.locations[0].code;
+							console.log("arrival code:", apiCodeArrival)
+
+							var arriveRearrange = arrivalDate.split('-');
+							arrivalDate = "";
+							arrivalDate = arrivalDate.concat(arriveRearrange[2]+"/");
+							arrivalDate = arrivalDate.concat(arriveRearrange[1]+"/");
+							arrivalDate = arrivalDate.concat(arriveRearrange[0]);
+							console.log(arrivalDate);
+
+							var departRearrange = departDate.split('-');
+							departDate = "";
+							departDate = departDate.concat(departRearrange[2]+"/");
+							departDate = departDate.concat(departRearrange[1]+"/");
+							departDate = departDate.concat(departRearrange[0]);
+							console.log(departDate)
+
+							var flightApiArrivingAir = "https://api.skypicker.com/flights?fly_from=airport:" + apiCodeArrival + "&fly_to=airport:" + apiCodeDepart + "&date_from=" + arrivalDate + "&date_to=" + arrivalDate + "&partner=picky&v=3"
+
+							var flightApiDepartingAir = "https://api.skypicker.com/flights?fly_from=airport:" + apiCodeDepart + "&fly_to=airport:" + apiCodeArrival + "&date_from=" + departDate + "&date_to=" + departDate + "&partner=picky&v=3"
+
+
+							$.ajax({
+								url: flightApiDepartingAir,
+								dataType: "json",
+								method: "GET",
+								success: function (data) {
+									console.log(flightApiDepartingAir)
+									console.log("-- || Start AviationStack Departure || --");
+									console.log("This is your Departure City " + departLoc + "!")
+									console.log("This is your Departure Date " + departDate + "!")
+									console.log(data)
+									var utcSeconds = data.data[0].route[0].dTimeUTC
+									var departTime = new Date(0);
+									departTime.setUTCSeconds(utcSeconds)
+									var arrivalTime = new Date(0);
+									arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC)
+									$('.d-flight-api').append(`<h2>${data.data[0].cityFrom}</h2>`);
+									$('.d-flight-api').append(`<p>${apiCodeDepart}</>`);
+									$('.d-flight-api').append(`<p>${departTime}</p>`);
+									$('.d-flight-api').append(`<p>${apiCodeArrival}</p>`);
+									$('.d-flight-api').append(`<p>${arrivalTime}</p>`);
+
+
+									$.ajax({
+										url: flightApiArrivingAir,
+										dateType: 'json',
+										method: 'GET',
+										success: function (data) {
+											var utcSeconds = data.data[0].route[0].dTimeUTC
+											var departTime = new Date(0);
+											departTime.setUTCSeconds(utcSeconds)
+											var arrivalTime = new Date(0);
+											arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC)
+											$('.r-flight-api').append(`<h2>${data.data[0].cityFrom}</h2>`);
+											$('.r-flight-api').append(`<p>${apiCodeDepart}</>`);
+											$('.r-flight-api').append(`<p>${departTime}</p>`);
+											$('.r-flight-api').append(`<p>${apiCodeArrival}</p>`);
+											$('.r-flight-api').append(`<p>${arrivalTime}</p>`);
+		
+		
+
+										}
+
+									});
+
+								},
+								error: function (xhr, ajaxOptions, thrownError) {
+									alert(xhr.status);
+									alert(thrownError);
+								},
+							});
+
+						}
+
+
+					})
 				}
-
-				// $.each(data, function(i, departingFlightData) {
-				// 	departingFlightData.append("<div>Flight Data: " + departingFlightData.name + "</div>");
-				// });
-			},
-			error: function () {
-				alert("error loading");
-			},
-		});
-	}
-	searchFlight();
-
-	console.log("-- || Skyscanner Flight Search API || --");
-
-	/* -- ||  Open Weather Map || -- */
-	/* © Garrett Dobson */
-	console.log("Hello world");
-
-	$("button").on("click", function () {
-		var queryWeatherURL =
-			"https://openweathermap.org/forecast5" +
-			formData[0] +
-			"&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
-
-		$.ajax({
-			url: queryWeatherURL,
-			method: "GET",
-			dataType: "json",
-		}).then(function (response) {});
+			});
+		};
 
 		console.log("-- || Open Weather Map API || --");
 	});
 
-	console.log("Hello World");
-});
+		/* -- ||  Open Weather Map || -- */
+		/* © Garrett Dobson */
+	
+
+		$("button").on("click", function () {
+
+			var queryWeatherURL =
+				"https://openweathermap.org/forecast5" +
+				formData[0] +
+				"&units=imperial&appid=f18b83f11c206025350af3f0978bacde";
+
+			$.ajax({
+				url: queryWeatherURL,
+				method: "GET",
+				dataType: "json",
+			}).then(function (response) { });
+
+			console.log("-- || Open Weather Map API || --");
+		})
+
+
+	}
+})
