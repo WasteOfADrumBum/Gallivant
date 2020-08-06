@@ -257,17 +257,15 @@ $(document).ready(function () {
 	searchPoi1(formData);
 	searchPoi2(formData);
 
-	/* -- || Skyscanner Flight Search || -- */
+	/* -- || Skypicker Flight Search || -- */
 	/* © Tanner Cook */
 
 	console.log("-- || Skyscanner Flight Search || --");
 
-	var submitBtn = document.getElementById("submit-btn");
 	searchFlight();
 
 	function searchFlight() {
 		console.log("-- Start Flight Search--");
-		var flight = $(this).attr("Go Galivanting");
 		var formData = JSON.parse(localStorage.getItem("formData"));
 		var departLoc = formData[0].value;
 		var departDate = formData[1].value;
@@ -296,6 +294,7 @@ $(document).ready(function () {
 					console.log(codeDData);
 					apiCodeDepart = codeDData.locations[0].code;
 					console.log("departing code:", apiCodeDepart);
+
 
 					$.ajax({
 						url: flightApiCodeArr,
@@ -346,13 +345,11 @@ $(document).ready(function () {
 								dataType: "json",
 								method: "GET",
 								success: function (data) {
-									console.log(flightApiDepartingAir);
-									console.log("-- || Start AviationStack Departure || --");
+									console.log("-- || Start Skypicker Departure || --");
 									console.log("This is your Departure City " + departLoc + "!");
 									console.log(
 										"This is your Departure Date " + departDate + "!",
 									);
-									console.log(data);
 									var utcSeconds = data.data[0].route[0].dTimeUTC;
 									var departTime = new Date(0);
 									departTime.setUTCSeconds(utcSeconds);
@@ -365,6 +362,7 @@ $(document).ready(function () {
 									$(".d-flight-api").append(`<p>${departTime}</p>`);
 									$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
 									$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
+									console.log("This pulled")
 
 									$.ajax({
 										url: flightApiArrivingAir,
@@ -376,20 +374,26 @@ $(document).ready(function () {
 											departTime.setUTCSeconds(utcSeconds);
 											var arrivalTime = new Date(0);
 											arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
+											// if(apiCodeDepart === null) {
+											// 	$(".d-flight-api").append("<p>Could not be found</p>")
+											// } else {
 											$(".r-flight-api").append(
 												`<h2>${data.data[0].cityFrom}</h2>`,
 											);
-											$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
-											$(".r-flight-api").append(`<p>${departTime}</p>`);
 											$(".r-flight-api").append(`<p>${apiCodeArrival}</p>`);
 											$(".r-flight-api").append(`<p>${arrivalTime}</p>`);
+											$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
+											$(".r-flight-api").append(`<p>${departTime}</p>`);
+											console.log(data)
+											}
+
 										},
 									});
 								},
 								error: function (xhr, ajaxOptions, thrownError) {
-									alert(xhr.status);
-									alert(ajaxOptions);
-									alert(thrownError);
+									console.log(xhr.status);
+									console.log(ajaxOptions);
+									console.log(thrownError);
 								},
 							});
 						},
@@ -398,8 +402,7 @@ $(document).ready(function () {
 			});
 		}
 	}
-
-	searchFlight();
+	
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
