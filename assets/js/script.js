@@ -427,7 +427,7 @@ $(document).ready(function () {
 										arrivalDate +
 										"&dateTo=" +
 										arrivalDate +
-										"&partner=picky&v=3";
+										"&partner=picky&v=3&limit=5";
 
 									var flightApiDepartingAir =
 										"https://api.skypicker.com/flights?fly_from" +
@@ -438,7 +438,7 @@ $(document).ready(function () {
 										departDate +
 										"&dateTo=" +
 										departDate +
-										"&partner=picky&v=3";
+										"&partner=picky&v=3&limit=5";
 
 									$.ajax({
 										url: flightApiDepartingAir,
@@ -463,11 +463,11 @@ $(document).ready(function () {
 												$(".d-flight-api").append(
 													`<h2>${data.data[0].cityTo}</h2>`,
 												);
-												$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
-												$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
 												$(".d-flight-api").append(`<p>${apiCodeDepart}</>`);
 												$(".d-flight-api").append(`<p>${departTime}</p>`);
-												console.log("This pulled")
+												$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
+												$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
+
 
 
 												$.ajax({
@@ -487,12 +487,15 @@ $(document).ready(function () {
 															$(".r-flight-api").append(
 																`<h2>${data.data[0].cityTo}</h2>`,
 															);
-															$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
-															$(".r-flight-api").append(`<p>${departTime}</p>`);
 															$(".r-flight-api").append(`<p>${apiCodeArrival}</p>`);
 															$(".r-flight-api").append(`<p>${arrivalTime}</p>`);
-															console.log(data)
+															$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
+															$(".r-flight-api").append(`<p>${departTime}</p>`);	
+
 															console.log(flightApiArrivingAir)
+															console.log(flightApiDepartingAir)
+
+													
 
 														}
 													}
