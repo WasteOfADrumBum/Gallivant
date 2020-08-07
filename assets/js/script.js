@@ -352,17 +352,14 @@ $(document).ready(function () {
 	searchPoi1(formData);
 	searchPoi2(formData);
 
-	/* -- || Skyscanner Flight Search || -- */
+	/* -- || Skypicker Flight Search || -- */
 	/* © Tanner Cook */
 
 	console.log("-- || Skyscanner Flight Search || --");
 
-	var submitBtn = document.getElementById("submit-btn");
-	searchFlight();
 
 	function searchFlight() {
 		console.log("-- Start Flight Search--");
-		var flight = $(this).attr("Go Galivanting");
 		var formData = JSON.parse(localStorage.getItem("formData"));
 		var departLoc = formData[0].value;
 		var departDate = formData[1].value;
@@ -378,11 +375,11 @@ $(document).ready(function () {
 			"&locale=en-US&location_types=airport&limit=1&active_only=true&sort=name";
 		var apiCodeDepart;
 		var apiCodeArrival;
-
 		getFlightInfo();
 
+
+
 		function getFlightInfo() {
-			var flightData = [];
 			$.ajax({
 				url: flightApiCodeDep,
 				dateType: "json",
@@ -391,110 +388,132 @@ $(document).ready(function () {
 					console.log(codeDData);
 					apiCodeDepart = codeDData.locations[0].code;
 					console.log("departing code:", apiCodeDepart);
+					console.log(codeDData)
+					if (apiCodeDepart === null) {
+						$(".d-flight-api").append(`<p>Could not be found!?</p>`)
+					} else {
 
-					$.ajax({
-						url: flightApiCodeArr,
-						dateType: "json",
-						method: "GET",
-						success: function (codeAData) {
-							apiCodeArrival = codeAData.locations[0].code;
-							console.log("arrival code:", apiCodeArrival);
+						$.ajax({
+							url: flightApiCodeArr,
+							dateType: "json",
+							method: "GET",
+							success: function (codeAData) {
+								apiCodeArrival = codeAData.locations[0].code;
+								console.log("arrival code:", apiCodeArrival);
 
-							var arriveRearrange = arrivalDate.split("-");
-							arrivalDate = "";
-							arrivalDate = arrivalDate.concat(arriveRearrange[2] + "/");
-							arrivalDate = arrivalDate.concat(arriveRearrange[1] + "/");
-							arrivalDate = arrivalDate.concat(arriveRearrange[0]);
-							console.log(arrivalDate);
+								var arriveRearrange = arrivalDate.split("-");
+								arrivalDate = "";
+								arrivalDate = arrivalDate.concat(arriveRearrange[2] + "/");
+								arrivalDate = arrivalDate.concat(arriveRearrange[1] + "/");
+								arrivalDate = arrivalDate.concat(arriveRearrange[0]);
+								console.log(arrivalDate);
 
-							var departRearrange = departDate.split("-");
-							departDate = "";
-							departDate = departDate.concat(departRearrange[2] + "/");
-							departDate = departDate.concat(departRearrange[1] + "/");
-							departDate = departDate.concat(departRearrange[0]);
-							console.log(departDate);
+								var departRearrange = departDate.split("-");
+								departDate = "";
+								departDate = departDate.concat(departRearrange[2] + "/");
+								departDate = departDate.concat(departRearrange[1] + "/");
+								departDate = departDate.concat(departRearrange[0]);
+								if (apiCodeArrival === null) {
+									$(".d-flight-api").append(`<p>Could not be found!?</p>`)
+								} else {
 
-							var flightApiArrivingAir =
-								"https://api.skypicker.com/flights?fly_from=airport:" +
-								apiCodeArrival +
-								"&fly_to=airport:" +
-								apiCodeDepart +
-								"&date_from=" +
-								arrivalDate +
-								"&date_to=" +
-								arrivalDate +
-								"&partner=picky&v=3";
 
-							var flightApiDepartingAir =
-								"https://api.skypicker.com/flights?fly_from=airport:" +
-								apiCodeDepart +
-								"&fly_to=airport:" +
-								apiCodeArrival +
-								"&date_from=" +
-								departDate +
-								"&date_to=" +
-								departDate +
-								"&partner=picky&v=3";
+									var flightApiArrivingAir =
+										"https://api.skypicker.com/flights?fly_from" +
+										apiCodeArrival +
+										"&fly_to=" +
+										apiCodeDepart +
+										"&dateFrom=" +
+										arrivalDate +
+										"&dateTo=" +
+										arrivalDate +
+										"&partner=picky&v=3";
 
-							$.ajax({
-								url: flightApiDepartingAir,
-								dataType: "json",
-								method: "GET",
-								success: function (data) {
-									console.log(flightApiDepartingAir);
-									console.log("-- || Start AviationStack Departure || --");
-									console.log("This is your Departure City " + departLoc + "!");
-									console.log(
-										"This is your Departure Date " + departDate + "!",
-									);
-									console.log(data);
-									var utcSeconds = data.data[0].route[0].dTimeUTC;
-									var departTime = new Date(0);
-									departTime.setUTCSeconds(utcSeconds);
-									var arrivalTime = new Date(0);
-									arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
-									$(".d-flight-api").append(
-										`<h2>${data.data[0].cityFrom}</h2>`,
-									);
-									$(".d-flight-api").append(`<p>${apiCodeDepart}</>`);
-									$(".d-flight-api").append(`<p>${departTime}</p>`);
-									$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
-									$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
+									var flightApiDepartingAir =
+										"https://api.skypicker.com/flights?fly_from" +
+										apiCodeDepart +
+										"&fly_to=" +
+										apiCodeArrival +
+										"&dateFrom=" +
+										departDate +
+										"&dateTo=" +
+										departDate +
+										"&partner=picky&v=3";
 
 									$.ajax({
-										url: flightApiArrivingAir,
-										dateType: "json",
+										url: flightApiDepartingAir,
+										dataType: "json",
 										method: "GET",
 										success: function (data) {
+											console.log(flightApiDepartingAir)
+											console.log("-- || Start Skypicker Departure || --");
+											console.log("This is your Departure City " + departLoc + "!");
+											console.log(
+												"This is your Departure Date " + departDate + "!",
+											);
 											var utcSeconds = data.data[0].route[0].dTimeUTC;
 											var departTime = new Date(0);
 											departTime.setUTCSeconds(utcSeconds);
 											var arrivalTime = new Date(0);
 											arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
-											$(".r-flight-api").append(
-												`<h2>${data.data[0].cityFrom}</h2>`,
-											);
-											$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
-											$(".r-flight-api").append(`<p>${departTime}</p>`);
-											$(".r-flight-api").append(`<p>${apiCodeArrival}</p>`);
-											$(".r-flight-api").append(`<p>${arrivalTime}</p>`);
-										},
+											if (apiCodeDepart === null) {
+												$(".d-flight-api").append(`<p>Could not be found!?</p>`)
+											} else {
+
+												$(".d-flight-api").append(
+													`<h2>${data.data[0].cityFrom}</h2>`,
+												);
+												$(".d-flight-api").append(`<p>${apiCodeDepart}</>`);
+												$(".d-flight-api").append(`<p>${departTime}</p>`);
+												$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
+												$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
+												console.log("This pulled")
+
+
+												$.ajax({
+													url: flightApiArrivingAir,
+													dateType: "json",
+													method: "GET",
+													success: function (data) {
+														var utcSeconds = data.data[0].route[0].dTimeUTC;
+														var departTime = new Date(0);
+														departTime.setUTCSeconds(utcSeconds);
+														var arrivalTime = new Date(0);
+														arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
+														if (apiCodeDepart === null) {
+															$(".d-flight-api").append(`<p>Could not be found!?</p>`)
+														} else {
+
+															$(".r-flight-api").append(
+																`<h2>${data.data[0].cityFrom}</h2>`,
+															);
+															$(".r-flight-api").append(`<p>${apiCodeArrival}</p>`);
+															$(".r-flight-api").append(`<p>${arrivalTime}</p>`);
+															$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
+															$(".r-flight-api").append(`<p>${departTime}</p>`);
+															console.log(data)
+
+														}
+													}
+												});
+											
+											};
+										}
 									});
-								},
-								error: function (xhr, ajaxOptions, thrownError) {
-									alert(xhr.status);
-									alert(ajaxOptions);
-									alert(thrownError);
-								},
-							});
-						},
-					});
-				},
+									
+								};
+							}
+						});
+					}
+				}
 			});
+		
 		}
-	}
+	};
+
 
 	searchFlight();
+
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
