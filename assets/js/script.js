@@ -501,26 +501,25 @@ $(document).ready(function () {
 
 	console.log("-- || Open Weather Map API || --");
 
-	// need to run the current weather for today & set the current date as well as the future dates ******
-	// need to setup divs in html to reflect where the JS will populate the info - done
-	// need to style results page w / weather data
-	// technically need 4 current weather functions
-	// need to figure out how to modify date info so it can be displayed
-
 	// Global weather variables
 	var imperialUnits = "&units=imperial";
 	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
 	var searchValueDestination = formData[2].value;
 	var searchValueDepart = formData[0].value;
 
+
+	// Initial trip functions 
 	// forecast
-	function genForecastHTML(name, temp, humidity, speed) {
+	function genForecastHTML(name, fivedatestr, icon, temp, humidity, speed) {
 		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
 					<div class="card-body">
 						<h5 class="card-title">${name}</h5>
-						<p class="card-text">Temperature: ${temp}°F</p>
-						<p class="card-text">Humidity: ${humidity}%</p>
-						<p class="card-text">Wind Speed: ${speed}MPH</p>
+						<p class="card-text"> ${fivedatestr} </p>
+						<img src="https://openweathermap.org/img/w/${icon}.png">
+						<p class="card-text">Temperature: ${temp} °F</p>
+						<p class="card-text">Humidity: ${humidity} %</p>
+						<p class="card-text">Wind Speed: ${speed} MPH</p>
+
 					</div>
 				</div>`;
 
@@ -540,7 +539,8 @@ $(document).ready(function () {
 					forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
 				);
 				console.log(data);
-				console.log(data.list);
+				console.log(data.list[0].dt);
+				
 
 				// loop over all forecasts (by 3-hour increments)
 				for (var i = 0; i < data.list.length; i++) {
@@ -549,11 +549,18 @@ $(document).ready(function () {
 						// create html elements for a bootstrap card
 						console.log(data);
 
+						var fiveSec = data.list[i].dt;
+						var fiveForecastDate = new Date(fiveSec * 1000);
+						var fiveDateStr = fiveForecastDate.toLocaleDateString();
+						console.log(fiveDateStr);
+
 						var fiveDayForecast = genForecastHTML(
-							data.city.name,
-							data.list[0].main.temp,
-							data.list[0].main.humidity,
-							data.list[0].wind.speed,
+							data.city.name,	
+							fiveDateStr,
+							data.list[i].weather[0].icon,
+							data.list[i].main.temp,
+							data.list[i].main.humidity,
+							data.list[i].wind.speed,
 						);
 
 						$("#forecast").append(fiveDayForecast);
@@ -581,17 +588,175 @@ $(document).ready(function () {
 				console.log("current weather works");
 				console.log(data);
 
+				var currentDate = data.dt;
+				var todaysDate = new Date(currentDate * 1000);
+				var departDateStr = todaysDate.toLocaleDateString();
+				console.log(departDateStr);
+
 				var currentWeather = `<div class="card bg-light" style="width: 100%;">
         <div class="card-body">
-          <h5 class="card-title">${data.name}</h5>
-          <p class="card-text">Temperature: ${data.main.temp}°F</p>
+					<h5 class="card-title">${data.name}</h5>
+					<p class="card-text">${departDateStr}</p>
+					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
           <p class="card-text">Humidity: ${data.main.humidity}%</p>
-          <p class="card-text">Wind Speed: ${data.wind.speed}MPH</p>
+					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
         </div>
       </div>`;
 
 				$("#today").html(currentWeather);
 			},
 		});
+
+		
 	}
+
+	// Return trip functions
+
+	
+/*
+	// forecast
+	function genForecastHTML(name, fivedatestr, icon, temp, humidity, speed) {
+		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
+					<div class="card-body">
+						<h5 class="card-title">${name}</h5>
+						<p class="card-text"> ${fivedatestr} </p>
+						<img src="https://openweathermap.org/img/w/${icon}.png">
+						<p class="card-text">Temperature: ${temp} °F</p>
+						<p class="card-text">Humidity: ${humidity} %</p>
+						<p class="card-text">Wind Speed: ${speed} MPH</p>
+
+					</div>
+				</div>`;
+
+		return forecastWeather;
+	}
+
+	function getForecast(searchValueDestination) {
+		var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
+		$.ajax({
+			type: "GET",
+			url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
+			dataType: "json",
+			success: function (data) {
+				// overwrite any existing content with title and empty row
+				console.log("forecast works");
+				console.log(
+					forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
+				);
+				console.log(data);
+				console.log(data.list[0].dt);
+				
+
+				// loop over all forecasts (by 3-hour increments)
+				for (var i = 0; i < data.list.length; i++) {
+					// only look at forecasts around 3:00pm
+					if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+						// create html elements for a bootstrap card
+						console.log(data);
+
+						var fiveSec = data.list[i].dt;
+						var fiveForecastDate = new Date(fiveSec * 1000);
+						var fiveDateStr = fiveForecastDate.toLocaleDateString();
+						console.log(fiveDateStr);
+
+						var fiveDayForecast = genForecastHTML(
+							data.city.name,	
+							fiveDateStr,
+							data.list[i].weather[0].icon,
+							data.list[i].main.temp,
+							data.list[i].main.humidity,
+							data.list[i].wind.speed,
+						);
+
+						$("#return-forecast").append(fiveDayForecast);
+					}
+				}
+			},
+		});
+	}
+
+	getForecast(searchValueDestination);
+	//departing day weather
+	searchWeather(searchValueDepart);*/
+	console.log(formData[2].value);
+
+	function searchWeatherReturn(formData) {
+		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+
+		$.ajax({
+			url: queryWeatherURL + formData[2].value + imperialUnits + apiWeatherKey,
+			type: "GET",
+			dataType: "json",
+			success: function (data) {
+				console.log(
+					queryWeatherURL + formData[2].value + imperialUnits + apiWeatherKey,
+				);
+				console.log("current weather works");
+				console.log(data);
+
+				var currentDate = data.dt;
+				var todaysDate = new Date(currentDate * 1000);
+				var departDateStr = todaysDate.toLocaleDateString();
+				console.log(departDateStr);
+
+				var returnCurrentWeather = `<div class="card bg-light" style="width: 100%;">
+        <div class="card-body">
+					<h5 class="card-title">${data.name}</h5>
+					<p class="card-text">${departDateStr}</p>
+					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+        </div>
+      </div>`;
+
+				$("#return-today").html(returnCurrentWeather);
+			},
+		});
+
+		
+		
+	}
+	searchWeatherReturn(formData);
+
+	function searchWeatherReturnDepart(formData) {
+		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+
+		$.ajax({
+			url: queryWeatherURL + formData[0].value + imperialUnits + apiWeatherKey,
+			type: "GET",
+			dataType: "json",
+			success: function (data) {
+				console.log(
+					queryWeatherURL + formData[0].value + imperialUnits + apiWeatherKey,
+				);
+				console.log("current weather works");
+				console.log(data);
+
+				var currentDate = data.dt;
+				var todaysDate = new Date(currentDate * 1000);
+				var departDateStr = todaysDate.toLocaleDateString();
+				console.log(departDateStr);
+
+				var returnCurrentWeather = `<div class="card bg-light" style="width: 100%;">
+        <div class="card-body">
+					<h5 class="card-title">${data.name}</h5>
+					<p class="card-text">${departDateStr}</p>
+					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+        </div>
+      </div>`;
+
+				$("#return-forecast").html(returnCurrentWeather);
+			},
+		});
+
+		
+		
+	}
+	searchWeatherReturnDepart(formData);
+
 });
