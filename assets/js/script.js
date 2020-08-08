@@ -661,17 +661,8 @@ $(document).ready(function () {
 				$("#today").html(currentWeather);
 			},
 		});
-<<<<<<< HEAD
-
-		
 	}
 
-	// Return trip functions
-
-=======
-	}
-
->>>>>>> 5b6c27eb945ec6fecfa253dd79277e1f68b5a380
 	console.log(formData[2].value);
 
 	function searchWeatherReturn(formData) {
