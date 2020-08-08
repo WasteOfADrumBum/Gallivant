@@ -131,6 +131,17 @@ $(document).ready(function () {
 		$("#rtn-trip-container").show();
 	});
 
+	/* Trip Titles for Callout */
+	/* © Joshua M. Small */
+
+	function getCalloutTitles(formData) {
+		$("#city-name-1").append(formData[2].value);
+		$("#city-name-1-5-day").append(formData[2].value);
+		$("#city-name-2").append(formData[0].value);
+	}
+
+	getCalloutTitles(formData);
+
 	/* -- || UnSplach API || -- */
 
 	function searchPicture(formData) {
@@ -149,7 +160,9 @@ $(document).ready(function () {
 				$(".d-picture-api").empty();
 
 				// Create IMG
-				var dImg = $("<img>", { id: "d-img-div" });
+				var dImg = $("<img>", {
+					id: "d-img-div",
+				});
 				dImg.attr("src", data.results[0].urls.regular);
 				console.log("IMG URL:", data.results[0].urls.regular);
 
@@ -173,7 +186,9 @@ $(document).ready(function () {
 				$(".r-picture-api").empty();
 
 				// Create IMG
-				var rImg = $("<img>", { id: "r-img-div" });
+				var rImg = $("<img>", {
+					id: "r-img-div",
+				});
 				rImg.attr("src", data.results[0].urls.regular);
 				console.log("IMG URL:", data.results[0].urls.regular);
 
