@@ -76,10 +76,43 @@
         <div id="trip-selection"></div>
 
         <!-- Initial Trip -->
-        <section id="int-trip-container">
+        <!-- <section id="int-trip-container">
             <div class="d-picture-api"></div>
             <div class="d-flight-api"></div>
             <div class="d-weather-api">
+                <div class="col-lg-9">
+                    <div id="today" class="mt-3"></div>
+                    <div id="forecast" class="mt-3"></div>
+                </div>
+            </div> -->
+        <!-- POI Containers -->
+        <!-- <div class="d-attractions-api-title"></div>
+            <div class="d-attractions-api"></div>
+        </section> -->
+
+        <section id="int-trip-container">
+            <!-- Title -->
+            <div class="callout clearfix">
+                <h3>Plan Your Trip to:</h3>
+                <h1 id="city-name-1"></h1>
+
+                <div class="grid-x grid-padding-x">
+                    <!-- Picture -->
+                    <div class="cell small-3">
+                        <a class="d-picture-api float left"></a>
+                    </div>
+                    <!-- Flgiths -->
+                    <div class="cell small-3 align-self-stretch">
+                        <div class="d-flight-api"></div>
+                    </div>
+                    <!-- Weather -->
+                    <div class="cell small-3 align-self-top" id="today"></div>
+                </div>
+            </div>
+            <!-- Forecast -->
+            <div class="d-weather-api">
+                <h4 id="city-name-1-5-day">The 5-Day Forecast For </h4>
+                <div id="forecast" class="mt-3"></div>
                 <div class="col-lg-9">
                     <div id="today" class="mt-3"></div>
                     <div id="forecast" class="mt-3"></div>
@@ -91,18 +124,39 @@
         </section>
 
         <!-- Return Trip -->
-        <section id="rtn-trip-container">
+        <!-- <section id="rtn-trip-container">
             <div class="r-picture-api"></div>
             <div class="r-flight-api"></div>
-            <div class="r-weather-api">
-                <!--Might not be possible-->
-                <div class="col-lg-9">
+            <div class="r-weather-api"> -->
+        <!--Might not be possible-->
+        <!-- <div class="col-lg-9">
                     <div id="return-today" class="mt-3"></div>
                     <div id="return-forecast" class="mt-3"></div>
                 </div>
+            </div> -->
+        <!-- POI Containers -->
+        <!-- <div class="r-attractions-api-title"></div>
+            <div class="r-attractions-api"></div>
+        </section> -->
 
-                <!--need departing weather-->
-                <!--need arriving weather-->
+        <section id="rtn-trip-container">
+            <!-- Title -->
+            <div class="callout clearfix">
+                <h3>Plan Your Trip to:</h3>
+                <h1 id="city-name-2"></h1>
+
+                <div class="grid-x grid-padding-x">
+                    <!-- Picture -->
+                    <div class="cell small-3">
+                        <a class="r-picture-api float left"></a>
+                    </div>
+                    <!-- Flgiths -->
+                    <div class="cell small-3 align-self-stretch">
+                        <div class="r-flight-api"></div>
+                    </div>
+                    <!-- Weather -->
+                    <div class="cell small-3 align-self-top" id="return-today"></div>
+                </div>
             </div>
             <!-- POI Containers -->
             <div class="r-attractions-api-title"></div>
@@ -123,7 +177,6 @@
 
     <!-- || FOOTER || -->
     <!-- © Joshua M. Small -->
-
 
     <footer class="footer">
         <div id="footer-contact">
