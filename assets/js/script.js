@@ -373,7 +373,6 @@ $(document).ready(function () {
 	console.log("-- || Skyscanner Flight Search || --");
 
 	function searchFlight() {
-		console.log("-- Start Flight Search--");
 		var formData = JSON.parse(localStorage.getItem("formData"));
 		var departLoc = formData[0].value;
 		var departDate = formData[1].value;
@@ -397,10 +396,7 @@ $(document).ready(function () {
 				dateType: "json",
 				method: "GET",
 				success: function (codeDData) {
-					console.log(codeDData);
 					apiCodeDepart = codeDData.locations[0].code;
-					console.log("departing code:", apiCodeDepart);
-					console.log(codeDData);
 					if (apiCodeDepart === null) {
 						$(".d-flight-api").append(`<p>Could not be found!?</p>`);
 					} else {
@@ -410,88 +406,83 @@ $(document).ready(function () {
 							method: "GET",
 							success: function (codeAData) {
 								apiCodeArrival = codeAData.locations[0].code;
-								console.log("arrival code:", apiCodeArrival);
 								// Arrival Date Correct Format
-								var arriveRearrange = arrivalDate.split("-");
-								arrivalDate = "";
-								arrivalDate = arrivalDate.concat(arriveRearrange[2] + "/");
-								arrivalDate = arrivalDate.concat(arriveRearrange[1] + "/");
-								arrivalDate = arrivalDate.concat(arriveRearrange[0]);
-								console.log(arrivalDate);
+								var arriveRearrange = moment(arrivalDate).format("l")
+
 								// Depature Date Correct Format
-								var departRearrange = departDate.split("-");
-								departDate = "";
-								departDate = departDate.concat(departRearrange[2] + "/");
-								departDate = departDate.concat(departRearrange[1] + "/");
-								departDate = departDate.concat(departRearrange[0]);
+								var departRearrange = moment(departDate).format("l")
+
 								if (apiCodeArrival === null) {
 									$(".d-flight-api").append(`<p>Could not be found!?</p>`);
 								} else {
 									// Make Arrival API URL
 									var flightApiArrivingAir =
-										"https://api.skypicker.com/flights?fly_from" +
+										"https://api.skypicker.com/flights?fly_from=" +
 										apiCodeArrival +
 										"&fly_to=" +
 										apiCodeDepart +
 										"&dateFrom=" +
-										arrivalDate +
+										arriveRearrange +
 										"&dateTo=" +
-										arrivalDate +
+										arriveRearrange +
 										"&partner=picky&v=3&limit=5";
 									// Make Departure API URL
 									var flightApiDepartingAir =
-										"https://api.skypicker.com/flights?fly_from" +
+										"https://api.skypicker.com/flights?fly_from=" +
 										apiCodeDepart +
 										"&fly_to=" +
 										apiCodeArrival +
 										"&dateFrom=" +
-										departDate +
+										departRearrange +
 										"&dateTo=" +
-										departDate +
+										departRearrange +
 										"&partner=picky&v=3&limit=5";
 									// Departing AJAX
+
 									$.ajax({
 										url: flightApiDepartingAir,
 										dataType: "json",
 										method: "GET",
 										success: function (data) {
-											console.log(flightApiDepartingAir);
-											console.log("-- || Start Skypicker Departure || --");
 											for (var i = 0; i < 5; i++) {
-												console.log("Departing Flight API Loop #:", i);
 												// Time Conversion
-												var utcSeconds = data.data[i].route[0].dTimeUTC;
+												var utcSeconds = data.data[i].dTimeUTC;
 												var departTime = new Date(0);
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
 												arrivalTime.setUTCSeconds(
-													data.data[i].route[0].aTimeUTC,
+													data.data[i].aTimeUTC,
 												);
+												if(data.data[i].cityFrom !== formData[0].value) {
+													$(".d-flight-api").append("Airport flight information not availble for this location")
+												} 
+													
 												// If Null
-												if (apiCodeDepart === null) {
-													$(".d-flight-api").append(
-														`<p>Could not be found!?</p>`,
-													);
-												} // Else Works
-												else {
-													// Append Departure Info
-													$(".d-flight-api").append(
-														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
-													);
-													$(".d-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
-													);
-													$(".d-flight-api").append(
-														`<p class="airport-time">${departTime}</p>`,
-													);
-													$(".d-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeTo}</h6>`,
-													);
-													$(".d-flight-api").append(
-														`<p class="airport-time">${arrivalTime}</p>`,
-													);
+													if (apiCodeDepart === null) {
+														$(".d-flight-api").append(
+															`<p>Could not be found!?</p>`,
+														);
+													} // Else Works
+													else {
+														// Append Departure Info
+														$(".d-flight-api").append(
+															`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
+														);
+														$(".d-flight-api").append(
+															`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+														);
+														$(".d-flight-api").append(
+															`<p class="airport-time">${departTime}</p>`,
+														);
+														$(".d-flight-api").append(
+															`<h6 class="apirport-code">${data.data[i].cityCodeTo}</h6>`,
+														);
+														$(".d-flight-api").append(
+															`<p class="airport-time">${arrivalTime}</p>`,
+														);
+												
+											
 
-													console.log("Departure", flightApiDepartingAir);
 												}
 											}
 										},
@@ -503,40 +494,42 @@ $(document).ready(function () {
 										method: "GET",
 										success: function (data) {
 											for (var i = 0; i < 5; i++) {
-												console.log("Arrival Flight API Loop #:", i);
 												// Time Conversion
-												var utcSeconds = data.data[i].route[0].dTimeUTC;
+												var utcSeconds = data.data[i].dTimeUTC;
 												var departTime = new Date(0);
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
 												arrivalTime.setUTCSeconds(
-													data.data[i].route[0].aTimeUTC,
+													data.data[i].aTimeUTC,
 												);
+												if(data.data[i].cityFrom !== formData[2].value) {
+													$(".r-flight-api").append("Airport flight information not availble for this location")
+												} 
 												// If Null
-												if (apiCodeDepart === null) {
-													$(".d-flight-api").append(
-														`<p>Could not be found!?</p>`,
-													);
-												} // Else Works
-												else {
-													// Append Return Info
-													$(".r-flight-api").append(
-														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
-													);
-													$(".r-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
-													);
-													$(".r-flight-api").append(
-														`<p  class="airport-time">${arrivalTime}</p>`,
-													);
-													$(".r-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeto}</h6>`,
-													);
-													$(".r-flight-api").append(
-														`<p class="airport-time">${departTime}</p>`,
-													);
+													if (apiCodeDepart === null) {
+														$(".d-flight-api").append(
+															`<p>Could not be found!?</p>`,
+														);
+													} // Else Works
+													else {
+														// Append Return Info
+														$(".r-flight-api").append(
+															`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
+														);
+														$(".r-flight-api").append(
+															`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+														);
+														$(".r-flight-api").append(
+															`<p  class="airport-time">${arrivalTime}</p>`,
+														);
+														$(".r-flight-api").append(
+															`<h6 class="apirport-code">${data.data[i].cityCodeto}</h6>`,
+														);
+														$(".r-flight-api").append(
+															`<p class="airport-time">${departTime}</p>`,
+														);
+					
 
-													console.log("Arrival", flightApiArrivingAir);
 												}
 											}
 										},
@@ -549,6 +542,8 @@ $(document).ready(function () {
 			});
 		}
 	}
+	//need statement to stop displaying flights if given city does not match input city 
+	//solve route issue
 
 	searchFlight();
 
