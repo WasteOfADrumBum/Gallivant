@@ -458,7 +458,7 @@ $(document).ready(function () {
 											console.log(flightApiDepartingAir);
 											console.log("-- || Start Skypicker Departure || --");
 											for (var i = 0; i < 5; i++) {
-												console.log("Flight API Loop #:", i);
+												console.log("Departing Flight API Loop #:", i);
 												// Time Conversion
 												var utcSeconds = data.data[i].route[0].dTimeUTC;
 												var departTime = new Date(0);
@@ -476,12 +476,20 @@ $(document).ready(function () {
 												else {
 													// Append Departure Info
 													$(".d-flight-api").append(
-														`<h2>${data.data[i].cityTo}</h2>`,
+														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
 													);
-													$(".d-flight-api").append(`<p>${apiCodeDepart}</>`);
-													$(".d-flight-api").append(`<p>${departTime}</p>`);
-													$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
-													$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
+													$(".d-flight-api").append(
+														`<h6 class="apirport-code">${apiCodeDepart}</h6>`,
+													);
+													$(".d-flight-api").append(
+														`<p class="airport-time">${departTime}</p>`,
+													);
+													$(".d-flight-api").append(
+														`<h6 class="apirport-code">${apiCodeArrival}</h6>`,
+													);
+													$(".d-flight-api").append(
+														`<p class="airport-time">${arrivalTime}</p>`,
+													);
 												}
 											}
 										},
@@ -493,7 +501,7 @@ $(document).ready(function () {
 										method: "GET",
 										success: function (data) {
 											for (var i = 0; i < 5; i++) {
-												console.log("Flight API Loop #:", i);
+												console.log("Arrival Flight API Loop #:", i);
 												// Time Conversion
 												var utcSeconds = data.data[i].route[0].dTimeUTC;
 												var departTime = new Date(0);
@@ -511,12 +519,20 @@ $(document).ready(function () {
 												else {
 													// Append Return Info
 													$(".r-flight-api").append(
-														`<h2>${data.data[0].cityTo}</h2>`,
+														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
 													);
-													$(".r-flight-api").append(`<p>${apiCodeArrival}</p>`);
-													$(".r-flight-api").append(`<p>${arrivalTime}</p>`);
-													$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
-													$(".r-flight-api").append(`<p>${departTime}</p>`);
+													$(".r-flight-api").append(
+														`<h6 class="apirport-code">${apiCodeArrival}</h6>`,
+													);
+													$(".r-flight-api").append(
+														`<p  class="airport-time">${arrivalTime}</p>`,
+													);
+													$(".r-flight-api").append(
+														`<h6 class="apirport-code">${apiCodeDepart}</h6>`,
+													);
+													$(".r-flight-api").append(
+														`<p class="airport-time">${departTime}</p>`,
+													);
 
 													console.log("Arrival", flightApiArrivingAir);
 													console.log("Departure", flightApiDepartingAir);
