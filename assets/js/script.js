@@ -479,13 +479,13 @@ $(document).ready(function () {
 														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
 													);
 													$(".d-flight-api").append(
-														`<h6 class="apirport-code">${apiCodeDepart}</h6>`,
+														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
 													);
 													$(".d-flight-api").append(
 														`<p class="airport-time">${departTime}</p>`,
 													);
 													$(".d-flight-api").append(
-														`<h6 class="apirport-code">${apiCodeArrival}</h6>`,
+														`<h6 class="apirport-code">${data.data[i].cityCodeTo}</h6>`,
 													);
 													$(".d-flight-api").append(
 														`<p class="airport-time">${arrivalTime}</p>`,
@@ -524,13 +524,13 @@ $(document).ready(function () {
 														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
 													);
 													$(".r-flight-api").append(
-														`<h6 class="apirport-code">${apiCodeArrival}</h6>`,
+														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
 													);
 													$(".r-flight-api").append(
 														`<p  class="airport-time">${arrivalTime}</p>`,
 													);
 													$(".r-flight-api").append(
-														`<h6 class="apirport-code">${apiCodeDepart}</h6>`,
+														`<h6 class="apirport-code">${data.data[i].cityCodeto}</h6>`,
 													);
 													$(".r-flight-api").append(
 														`<p class="airport-time">${departTime}</p>`,
