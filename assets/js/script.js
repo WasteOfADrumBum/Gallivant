@@ -131,6 +131,17 @@ $(document).ready(function () {
 		$("#rtn-trip-container").show();
 	});
 
+	/* Trip Titles for Callout */
+	/* © Joshua M. Small */
+
+	function getCalloutTitles(formData) {
+		$("#city-name-1").append(formData[2].value);
+		$("#city-name-1-5-day").append(formData[2].value);
+		$("#city-name-2").append(formData[0].value);
+	}
+
+	getCalloutTitles(formData);
+
 	/* -- || UnSplach API || -- */
 
 	function searchPicture(formData) {
@@ -149,7 +160,9 @@ $(document).ready(function () {
 				$(".d-picture-api").empty();
 
 				// Create IMG
-				var dImg = $("<img>", { id: "d-img-div" });
+				var dImg = $("<img>", {
+					id: "d-img-div",
+				});
 				dImg.attr("src", data.results[0].urls.regular);
 				console.log("IMG URL:", data.results[0].urls.regular);
 
@@ -173,7 +186,9 @@ $(document).ready(function () {
 				$(".r-picture-api").empty();
 
 				// Create IMG
-				var rImg = $("<img>", { id: "r-img-div" });
+				var rImg = $("<img>", {
+					id: "r-img-div",
+				});
 				rImg.attr("src", data.results[0].urls.regular);
 				console.log("IMG URL:", data.results[0].urls.regular);
 
@@ -357,7 +372,6 @@ $(document).ready(function () {
 
 	console.log("-- || Skyscanner Flight Search || --");
 
-
 	function searchFlight() {
 		console.log("-- Start Flight Search--");
 		var formData = JSON.parse(localStorage.getItem("formData"));
@@ -377,8 +391,6 @@ $(document).ready(function () {
 		var apiCodeArrival;
 		getFlightInfo();
 
-
-
 		function getFlightInfo() {
 			$.ajax({
 				url: flightApiCodeDep,
@@ -388,11 +400,10 @@ $(document).ready(function () {
 					console.log(codeDData);
 					apiCodeDepart = codeDData.locations[0].code;
 					console.log("departing code:", apiCodeDepart);
-					console.log(codeDData)
+					console.log(codeDData);
 					if (apiCodeDepart === null) {
-						$(".d-flight-api").append(`<p>Could not be found!?</p>`)
+						$(".d-flight-api").append(`<p>Could not be found!?</p>`);
 					} else {
-
 						$.ajax({
 							url: flightApiCodeArr,
 							dateType: "json",
@@ -400,24 +411,23 @@ $(document).ready(function () {
 							success: function (codeAData) {
 								apiCodeArrival = codeAData.locations[0].code;
 								console.log("arrival code:", apiCodeArrival);
-
+								// Arrival Date Correct Format
 								var arriveRearrange = arrivalDate.split("-");
 								arrivalDate = "";
 								arrivalDate = arrivalDate.concat(arriveRearrange[2] + "/");
 								arrivalDate = arrivalDate.concat(arriveRearrange[1] + "/");
 								arrivalDate = arrivalDate.concat(arriveRearrange[0]);
 								console.log(arrivalDate);
-
+								// Depature Date Correct Format
 								var departRearrange = departDate.split("-");
 								departDate = "";
 								departDate = departDate.concat(departRearrange[2] + "/");
 								departDate = departDate.concat(departRearrange[1] + "/");
 								departDate = departDate.concat(departRearrange[0]);
 								if (apiCodeArrival === null) {
-									$(".d-flight-api").append(`<p>Could not be found!?</p>`)
+									$(".d-flight-api").append(`<p>Could not be found!?</p>`);
 								} else {
-
-
+									// Make Arrival API URL
 									var flightApiArrivingAir =
 										"https://api.skypicker.com/flights?fly_from" +
 										apiCodeArrival +
@@ -428,7 +438,7 @@ $(document).ready(function () {
 										"&dateTo=" +
 										arrivalDate +
 										"&partner=picky&v=3&limit=5";
-
+									// Make Departure API URL
 									var flightApiDepartingAir =
 										"https://api.skypicker.com/flights?fly_from" +
 										apiCodeDepart +
@@ -439,85 +449,108 @@ $(document).ready(function () {
 										"&dateTo=" +
 										departDate +
 										"&partner=picky&v=3&limit=5";
-
+									// Departing AJAX
 									$.ajax({
 										url: flightApiDepartingAir,
 										dataType: "json",
 										method: "GET",
 										success: function (data) {
-											console.log(flightApiDepartingAir)
+											console.log(flightApiDepartingAir);
 											console.log("-- || Start Skypicker Departure || --");
-											console.log("This is your Departure City " + departLoc + "!");
-											console.log(
-												"This is your Departure Date " + departDate + "!",
-											);
-											var utcSeconds = data.data[0].route[0].dTimeUTC;
-											var departTime = new Date(0);
-											departTime.setUTCSeconds(utcSeconds);
-											var arrivalTime = new Date(0);
-											arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
-											if (apiCodeDepart === null) {
-												$(".d-flight-api").append(`<p>Could not be found!?</p>`)
-											} else {
-
-												$(".d-flight-api").append(
-													`<h2>${data.data[0].cityTo}</h2>`,
+											for (var i = 0; i < 5; i++) {
+												console.log("Departing Flight API Loop #:", i);
+												// Time Conversion
+												var utcSeconds = data.data[i].route[0].dTimeUTC;
+												var departTime = new Date(0);
+												departTime.setUTCSeconds(utcSeconds);
+												var arrivalTime = new Date(0);
+												arrivalTime.setUTCSeconds(
+													data.data[i].route[0].aTimeUTC,
 												);
-												$(".d-flight-api").append(`<p>${apiCodeDepart}</>`);
-												$(".d-flight-api").append(`<p>${departTime}</p>`);
-												$(".d-flight-api").append(`<p>${apiCodeArrival}</p>`);
-												$(".d-flight-api").append(`<p>${arrivalTime}</p>`);
+												// If Null
+												if (apiCodeDepart === null) {
+													$(".d-flight-api").append(
+														`<p>Could not be found!?</p>`,
+													);
+												} // Else Works
+												else {
+													// Append Departure Info
+													$(".d-flight-api").append(
+														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
+													);
+													$(".d-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+													);
+													$(".d-flight-api").append(
+														`<p class="airport-time">${departTime}</p>`,
+													);
+													$(".d-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeTo}</h6>`,
+													);
+													$(".d-flight-api").append(
+														`<p class="airport-time">${arrivalTime}</p>`,
+													);
 
-
-
-												$.ajax({
-													url: flightApiArrivingAir,
-													dateType: "json",
-													method: "GET",
-													success: function (data) {
-														var utcSeconds = data.data[0].route[0].dTimeUTC;
-														var departTime = new Date(0);
-														departTime.setUTCSeconds(utcSeconds);
-														var arrivalTime = new Date(0);
-														arrivalTime.setUTCSeconds(data.data[0].route[0].aTimeUTC);
-														if (apiCodeDepart === null) {
-															$(".d-flight-api").append(`<p>Could not be found!?</p>`)
-														} else {
-
-															$(".r-flight-api").append(
-																`<h2>${data.data[0].cityTo}</h2>`,
-															);
-															$(".r-flight-api").append(`<p>${apiCodeArrival}</p>`);
-															$(".r-flight-api").append(`<p>${arrivalTime}</p>`);
-															$(".r-flight-api").append(`<p>${apiCodeDepart}</>`);
-															$(".r-flight-api").append(`<p>${departTime}</p>`);	
-
-															console.log(flightApiArrivingAir)
-															console.log(flightApiDepartingAir)
-
-													
-
-														}
-													}
-												});
-											
-											};
-										}
+													console.log("Departure", flightApiDepartingAir);
+												}
+											}
+										},
 									});
-									
-								};
-							}
+									// Arrial AJAX
+									$.ajax({
+										url: flightApiArrivingAir,
+										dateType: "json",
+										method: "GET",
+										success: function (data) {
+											for (var i = 0; i < 5; i++) {
+												console.log("Arrival Flight API Loop #:", i);
+												// Time Conversion
+												var utcSeconds = data.data[i].route[0].dTimeUTC;
+												var departTime = new Date(0);
+												departTime.setUTCSeconds(utcSeconds);
+												var arrivalTime = new Date(0);
+												arrivalTime.setUTCSeconds(
+													data.data[i].route[0].aTimeUTC,
+												);
+												// If Null
+												if (apiCodeDepart === null) {
+													$(".d-flight-api").append(
+														`<p>Could not be found!?</p>`,
+													);
+												} // Else Works
+												else {
+													// Append Return Info
+													$(".r-flight-api").append(
+														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
+													);
+													$(".r-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+													);
+													$(".r-flight-api").append(
+														`<p  class="airport-time">${arrivalTime}</p>`,
+													);
+													$(".r-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeto}</h6>`,
+													);
+													$(".r-flight-api").append(
+														`<p class="airport-time">${departTime}</p>`,
+													);
+
+													console.log("Arrival", flightApiArrivingAir);
+												}
+											}
+										},
+									});
+								}
+							},
 						});
 					}
-				}
+				},
 			});
-		
 		}
-	};
-
+	}
 
 	searchFlight();
-
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
@@ -530,8 +563,7 @@ $(document).ready(function () {
 	var searchValueDestination = formData[2].value;
 	var searchValueDepart = formData[0].value;
 
-
-	// Initial trip functions 
+	// Initial trip functions
 	// forecast
 	function genForecastHTML(name, fivedatestr, icon, temp, humidity, speed) {
 		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
@@ -563,7 +595,6 @@ $(document).ready(function () {
 				);
 				console.log(data);
 				console.log(data.list[0].dt);
-				
 
 				// loop over all forecasts (by 3-hour increments)
 				for (var i = 0; i < data.list.length; i++) {
@@ -578,7 +609,7 @@ $(document).ready(function () {
 						console.log(fiveDateStr);
 
 						var fiveDayForecast = genForecastHTML(
-							data.city.name,	
+							data.city.name,
 							fiveDateStr,
 							data.list[i].weather[0].icon,
 							data.list[i].main.temp,
@@ -630,12 +661,17 @@ $(document).ready(function () {
 				$("#today").html(currentWeather);
 			},
 		});
+<<<<<<< HEAD
 
 		
 	}
 
 	// Return trip functions
 
+=======
+	}
+
+>>>>>>> 5b6c27eb945ec6fecfa253dd79277e1f68b5a380
 	console.log(formData[2].value);
 
 	function searchWeatherReturn(formData) {
@@ -671,10 +707,8 @@ $(document).ready(function () {
 				$("#return-today").html(returnCurrentWeather);
 			},
 		});
-
-		
-		
 	}
+
 	searchWeatherReturn(formData);
 
 	function searchWeatherReturnDepart(formData) {
@@ -710,10 +744,7 @@ $(document).ready(function () {
 				$("#return-forecast").html(returnCurrentWeather);
 			},
 		});
-
-		
-		
 	}
-	searchWeatherReturnDepart(formData);
 
+	searchWeatherReturnDepart(formData);
 });
