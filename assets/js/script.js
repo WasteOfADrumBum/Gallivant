@@ -490,6 +490,8 @@ $(document).ready(function () {
 													$(".d-flight-api").append(
 														`<p class="airport-time">${arrivalTime}</p>`,
 													);
+
+													console.log("Departure", flightApiDepartingAir);
 												}
 											}
 										},
@@ -535,7 +537,6 @@ $(document).ready(function () {
 													);
 
 													console.log("Arrival", flightApiArrivingAir);
-													console.log("Departure", flightApiDepartingAir);
 												}
 											}
 										},
