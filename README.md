@@ -18,10 +18,15 @@ Team #4 - Project #1
 
 - Must be interactive (i.e: accept and respond to user input)
 
+  - We have a search function that uses inputs by the user/client and provides them with relevant information
+
+  - We have an input bar that saves previous results using Local storage.
+
 - Use at least one new third-party API:
 
   - Skypicker
   - FourSquare
+  - Unsplash
 
 - Must have a polished UI
 
