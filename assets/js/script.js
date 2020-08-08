@@ -59,6 +59,12 @@ $(document).ready(function () {
 	/* -- || Form (#loc-date-form) || -- */
 	/* © Joshua M. Small */
 
+	$("#submit-btn").click(function (event) {
+		event.preventDefault();
+		console.log("Clicked Submit");
+		window.location.href = "./results.html";
+	});
+
 	/* Captures index.html formData to be used on results.html */
 	// Instead of listening to button click, always listen to form submit event
 	$("#loc-date-form").submit(function () {
@@ -142,7 +148,7 @@ $(document).ready(function () {
 
 	getCalloutTitles(formData);
 
-	/* -- || UnSplach API || -- */
+	/* -- || UnSplash API || -- */
 
 	function searchPicture(formData) {
 		$.ajax({
