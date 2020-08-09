@@ -118,7 +118,7 @@ input[type="submit"] {
 }
 
 #gallivant-logo-bg {
-	width: 50%;
+	width: 30%;
 }
 
 /* Trip Selection */
@@ -167,15 +167,15 @@ input[type="submit"] {
 	text-align: center;
 } */
 
-#r-img-div,
+/* #r-img-div,
 #d-img-div {
 	height: 300px;
 	margin: 25px;
-}  
+}   */
 
 /*--Chelsea Haviland CSS--*/
 
-#big-image{
+#big-image { 
 	position: relative;
 	text-align: center;
 	color: white;
@@ -186,7 +186,14 @@ input[type="submit"] {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	size: 15em;
+	font-size: 3em;
+	font-family: 'Amatic SC', cursive;
+
+  }
+
+  #quote {
+	  font-size: 4em;
+	  font-family: 'Kristi', cursive;
   }
 
 /*-^-Chelsea Haviland CSS-^-*/
@@ -489,7 +496,7 @@ footer a:visited {
 
 .scroll-container {
 	overflow-y: auto;
-	height: 500px;
+	height: 250px;
 	text-align: left;
 }
 
