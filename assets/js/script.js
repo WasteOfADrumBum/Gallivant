@@ -353,7 +353,7 @@ $(document).ready(function () {
 										"&fly_to=" +
 										apiCodeDepart +
 										"&dateFrom=" +
-										arriveRearrange +
+										departRearrange +
 										"&dateTo=" +
 										arriveRearrange +
 										"&partner=picky&v=3&limit=5";
@@ -366,14 +366,19 @@ $(document).ready(function () {
 										"&dateFrom=" +
 										departRearrange +
 										"&dateTo=" +
-										departRearrange +
+										arriveRearrange +
 										"&partner=picky&v=3&limit=5";
 									// Departing AJAX
+									console.log(flightApiArrivingAir)
+
 
 									$.ajax({
 										url: flightApiDepartingAir,
 										dataType: "json",
 										method: "GET",
+										beforeSend: function (jqXHR, settings) {
+											console.log("ajax URL:", settings.url, "XHR", jqXHR);
+													},
 										success: function (data) {
 											for (var i = 0; i < 5; i++) {
 												// Time Conversion
@@ -382,6 +387,13 @@ $(document).ready(function () {
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
 												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
+
+												// if(data.data[i].dTimeUTC === null) {
+												// 	$(".d-flight-api").append(
+												// 		"Airport flight time not available for this location",
+												// 	);
+												// }
+
 												if (data.data[i].cityFrom !== formData[0].value) {
 													$(".d-flight-api").append(
 														"Airport flight information not availble for this location",
@@ -444,14 +456,18 @@ $(document).ready(function () {
 														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
 													);
 													$(".r-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+														`<h6 class="airport-code">${data.data[i].cityCodeFrom}</h6>`,
 													);
 													$(".r-flight-api").append(
 														`<p  class="airport-time">${arrivalTime}</p>`,
 													);
+
+													console.log(data.data[i].cityCodeTo)
+
 													$(".r-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeto}</h6>`,
+														`<h6 class="airport-code">${data.data[i].cityCodeto}</h6>`,
 													);
+
 													$(".r-flight-api").append(
 														`<p class="airport-time">${departTime}</p>`,
 													);
