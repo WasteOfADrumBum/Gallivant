@@ -563,6 +563,7 @@ $(document).ready(function () {
 	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
 	var searchValueDestination = formData[2].value;
 	var searchValueDepart = formData[0].value;
+	//searchDateDepart never got a declaration
 
 	// Initial trip functions
 	// forecast
