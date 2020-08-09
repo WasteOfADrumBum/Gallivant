@@ -411,10 +411,10 @@ $(document).ready(function () {
 							success: function (codeAData) {
 								apiCodeArrival = codeAData.locations[0].code;
 								// Arrival Date Correct Format
-								var arriveRearrange = moment(arrivalDate).format("l");
+								var arriveRearrange = moment(arrivalDate).format("DD/MM/YYYY");
 
 								// Depature Date Correct Format
-								var departRearrange = moment(departDate).format("l");
+								var departRearrange = moment(departDate).format("DD/MM/YYYY");
 
 								if (apiCodeArrival === null) {
 									$(".d-flight-api").append(`<p>Could not be found!?</p>`);
@@ -448,6 +448,7 @@ $(document).ready(function () {
 										dataType: "json",
 										method: "GET",
 										success: function (data) {
+											console.log("dTimeUTC", data);
 											for (var i = 0; i < 5; i++) {
 												// Time Conversion
 												var utcSeconds = data.data[i].dTimeUTC;
@@ -544,7 +545,7 @@ $(document).ready(function () {
 	//need statement to stop displaying flights if given city does not match input city
 	//solve route issue
 
-	searchFlight();
+	searchFlight(formData);
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
