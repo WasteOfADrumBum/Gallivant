@@ -86,7 +86,6 @@ body {
 /* || WRAPPER || */
 
 #wrapper {
-	min-height: 100%;
 	margin: 15px;
 }
 
@@ -162,7 +161,7 @@ input[type="submit"] {
 
 /* UnSplash City Img */
 
- /* .d-picture-api,
+/* .d-picture-api,
 .r-picture-api {
 	text-align: center;
 } */
@@ -175,26 +174,25 @@ input[type="submit"] {
 
 /*--Chelsea Haviland CSS--*/
 
-#big-image { 
+#big-image {
 	position: relative;
 	text-align: center;
 	color: white;
-  }
+}
 
-  .centered {
+.centered {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	font-size: 3em;
-	font-family: 'Amatic SC', cursive;
+	font-family: "Amatic SC", cursive;
+}
 
-  }
-
-  #quote {
-	  font-size: 4em;
-	  font-family: 'Kristi', cursive;
-  }
+#quote {
+	font-size: 4em;
+	font-family: "Kristi", cursive;
+}
 
 /*-^-Chelsea Haviland CSS-^-*/
 
@@ -288,41 +286,67 @@ input[type="submit"] {
 	width: 70%;
 }
 
-#logo-container-contact {
-	float: right;
-	width: 30%;
-	text-align: center;
-}
-
 #contact-form-container {
-	clear: both;
 	margin-bottom: 35px;
 	float: none;
 	padding: 25px;
+	width: 70%;
+	float: right;
+}
+
+#contact-form {
+	background-color: #70b7ba;
+	padding: 15px;
+}
+
+#contact-form-container h2 {
+	background-color: #a9cf54;
+	color: #fff;
+	padding: 15px;
+}
+
+#contact-form-container label {
+	color: #fff;
+	font-size: 30px;
 }
 
 #contact-form #name,
 #email,
 #subject {
-	width: 20%;
+	width: 100%;
 }
 
 #contact-form #message {
-	width: 50%;
+	width: 100%;
 	height: 250px;
 }
 
 #contact-info-details {
+	text-align: center;
 	padding: 25px;
-	float: none;
+	margin: 25px;
+	float: left;
 	letter-spacing: 2px;
-	text-align: left;
 	line-height: 26px;
+	width: 25%;
+	background-color: #fff;
+	border: 1px solid #3d4c53;
 }
 
+#contact-info-details h1 {
+	font-weight: bold;
+	font-size: 35px;
+	border: none;
+	margin: 0;
+}
+
+#contact-info-details h2 {
+	font-size: 25px;
+	margin-top: 15px;
+}
 #contact-info-details hr {
-	max-width: 250px;
-	margin: -14px 0px 5px;
+	border: none;
+	border-top: 12px dotted #3d4c53;
 }
 
 #contact-info-details b {
@@ -332,11 +356,21 @@ input[type="submit"] {
 	font-size: 18px;
 }
 
-input[type="reset"] {
+#contact-form-container input[type="text"],
+#contact-form-container input[type="email"] {
+	border: none;
+	background-color: transparent;
+	border-bottom: 1px solid #fff;
+	box-shadow: none;
+}
+
+#contact-form-container input[type="reset"],
+#contact-form-container input[type="submit"] {
 	color: white;
-	background-color: #70b7ba;
+	background-color: #a9cf54;
 	border: 1px solid #3d4c53;
 	padding: 12px;
+	font-weight: bolder;
 }
 
 /* Contact: Links */
@@ -424,11 +458,6 @@ footer a:visited {
 		float: none;
 		width: 100%;
 	}
-	#logo-container-contact {
-		float: none;
-		width: 80%;
-		margin: auto;
-	}
 }
 
 @media screen and (max-width: 640px) {
@@ -486,9 +515,18 @@ footer a:visited {
 	.card-forecast {
 		width: 100% !important;
 	}
-
+	#gallivant-logo-contact {
+		width: 85%;
+	}
+	#contact-info-details {
+		margin: 0;
+	}
+	#contact-info-details,
+	#contact-form-container {
+		float: none;
+		width: 100%;
+	}
 }
-
 
 @media screen and (max-width: 320px) {
 	/* Older Phones */
