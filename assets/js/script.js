@@ -17,6 +17,7 @@ function checkResolution() {
 		);
 	}
 }
+
 // Check img on window resize
 $(window).resize(function () {
 	checkResolution();
@@ -43,10 +44,8 @@ $(document).ready(function () {
 	var rightNow = yy + "-" + mm + "-" + dd;
 	// Set Todays Date
 	$("#departing-date").attr("value", rightNow);
-	console.log("Today's Date: ", rightNow);
 	// min Departure Date
 	$(".form-date").attr("min", rightNow);
-	console.log("Min. Departure Date: ", rightNow);
 	// Min Return Date
 	$("#departing-date").on("change", function () {
 		$("#returning-date").attr("min", $(this).val());
@@ -54,14 +53,9 @@ $(document).ready(function () {
 	// Max Date (+1 year)
 	var dateMax = yy + 1 + "-" + mm + "-" + dd;
 	$(".form-date").attr("max", dateMax);
-	console.log("Max Date: ", dateMax);
 
 	/* -- || Form (#loc-date-form) || -- */
 	/* © Joshua M. Small */
-
-	$("#submit-btn").click(function () {
-		(window.location.href = "./results.html"), true;
-	});
 
 	/* Captures index.html formData to be used on results.html */
 	// Instead of listening to button click, always listen to form submit event
@@ -88,7 +82,6 @@ $(document).ready(function () {
 	$.each(formData, function (i, datum) {
 		$("#display_" + datum.name).html(datum.value);
 	});
-	console.log("formData Array:", formData);
 
 	/* Trip Selection Title Change */
 	/* © Joshua M. Small */
@@ -97,8 +90,6 @@ $(document).ready(function () {
 	function genSelectTitles(formData) {
 		// empty any existing content
 		$("#trip-selection").empty();
-
-		console.log("Create Trip Selection Titles");
 
 		$("#trip-selection").append(
 			"<div id='int-select'><a>" +
@@ -158,8 +149,6 @@ $(document).ready(function () {
 				formData[2].value,
 			dataType: "json",
 			success: function (data) {
-				console.log("Picture Data:", data);
-
 				// empty any existing content
 				$(".d-picture-api").empty();
 
@@ -168,7 +157,6 @@ $(document).ready(function () {
 					id: "d-img-div",
 				});
 				dImg.attr("src", data.results[0].urls.regular);
-				console.log("IMG URL:", data.results[0].urls.regular);
 
 				// Append Info
 				$(".d-picture-api").append(dImg);
@@ -184,8 +172,6 @@ $(document).ready(function () {
 				formData[0].value,
 			dataType: "json",
 			success: function (data) {
-				console.log("Picture Data:", data);
-
 				// empty any existing content
 				$(".r-picture-api").empty();
 
@@ -194,7 +180,6 @@ $(document).ready(function () {
 					id: "r-img-div",
 				});
 				rImg.attr("src", data.results[0].urls.regular);
-				console.log("IMG URL:", data.results[0].urls.regular);
 
 				// Append Info
 				$(".r-picture-api").append(rImg);
@@ -206,8 +191,6 @@ $(document).ready(function () {
 
 	/* -- || FourSquare POI API || -- */
 	/* © Joshua M. Small */
-
-	console.log("-- || FourSquare POI API || --");
 
 	// ES6: Generate HTML structure
 	function genAPOIHTML(name, prefix, suffix, category, formattedAddress) {
@@ -222,11 +205,7 @@ $(document).ready(function () {
 	}
 
 	/* Departing Location */
-	console.log("Departing City:", formData[0].value);
-
 	function searchPoi1(formData) {
-		console.log("-- || Start POI Arrival Function || --");
-
 		$.ajax({
 			dataType: "json",
 			url:
@@ -238,12 +217,9 @@ $(document).ready(function () {
 				formData[0].value,
 			data: {},
 			beforeSend: function (jqXHR, settings) {
-				console.log("ajax URL:", settings.url);
+				// console.log("ajax URL:", settings.url, "XHR", jqXHR);
 			},
 			success: function (data) {
-				console.log("-- || POI Arrival Data || --");
-				console.log("Data:", data);
-
 				// empty any existing content
 				$(".r-attractions-api").empty();
 
@@ -256,22 +232,7 @@ $(document).ready(function () {
 
 				$(".r-attractions-api-title").append(aTitle);
 
-				console.log("-- || POI Arrival Loop || --");
 				for (var i = 0; i < 5; i++) {
-					console.log(
-						"A Loop #",
-						i,
-						"| Name:",
-						data.response.groups[0].items[i].venue.name,
-						"| Pic URL:",
-						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
-						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
-						"| Category:",
-						data.response.groups[0].items[i].venue.categories[0].name,
-						"| Address:",
-						data.response.groups[0].items[i].venue.location.formattedAddress,
-					);
-
 					// Append Info
 					var aContainer = genAPOIHTML(
 						data.response.groups[0].items[i].venue.name,
@@ -294,11 +255,7 @@ $(document).ready(function () {
 	}
 
 	/* Arriving Location */
-	console.log("Arriving City:", formData[2].value);
-
 	function searchPoi2(formData) {
-		console.log("-- || Start POI Return Function || --");
-
 		// empty any existing content
 		$(".r-attractions-api").empty();
 
@@ -322,31 +279,12 @@ $(document).ready(function () {
 				formData[2].value,
 			data: {},
 			beforeSend: function (jqXHR, settings) {
-				console.log("ajax URL:", settings.url);
+				// console.log("ajax URL:", settings.url, "XHR", jqXHR);
 			},
 			success: function (data) {
-				console.log("-- || POI Return Data || --");
-				console.log("Data:", data);
-
 				// empty any existing content
 				$(".d-attractions-api").empty();
-
-				console.log("-- || POI Return Loop || --");
 				for (var i = 0; i < 5; i++) {
-					console.log(
-						"R Loop #",
-						i,
-						"| Name:",
-						data.response.groups[0].items[i].venue.name,
-						"| Pic URL:",
-						data.response.groups[0].items[i].venue.categories[0].icon.prefix,
-						data.response.groups[0].items[i].venue.categories[0].icon.suffix,
-						"| Category:",
-						data.response.groups[0].items[i].venue.categories[0].name,
-						"| Address:",
-						data.response.groups[0].items[i].venue.location.formattedAddress,
-					);
-
 					// Append Info
 					var rContainer = genAPOIHTML(
 						data.response.groups[0].items[i].venue.name,
@@ -373,8 +311,6 @@ $(document).ready(function () {
 
 	/* -- || Skypicker Flight Search || -- */
 	/* © Tanner Cook */
-
-	console.log("-- || Skyscanner Flight Search || --");
 
 	function searchFlight() {
 		var formData = JSON.parse(localStorage.getItem("formData"));
@@ -448,7 +384,6 @@ $(document).ready(function () {
 										dataType: "json",
 										method: "GET",
 										success: function (data) {
-											console.log("dTimeUTC", data);
 											for (var i = 0; i < 5; i++) {
 												// Time Conversion
 												var utcSeconds = data.data[i].dTimeUTC;
@@ -461,7 +396,6 @@ $(document).ready(function () {
 														"Airport flight information not availble for this location",
 													);
 												}
-
 												// If Null
 												if (apiCodeDepart === null) {
 													$(".d-flight-api").append(
@@ -550,13 +484,8 @@ $(document).ready(function () {
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
 
-	console.log("-- || Open Weather Map API || --");
-
 	// Global weather variables
-	var imperialUnits = "&units=imperial";
 	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
-	var searchValueDestination = formData[2].value;
-	var searchValueDepart = formData[0].value;
 
 	// Initial trip functions
 	// forecast
@@ -577,23 +506,21 @@ $(document).ready(function () {
 	}
 
 	//5 day forecast of city you're going to
-	function getForecast(searchValueDestination) {
-		var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
+	function getForecast(formData) {
 		$.ajax({
 			type: "GET",
-			url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
+			url:
+				"https://api.openweathermap.org/data/2.5/forecast?q=" +
+				formData[2].value +
+				"&units=imperial" +
+				apiWeatherKey,
 			dataType: "json",
 			success: function (data) {
-				console.log("forecast works");
-
 				for (var i = 0; i < data.list.length; i++) {
 					if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-						console.log(data);
-
 						var fiveSec = data.list[i].dt;
 						var fiveForecastDate = new Date(fiveSec * 1000);
 						var fiveDateStr = fiveForecastDate.toLocaleDateString();
-						console.log(fiveDateStr);
 
 						var fiveDayForecast = genForecastHTML(
 							data.city.name,
@@ -611,14 +538,7 @@ $(document).ready(function () {
 		});
 	}
 
-	/* -- ||  Open Weather Map || -- */
-	/* © Garrett Dobson */
-	console.log("-- || Open Weather Map API || --");
-	// Global weather variables
-	var imperialUnits = "&units=imperial";
-	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
-	// Initial trip functions
-	// forecast
+	// Forecast ES6
 	function genForecastHTML(name, fivedatestr, icon, temp, humidity, speed) {
 		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
                     <div class="card-body">
@@ -632,7 +552,8 @@ $(document).ready(function () {
                 </div>`;
 		return forecastWeather;
 	}
-	//5 day forecast of city you're going to
+
+	// 5-Day forecast
 	function getForecast(formData) {
 		$.ajax({
 			type: "GET",
@@ -662,7 +583,8 @@ $(document).ready(function () {
 			},
 		});
 	}
-	// current weather at departing city
+
+	// Departing City Weather
 	function searchWeather(formData) {
 		$.ajax({
 			url:
@@ -706,13 +628,14 @@ $(document).ready(function () {
 			},
 		});
 	}
-	// current weather at Arriving city location
+
+	// Arrival City Weather
 	function searchWeatherReturn(formData) {
 		$.ajax({
 			url:
 				"https://api.openweathermap.org/data/2.5/weather?q=" +
 				formData[2].value +
-				imperialUnits +
+				"&units=imperial" +
 				apiWeatherKey,
 			type: "GET",
 			dataType: "json",
@@ -752,7 +675,8 @@ $(document).ready(function () {
 			},
 		});
 	}
-	// return trip destination current weather
+
+	// Return Trip: Desitnation City Weather
 	function searchWeatherReturnDepart(formData) {
 		$.ajax({
 			url:
@@ -798,6 +722,7 @@ $(document).ready(function () {
 			},
 		});
 	}
+	// Call Weather Functions
 	getForecast(formData);
 	searchWeather(formData);
 	searchWeatherReturn(formData);
