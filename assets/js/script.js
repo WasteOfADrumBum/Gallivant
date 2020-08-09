@@ -439,6 +439,7 @@ $(document).ready(function () {
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
 												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
+												var airportCodeTo = data.data[i].cityCodeTo
 												if (data.data[i].cityFrom !== formData[2].value) {
 													$(".r-flight-api").append(
 														"Airport flight information not availble for this location",
@@ -462,10 +463,10 @@ $(document).ready(function () {
 														`<p  class="airport-time">${arrivalTime}</p>`,
 													);
 
-													console.log(data.data[i].cityCodeTo)
+													console.log(data.data[i])
 
 													$(".r-flight-api").append(
-														`<h6 class="airport-code">${data.data[i].cityCodeto}</h6>`,
+														`<h6 class="airport-code">${airportCodeTo}</h6>`,
 													);
 
 													$(".r-flight-api").append(
