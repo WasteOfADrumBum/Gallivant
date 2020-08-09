@@ -487,21 +487,18 @@ $(document).ready(function () {
 	// Global weather variables
 	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
 
-	// Initial trip functions
-	// forecast
+	// Forecast ES6
 	function genForecastHTML(name, fivedatestr, icon, temp, humidity, speed) {
 		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
-					<div class="card-body">
-						<h5 class="card-title">${name}</h5>
-						<p class="card-text"> ${fivedatestr} </p>
-						<img src="https://openweathermap.org/img/w/${icon}.png">
-						<p class="card-text">Temperature: ${temp} °F</p>
-						<p class="card-text">Humidity: ${humidity} %</p>
-						<p class="card-text">Wind Speed: ${speed} MPH</p>
-
-					</div>
-				</div>`;
-
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text"> ${fivedatestr} </p>
+                        <img src="https://openweathermap.org/img/w/${icon}.png">
+                        <p class="card-text">Temperature: ${temp} °F</p>
+                        <p class="card-text">Humidity: ${humidity} %</p>
+                        <p class="card-text">Wind Speed: ${speed} MPH</p>
+                    </div>
+                </div>`;
 		return forecastWeather;
 	}
 
@@ -531,52 +528,6 @@ $(document).ready(function () {
 							data.list[i].wind.speed,
 						);
 
-						$("#forecast").append(fiveDayForecast);
-					}
-				}
-			},
-		});
-	}
-
-	// Forecast ES6
-	function genForecastHTML(name, fivedatestr, icon, temp, humidity, speed) {
-		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
-                    <div class="card-body">
-                        <h5 class="card-title">${name}</h5>
-                        <p class="card-text"> ${fivedatestr} </p>
-                        <img src="https://openweathermap.org/img/w/${icon}.png">
-                        <p class="card-text">Temperature: ${temp} °F</p>
-                        <p class="card-text">Humidity: ${humidity} %</p>
-                        <p class="card-text">Wind Speed: ${speed} MPH</p>
-                    </div>
-                </div>`;
-		return forecastWeather;
-	}
-
-	// 5-Day forecast
-	function getForecast(formData) {
-		$.ajax({
-			type: "GET",
-			url:
-				"https://api.openweathermap.org/data/2.5/forecast?q=" +
-				formData[2].value +
-				"&units=imperial" +
-				apiWeatherKey,
-			dataType: "json",
-			success: function (data) {
-				for (var i = 0; i < data.list.length; i++) {
-					if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-						var fiveSec = data.list[i].dt;
-						var fiveForecastDate = new Date(fiveSec * 1000);
-						var fiveDateStr = fiveForecastDate.toLocaleDateString();
-						var fiveDayForecast = genForecastHTML(
-							data.city.name,
-							fiveDateStr,
-							data.list[i].weather[0].icon,
-							data.list[i].main.temp,
-							data.list[i].main.humidity,
-							data.list[i].wind.speed,
-						);
 						$("#forecast").append(fiveDayForecast);
 					}
 				}
