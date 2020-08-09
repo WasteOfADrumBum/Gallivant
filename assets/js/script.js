@@ -59,10 +59,8 @@ $(document).ready(function () {
 	/* -- || Form (#loc-date-form) || -- */
 	/* © Joshua M. Small */
 
-	$("#submit-btn").click(function (event) {
-		event.preventDefault();
-		console.log("Clicked Submit");
-		window.location.href = "./results.html";
+	$("#submit-btn").click(function () {
+		(window.location.href = "./results.html"), true;
 	});
 
 	/* Captures index.html formData to be used on results.html */
@@ -413,10 +411,10 @@ $(document).ready(function () {
 							success: function (codeAData) {
 								apiCodeArrival = codeAData.locations[0].code;
 								// Arrival Date Correct Format
-								var arriveRearrange = moment(arrivalDate).format("l")
+								var arriveRearrange = moment(arrivalDate).format("l");
 
 								// Depature Date Correct Format
-								var departRearrange = moment(departDate).format("l")
+								var departRearrange = moment(departDate).format("l");
 
 								if (apiCodeArrival === null) {
 									$(".d-flight-api").append(`<p>Could not be found!?</p>`);
@@ -456,39 +454,36 @@ $(document).ready(function () {
 												var departTime = new Date(0);
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
-												arrivalTime.setUTCSeconds(
-													data.data[i].aTimeUTC,
-												);
-												if(data.data[i].cityFrom !== formData[0].value) {
-													$(".d-flight-api").append("Airport flight information not availble for this location")
-												} 
-													
-												// If Null
-													if (apiCodeDepart === null) {
-														$(".d-flight-api").append(
-															`<p>Could not be found!?</p>`,
-														);
-													} // Else Works
-													else {
-														// Append Departure Info
-														$(".d-flight-api").append(
-															`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
-														);
-														$(".d-flight-api").append(
-															`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
-														);
-														$(".d-flight-api").append(
-															`<p class="airport-time">${departTime}</p>`,
-														);
-														$(".d-flight-api").append(
-															`<h6 class="apirport-code">${data.data[i].cityCodeTo}</h6>`,
-														);
-														$(".d-flight-api").append(
-															`<p class="airport-time">${arrivalTime}</p>`,
-														);
-												
-											
+												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
+												if (data.data[i].cityFrom !== formData[0].value) {
+													$(".d-flight-api").append(
+														"Airport flight information not availble for this location",
+													);
+												}
 
+												// If Null
+												if (apiCodeDepart === null) {
+													$(".d-flight-api").append(
+														`<p>Could not be found!?</p>`,
+													);
+												} // Else Works
+												else {
+													// Append Departure Info
+													$(".d-flight-api").append(
+														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
+													);
+													$(".d-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+													);
+													$(".d-flight-api").append(
+														`<p class="airport-time">${departTime}</p>`,
+													);
+													$(".d-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeTo}</h6>`,
+													);
+													$(".d-flight-api").append(
+														`<p class="airport-time">${arrivalTime}</p>`,
+													);
 												}
 											}
 										},
@@ -505,37 +500,35 @@ $(document).ready(function () {
 												var departTime = new Date(0);
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
-												arrivalTime.setUTCSeconds(
-													data.data[i].aTimeUTC,
-												);
-												if(data.data[i].cityFrom !== formData[2].value) {
-													$(".r-flight-api").append("Airport flight information not availble for this location")
-												} 
+												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
+												if (data.data[i].cityFrom !== formData[2].value) {
+													$(".r-flight-api").append(
+														"Airport flight information not availble for this location",
+													);
+												}
 												// If Null
-													if (apiCodeDepart === null) {
-														$(".d-flight-api").append(
-															`<p>Could not be found!?</p>`,
-														);
-													} // Else Works
-													else {
-														// Append Return Info
-														$(".r-flight-api").append(
-															`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
-														);
-														$(".r-flight-api").append(
-															`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
-														);
-														$(".r-flight-api").append(
-															`<p  class="airport-time">${arrivalTime}</p>`,
-														);
-														$(".r-flight-api").append(
-															`<h6 class="apirport-code">${data.data[i].cityCodeto}</h6>`,
-														);
-														$(".r-flight-api").append(
-															`<p class="airport-time">${departTime}</p>`,
-														);
-					
-
+												if (apiCodeDepart === null) {
+													$(".d-flight-api").append(
+														`<p>Could not be found!?</p>`,
+													);
+												} // Else Works
+												else {
+													// Append Return Info
+													$(".r-flight-api").append(
+														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
+													);
+													$(".r-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+													);
+													$(".r-flight-api").append(
+														`<p  class="airport-time">${arrivalTime}</p>`,
+													);
+													$(".r-flight-api").append(
+														`<h6 class="apirport-code">${data.data[i].cityCodeto}</h6>`,
+													);
+													$(".r-flight-api").append(
+														`<p class="airport-time">${departTime}</p>`,
+													);
 												}
 											}
 										},
@@ -548,7 +541,7 @@ $(document).ready(function () {
 			});
 		}
 	}
-	//need statement to stop displaying flights if given city does not match input city 
+	//need statement to stop displaying flights if given city does not match input city
 	//solve route issue
 
 	searchFlight();
@@ -582,6 +575,7 @@ $(document).ready(function () {
 		return forecastWeather;
 	}
 
+	//5 day forecast of city you're going to
 	function getForecast(searchValueDestination) {
 		var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 		$.ajax({
@@ -589,19 +583,10 @@ $(document).ready(function () {
 			url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
 			dataType: "json",
 			success: function (data) {
-				// overwrite any existing content with title and empty row
 				console.log("forecast works");
-				console.log(
-					forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
-				);
-				console.log(data);
-				console.log(data.list[0].dt);
 
-				// loop over all forecasts (by 3-hour increments)
 				for (var i = 0; i < data.list.length; i++) {
-					// only look at forecasts around 3:00pm
 					if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-						// create html elements for a bootstrap card
 						console.log(data);
 
 						var fiveSec = data.list[i].dt;
@@ -625,118 +610,195 @@ $(document).ready(function () {
 		});
 	}
 
-	getForecast(searchValueDestination);
-	//departing day weather
-	searchWeather(searchValueDepart);
-
-	function searchWeather(searchValueDepart) {
-		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-
+	/* -- ||  Open Weather Map || -- */
+	/* © Garrett Dobson */
+	console.log("-- || Open Weather Map API || --");
+	// Global weather variables
+	var imperialUnits = "&units=imperial";
+	var apiWeatherKey = "&appid=f18b83f11c206025350af3f0978bacde";
+	// Initial trip functions
+	// forecast
+	function genForecastHTML(name, fivedatestr, icon, temp, humidity, speed) {
+		var forecastWeather = `<div class="card-forecast bg-light" style="width: 20%;">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text"> ${fivedatestr} </p>
+                        <img src="https://openweathermap.org/img/w/${icon}.png">
+                        <p class="card-text">Temperature: ${temp} °F</p>
+                        <p class="card-text">Humidity: ${humidity} %</p>
+                        <p class="card-text">Wind Speed: ${speed} MPH</p>
+                    </div>
+                </div>`;
+		return forecastWeather;
+	}
+	//5 day forecast of city you're going to
+	function getForecast(formData) {
 		$.ajax({
-			url: queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
 			type: "GET",
+			url:
+				"https:api.openweathermap.org/data/2.5/forecast?q=" +
+				formData[2].value +
+				"&units=imperial" +
+				apiWeatherKey,
 			dataType: "json",
 			success: function (data) {
-				console.log(
-					queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
-				);
-				console.log("current weather works");
-				console.log(data);
-
-				var currentDate = data.dt;
-				var todaysDate = new Date(currentDate * 1000);
-				var departDateStr = todaysDate.toLocaleDateString();
-				console.log(departDateStr);
-
-				var currentWeather = `<div class="card bg-light" style="width: 100%;">
-        <div class="card-body">
-					<h5 class="card-title">${data.name}</h5>
-					<p class="card-text">${departDateStr}</p>
-					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
-          <p class="card-text">Temperature: ${data.main.temp} °F</p>
-          <p class="card-text">Humidity: ${data.main.humidity}%</p>
-					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
-        </div>
-      </div>`;
-
-				$("#today").html(currentWeather);
+				for (var i = 0; i < data.list.length; i++) {
+					if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+						var fiveSec = data.list[i].dt;
+						var fiveForecastDate = new Date(fiveSec * 1000);
+						var fiveDateStr = fiveForecastDate.toLocaleDateString();
+						var fiveDayForecast = genForecastHTML(
+							data.city.name,
+							fiveDateStr,
+							data.list[i].weather[0].icon,
+							data.list[i].main.temp,
+							data.list[i].main.humidity,
+							data.list[i].wind.speed,
+						);
+						$("#forecast").append(fiveDayForecast);
+					}
+				}
 			},
 		});
 	}
-
-	console.log(formData[2].value);
-
+	// current weather at departing city
+	function searchWeather(formData) {
+		$.ajax({
+			url:
+				"https://api.openweathermap.org/data/2.5/weather?q=" +
+				formData[0].value +
+				"&units=imperial" +
+				apiWeatherKey,
+			type: "GET",
+			dataType: "json",
+			success: function (data) {
+				var correctFinalDate0 = moment(formData[1].value).format("l");
+				var currentDate = data.dt;
+				var todaysDate = new Date(currentDate * 1000);
+				var departDateStr = todaysDate.toLocaleDateString();
+				if (correctFinalDate0 !== departDateStr) {
+					var currentWeather0a = `<div class="card bg-light" id="weather1" style="width: 100%;">
+        <div class="card-body">
+                    <h5 class="card-title">${data.name}</h5>
+                    <p class="card-text">${departDateStr}</p>
+                    <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+                    <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+                    <p class="card-text" id="disclaimer-depart">Weather for ${correctFinalDate0} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+        </div>
+            </div>`;
+					$("#today").html(currentWeather0a);
+				} else {
+					var currentWeather0b = `<div class="card bg-light" id ="weather2" style="width: 100%;">
+        <div class="card-body">
+                    <h5 class="card-title">${data.name}</h5>
+                    <p class="card-text">${departDateStr}</p>
+                    <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+                    <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+        </div>
+            </div>`;
+					$("#today").html(currentWeather0b);
+				}
+			},
+		});
+	}
+	// current weather at Arriving city location
 	function searchWeatherReturn(formData) {
-		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-
 		$.ajax({
-			url: queryWeatherURL + formData[2].value + imperialUnits + apiWeatherKey,
+			url:
+				"https://api.openweathermap.org/data/2.5/weather?q=" +
+				formData[2].value +
+				imperialUnits +
+				apiWeatherKey,
 			type: "GET",
 			dataType: "json",
 			success: function (data) {
-				console.log(
-					queryWeatherURL + formData[2].value + imperialUnits + apiWeatherKey,
-				);
-				console.log("current weather works");
-				console.log(data);
-
+				// Moment Date Conversion
+				var correctFinalDate1 = moment(formData[3].value).format("l");
+				// Weather Date Conversion
 				var currentDate = data.dt;
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
-				console.log(departDateStr);
-
-				var returnCurrentWeather = `<div class="card bg-light" style="width: 100%;">
+				if (correctFinalDate1 !== departDateStr) {
+					var returnCurrentWeather1a = `<div class="card bg-light" style="width: 100%;">
         <div class="card-body">
-					<h5 class="card-title">${data.name}</h5>
-					<p class="card-text">${departDateStr}</p>
-					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+                    <h5 class="card-title">${data.name}'s Departing Weather</h5>
+                    <p class="card-text">${departDateStr}</p>
+                    <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
           <p class="card-text">Temperature: ${data.main.temp} °F</p>
           <p class="card-text">Humidity: ${data.main.humidity}%</p>
-					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+                    <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+                    <p class="card-text" id="disclaimer-return">Weather for ${correctFinalDate1} is currently unavailable. Displaying current weather for ${departDateStr} </p>
         </div>
       </div>`;
-
-				$("#return-today").html(returnCurrentWeather);
+					$("#return-today").html(returnCurrentWeather1a);
+				} else {
+					var returnCurrentWeather2a = `<div class="card bg-light" style="width: 100%;">
+        <div class="card-body">
+                    <h5 class="card-title">${data.name}</h5>
+                    <p class="card-text">${departDateStr}</p>
+                    <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+                    <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+        </div>
+      </div>`;
+					$("#return-today").html(returnCurrentWeather2a);
+				}
 			},
 		});
 	}
-
-	searchWeatherReturn(formData);
-
+	// return trip destination current weather
 	function searchWeatherReturnDepart(formData) {
-		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-
 		$.ajax({
-			url: queryWeatherURL + formData[0].value + imperialUnits + apiWeatherKey,
+			url:
+				"https://api.openweathermap.org/data/2.5/weather?q=" +
+				formData[0].value +
+				"&units=imperial" +
+				apiWeatherKey,
 			type: "GET",
 			dataType: "json",
 			success: function (data) {
-				console.log(
-					queryWeatherURL + formData[0].value + imperialUnits + apiWeatherKey,
-				);
-				console.log("current weather works");
-				console.log(data);
-
+				// Moment Date Conversion
+				var correctFinalDate2 = moment(formData[1].value).format("l");
+				// Weather Date Conversion
 				var currentDate = data.dt;
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
-				console.log(departDateStr);
-
-				var returnCurrentWeather = `<div class="card bg-light" style="width: 100%;">
-        <div class="card-body">
-					<h5 class="card-title">${data.name}</h5>
-					<p class="card-text">${departDateStr}</p>
-					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
-          <p class="card-text">Temperature: ${data.main.temp} °F</p>
-          <p class="card-text">Humidity: ${data.main.humidity}%</p>
-					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
-        </div>
-      </div>`;
-
-				$("#return-forecast").html(returnCurrentWeather);
+				if (correctFinalDate2 !== departDateStr) {
+					var returnCurrentWeather1b = `<div class="card bg-light" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">${data.name}'s Current Weather</h5>
+                        <p class="card-text">${departDateStr}</p>
+                        <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+                        <p class="card-text">Temperature: ${data.main.temp} °F</p>
+                        <p class="card-text">Humidity: ${data.main.humidity}%</p>
+                        <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+                        <p class="card-text" id="disclaimer-return-destination">Weather for ${correctFinalDate2} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+                    </div>
+                </div>`;
+					$("#return-today-destination").html(returnCurrentWeather1b);
+				} else {
+					var returnCurrentWeather2b = `<div class="card bg-light" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">${data.name}</h5>
+                        <p class="card-text">${departDateStr}</p>
+                        <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+                        <p class="card-text">Temperature: ${data.main.temp} °F</p>
+                        <p class="card-text">Humidity: ${data.main.humidity}%</p>
+                        <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+                    </div>
+                </div>`;
+					$("#return-today-destination").html(returnCurrentWeather2b);
+				}
 			},
 		});
 	}
-
+	getForecast(formData);
+	searchWeather(formData);
+	searchWeatherReturn(formData);
 	searchWeatherReturnDepart(formData);
 });
