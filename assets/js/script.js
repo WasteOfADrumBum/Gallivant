@@ -105,8 +105,6 @@ $(document).ready(function () {
 		);
 	}
 
-	genSelectTitles(formData);
-
 	/* -- || Trip Container Display || -- */
 	/* © Joshua M. Small */
 
@@ -134,8 +132,6 @@ $(document).ready(function () {
 		$("#city-name-1-5-day").append(formData[2].value);
 		$("#city-name-2").append(formData[0].value);
 	}
-
-	getCalloutTitles(formData);
 
 	/* -- || UnSplash API || -- */
 
@@ -186,8 +182,6 @@ $(document).ready(function () {
 			},
 		});
 	}
-
-	searchPicture(formData);
 
 	/* -- || FourSquare POI API || -- */
 	/* © Joshua M. Small */
@@ -304,10 +298,6 @@ $(document).ready(function () {
 			},
 		});
 	}
-
-	// Call Functions
-	searchPoi1(formData);
-	searchPoi2(formData);
 
 	/* -- || Skypicker Flight Search || -- */
 	/* © Tanner Cook */
@@ -478,8 +468,6 @@ $(document).ready(function () {
 	}
 	//need statement to stop displaying flights if given city does not match input city
 	//solve route issue
-
-	searchFlight(formData);
 
 	/* -- ||  Open Weather Map || -- */
 	/* © Garrett Dobson */
@@ -673,7 +661,19 @@ $(document).ready(function () {
 			},
 		});
 	}
-	// Call Weather Functions
+
+	/* -- || CALL FUNCTIONS || -- */
+
+	genSelectTitles(formData);
+	getCalloutTitles(formData);
+	// UnSplash API
+	searchPicture(formData);
+	// FourSquare API
+	searchPoi1(formData);
+	searchPoi2(formData);
+	// Skypicker API
+	searchFlight(formData);
+	// Open Weather Map API
 	getForecast(formData);
 	searchWeather(formData);
 	searchWeatherReturn(formData);
