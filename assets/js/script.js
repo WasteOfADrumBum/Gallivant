@@ -104,6 +104,7 @@ $(document).ready(function () {
 				"</a></div>",
 		);
 	}
+	genSelectTitles(formData);
 
 	/* -- || Trip Container Display || -- */
 	/* © Joshua M. Small */
@@ -663,8 +664,6 @@ $(document).ready(function () {
 	}
 
 	/* -- || CALL FUNCTIONS || -- */
-
-	genSelectTitles(formData);
 	getCalloutTitles(formData);
 	// UnSplash API
 	searchPicture(formData);
