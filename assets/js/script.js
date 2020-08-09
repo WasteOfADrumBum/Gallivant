@@ -207,7 +207,7 @@ $(document).ready(function () {
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
 				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
 				"&client_secret=" +
-				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
+				"KRQBJQCD2U4FU44A0Y5L1IRAGKG4WJ51VFQADHRXPC5OOZKG" +
 				"&v=20180323&limit=10&near=" +
 				formData[0].value,
 			data: {},
@@ -241,11 +241,6 @@ $(document).ready(function () {
 					$(".r-attractions-api").append(aContainer);
 				}
 			},
-
-			// Code for handling errors
-			error: function (jqXHR, textStatus, errorThrown) {
-				alert("Result: " + jqXHR + " " + textStatus + " " + errorThrown);
-			},
 		});
 	}
 
@@ -269,7 +264,7 @@ $(document).ready(function () {
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
 				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
 				"&client_secret=" +
-				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
+				"KRQBJQCD2U4FU44A0Y5L1IRAGKG4WJ51VFQADHRXPC5OOZKG" +
 				"&v=20180323&limit=10&near=" +
 				formData[2].value,
 			data: {},
@@ -292,10 +287,6 @@ $(document).ready(function () {
 					// Merge and display
 					$(".d-attractions-api").append(rContainer);
 				}
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				// Code for handling errors
-				alert("Result: " + jqXHR + " " + textStatus + " " + errorThrown);
 			},
 		});
 	}
@@ -434,7 +425,7 @@ $(document).ready(function () {
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
 												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
-												var airportCodeTo = data.data[i].cityCodeTo
+												var airportCodeTo = data.data[i].cityCodeTo;
 												if (data.data[i].cityFrom !== formData[2].value) {
 													$(".r-flight-api").append(
 														"Airport flight information not availble for this location",
