@@ -173,6 +173,24 @@ input[type="submit"] {
 	margin: 25px;
 }  
 
+/*--Chelsea Haviland CSS--*/
+
+#big-image{
+	position: relative;
+	text-align: center;
+	color: white;
+  }
+
+  .centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	size: 15em;
+  }
+
+/*-^-Chelsea Haviland CSS-^-*/
+
 /* POI */
 
 .d-attractions-api,
