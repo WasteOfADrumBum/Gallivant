@@ -637,7 +637,7 @@ $(document).ready(function () {
 
         console.log("current weather works");
 
-        var correctFinalDate = moment(searchValueDepart).format("l");
+        var correctFinalDate = moment(searchValueDepart).format("l");//was searchDateDepart but I got an error of undefined
 
         var currentDate = data.dt;
         var todaysDate = new Date(currentDate * 1000);
@@ -687,7 +687,7 @@ $(document).ready(function () {
         console.log("current weather works");
 	
 				
-				var correctFinalDate = moment(searchValueDepart).format("l");
+				var correctFinalDate = moment(searchValueDepart).format("l");//was searchDateDepart but I got an error of undefined
 
         var currentDate = data.dt;
         var todaysDate = new Date(currentDate * 1000);
