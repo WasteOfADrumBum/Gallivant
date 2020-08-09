@@ -526,6 +526,9 @@ footer a:visited {
 		float: none;
 		width: 100%;
 	}
+	#contact-form-container label {
+		font-size: 18px;
+	}
 }
 
 @media screen and (max-width: 320px) {
