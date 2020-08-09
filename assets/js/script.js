@@ -3,23 +3,23 @@
 
 // Change #gallivant-logo-contact from Logo -to-> Icon on window < 768px
 function checkResolution() {
-	if ($(window).innerWidth() < 768) {
-		// window < 640px = Icon
-		$("#gallivant-logo-contact").attr(
-			"src",
-			"assets/images/gallivant-icon.png",
-		);
-	} else {
-		// window > 768px = Logo
-		$("#gallivant-logo-contact").attr(
-			"src",
-			"assets/images/gallivant-logo.png",
-		);
-	}
+  if ($(window).innerWidth() < 768) {
+    // window < 640px = Icon
+    $("#gallivant-logo-contact").attr(
+      "src",
+      "assets/images/gallivant-icon.png"
+    );
+  } else {
+    // window > 768px = Logo
+    $("#gallivant-logo-contact").attr(
+      "src",
+      "assets/images/gallivant-logo.png"
+    );
+  }
 }
 // Check img on window resize
 $(window).resize(function () {
-	checkResolution();
+  checkResolution();
 });
 
 // Check img on window load
@@ -579,76 +579,140 @@ $(document).ready(function () {
 					</div>
 				</div>`;
 
-		return forecastWeather;
-	}
+    return forecastWeather;
+  }
 
-	function getForecast(searchValueDestination) {
-		var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
-		$.ajax({
-			type: "GET",
-			url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
-			dataType: "json",
-			success: function (data) {
-				// overwrite any existing content with title and empty row
-				console.log("forecast works");
-				console.log(
-					forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
-				);
-				console.log(data);
-				console.log(data.list[0].dt);
+	//5 day forecast of city you're going to
+  function getForecast(searchValueDestination) {
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
+    $.ajax({
+      type: "GET",
+      url: forecastURL + searchValueDestination + imperialUnits + apiWeatherKey,
+      dataType: "json",
+      success: function (data) {
+        
+        console.log("forecast works");
 
-				// loop over all forecasts (by 3-hour increments)
-				for (var i = 0; i < data.list.length; i++) {
-					// only look at forecasts around 3:00pm
-					if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-						// create html elements for a bootstrap card
-						console.log(data);
+      
+        for (var i = 0; i < data.list.length; i++) {
+          
+          if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+            
+            console.log(data);
 
-						var fiveSec = data.list[i].dt;
-						var fiveForecastDate = new Date(fiveSec * 1000);
-						var fiveDateStr = fiveForecastDate.toLocaleDateString();
-						console.log(fiveDateStr);
+            var fiveSec = data.list[i].dt;
+            var fiveForecastDate = new Date(fiveSec * 1000);
+            var fiveDateStr = fiveForecastDate.toLocaleDateString();
+            console.log(fiveDateStr);
 
-						var fiveDayForecast = genForecastHTML(
-							data.city.name,
-							fiveDateStr,
-							data.list[i].weather[0].icon,
-							data.list[i].main.temp,
-							data.list[i].main.humidity,
-							data.list[i].wind.speed,
-						);
+            var fiveDayForecast = genForecastHTML(
+              data.city.name,
+              fiveDateStr,
+              data.list[i].weather[0].icon,
+              data.list[i].main.temp,
+              data.list[i].main.humidity,
+              data.list[i].wind.speed
+            );
 
-						$("#forecast").append(fiveDayForecast);
-					}
-				}
-			},
-		});
-	}
+            $("#forecast").append(fiveDayForecast);
+          }
+        }
+      },
+    });
+  }
 
-	getForecast(searchValueDestination);
-	//departing day weather
+  getForecast(searchValueDestination);
+  //departing day weather
 	searchWeather(searchValueDepart);
+	
+	// current weather at departing city
+  function searchWeather(searchValueDepart) {
+    var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-	function searchWeather(searchValueDepart) {
-		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+    $.ajax({
+      url: queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
 
-		$.ajax({
-			url: queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
-			type: "GET",
-			dataType: "json",
-			success: function (data) {
-				console.log(
-					queryWeatherURL + searchValueDepart + imperialUnits + apiWeatherKey,
-				);
-				console.log("current weather works");
-				console.log(data);
+        console.log("current weather works");
 
-				var currentDate = data.dt;
-				var todaysDate = new Date(currentDate * 1000);
-				var departDateStr = todaysDate.toLocaleDateString();
-				console.log(departDateStr);
+        var correctFinalDate = moment(searchValueDepart).format("l");
 
-				var currentWeather = `<div class="card bg-light" style="width: 100%;">
+        var currentDate = data.dt;
+        var todaysDate = new Date(currentDate * 1000);
+        var departDateStr = todaysDate.toLocaleDateString();
+
+        if (correctFinalDate !== departDateStr) {
+
+          var currentWeather1 = `<div class="card bg-light" id="weather1" style="width: 100%;">
+        <div class="card-body">
+					<h5 class="card-title">${data.name}</h5>
+					<p class="card-text">${departDateStr}</p>
+					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+					<p class="card-text" id="disclaimer-depart">Weather for ${correctFinalDate} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+        </div>
+			</div>`;
+			$("#today").html(currentWeather1);
+        } else {
+
+				 var currentWeather2 = `<div class="card bg-light" id ="weather2" style="width: 100%;">
+        <div class="card-body">
+					<h5 class="card-title">${data.name}</h5>
+					<p class="card-text">${departDateStr}</p>
+					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+        </div>
+			</div>`;
+			$("#today").html(currentWeather2);
+				}
+      },
+    });
+  } 
+// current weather at depart city location
+  function searchWeatherReturn(formData) {
+    var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+
+    $.ajax({
+      url: queryWeatherURL + formData[2].value + imperialUnits + apiWeatherKey,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        
+        console.log("current weather works");
+	
+				
+				var correctFinalDate = moment(searchValueDepart).format("l");
+
+        var currentDate = data.dt;
+        var todaysDate = new Date(currentDate * 1000);
+        var departDateStr = todaysDate.toLocaleDateString();
+				
+			
+			if (correctFinalDate !== departDateStr) {
+
+				var returnCurrentWeather1 = `<div class="card bg-light" style="width: 100%;">
+        <div class="card-body">
+					<h5 class="card-title">${data.name}'s Departing Weather</h5>
+					<p class="card-text">${departDateStr}</p>
+					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p class="card-text">Temperature: ${data.main.temp} °F</p>
+          <p class="card-text">Humidity: ${data.main.humidity}%</p>
+					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+					<p class="card-text" id="disclaimer-return">Weather for ${correctFinalDate} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+        </div>
+      </div>`;
+
+        $("#return-today").html(returnCurrentWeather1);
+
+			} else {
+
+				var returnCurrentWeather2 = `<div class="card bg-light" style="width: 100%;">
         <div class="card-body">
 					<h5 class="card-title">${data.name}</h5>
 					<p class="card-text">${departDateStr}</p>
@@ -659,84 +723,66 @@ $(document).ready(function () {
         </div>
       </div>`;
 
-				$("#today").html(currentWeather);
-			},
-		});
-	}
+        $("#return-today").html(returnCurrentWeather2);
+			}
+      },
+    });
+  }
 
-	console.log(formData[2].value);
+  searchWeatherReturn(formData);
 
-	function searchWeatherReturn(formData) {
-		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-		$.ajax({
-			url: queryWeatherURL + formData[2].value + imperialUnits + apiWeatherKey,
-			type: "GET",
-			dataType: "json",
-			success: function (data) {
-				console.log(
-					queryWeatherURL + formData[2].value + imperialUnits + apiWeatherKey,
-				);
-				console.log("current weather works");
-				console.log(data);
+// return trip destination current weather
+  function searchWeatherReturnDepart(formData) {
+    var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-				var currentDate = data.dt;
-				var todaysDate = new Date(currentDate * 1000);
+    $.ajax({
+      url: queryWeatherURL + formData[0].value + imperialUnits + apiWeatherKey,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        
+        console.log("current weather works");
+
+        var currentDate = data.dt;
+        var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
-				console.log(departDateStr);
+				var correctFinalDate = moment(searchValueDepart).format("l"); //was searchDateDepart but I got an error of undefined
+				
+				if (correctFinalDate !== departDateStr) {
 
-				var returnCurrentWeather = `<div class="card bg-light" style="width: 100%;">
-        <div class="card-body">
-					<h5 class="card-title">${data.name}</h5>
-					<p class="card-text">${departDateStr}</p>
-					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
-          <p class="card-text">Temperature: ${data.main.temp} °F</p>
-          <p class="card-text">Humidity: ${data.main.humidity}%</p>
-					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
-        </div>
-      </div>`;
+					var returnCurrentWeather1 = `<div class="card bg-light" style="width: 100%;">
+					<div class="card-body">
+						<h5 class="card-title">${data.name}'s Current Weather</h5>
+						<p class="card-text">${departDateStr}</p>
+						<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+						<p class="card-text">Temperature: ${data.main.temp} °F</p>
+						<p class="card-text">Humidity: ${data.main.humidity}%</p>
+						<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+						<p class="card-text" id="disclaimer-return-destination">Weather for ${correctFinalDate} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+					</div>
+				</div>`;
+	
+					$("#return-today-destination").html(returnCurrentWeather1);
+	
+				} else {
+	
+					var returnCurrentWeather2 = `<div class="card bg-light" style="width: 100%;">
+					<div class="card-body">
+						<h5 class="card-title">${data.name}</h5>
+						<p class="card-text">${departDateStr}</p>
+						<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+						<p class="card-text">Temperature: ${data.main.temp} °F</p>
+						<p class="card-text">Humidity: ${data.main.humidity}%</p>
+						<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+					</div>
+				</div>`;
+	
+					$("#return-today-destination").html(returnCurrentWeather2);
+				}
+      },
+    });
+  }
 
-				$("#return-today").html(returnCurrentWeather);
-			},
-		});
-	}
-
-	searchWeatherReturn(formData);
-
-	function searchWeatherReturnDepart(formData) {
-		var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-
-		$.ajax({
-			url: queryWeatherURL + formData[0].value + imperialUnits + apiWeatherKey,
-			type: "GET",
-			dataType: "json",
-			success: function (data) {
-				console.log(
-					queryWeatherURL + formData[0].value + imperialUnits + apiWeatherKey,
-				);
-				console.log("current weather works");
-				console.log(data);
-
-				var currentDate = data.dt;
-				var todaysDate = new Date(currentDate * 1000);
-				var departDateStr = todaysDate.toLocaleDateString();
-				console.log(departDateStr);
-
-				var returnCurrentWeather = `<div class="card bg-light" style="width: 100%;">
-        <div class="card-body">
-					<h5 class="card-title">${data.name}</h5>
-					<p class="card-text">${departDateStr}</p>
-					<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
-          <p class="card-text">Temperature: ${data.main.temp} °F</p>
-          <p class="card-text">Humidity: ${data.main.humidity}%</p>
-					<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
-        </div>
-      </div>`;
-
-				$("#return-forecast").html(returnCurrentWeather);
-			},
-		});
-	}
-
-	searchWeatherReturnDepart(formData);
+  searchWeatherReturnDepart(formData);
 });
