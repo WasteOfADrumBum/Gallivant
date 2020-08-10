@@ -239,6 +239,15 @@ input[type="submit"] {
 	box-shadow: 3px 3px 3px 3px #cccccc;
 }
 
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 4rem;
+	font-family: "Amatic SC", cursive;
+}
+
 /*-^-Chelsea Haviland CSS-^-*/
 
 /* PIC API */
@@ -675,6 +684,9 @@ footer a:visited {
 		width: 91%;
 		height: 220px;
 		text-align: center;
+	}
+	.centered {
+		font-size: 2rem;
 	}
 }
 
