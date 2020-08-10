@@ -89,7 +89,7 @@
                     <div class="grid-x grid-padding-x">
                  <!--Picture-->
                     <div class="cell small-4">
-                            <a class="d-picture-api "></a>
+                            <div class="d-picture-api" id="depart-pic-style"></div>
                         </div>
                 <!-- Flights -->
                 
@@ -102,9 +102,9 @@
                         </div>
                 <!-- Weather -->
                         <div class="cell small-3">
-                            <!-- <br/>
-                            <h6>Current Forecast</h6>
-                            <hr/> -->
+                            <br/>
+                            <br/>
+                            <h6 class="current-forecast">Current Forecast</h6>
                             <div id="today"></div>
                             <br/>
                         </div>
@@ -114,7 +114,7 @@
                 <br/>     
             <!-- Forecast -->
             <div class="d-weather-api">
-                <h2 id="city-name-1-5-day"> Forecast For Your Trip to:  </h2>
+                <h2 class="arrival-forecast" id="city-name-1-5-day"> Forecast For Your Trip to:  </h2>
 
                 <div id="forecast" class="mt-3"></div>
             </div>
@@ -135,7 +135,7 @@
                 <div class="grid-x grid-padding-x">
                     <!-- Picture -->
                     <div class="cell small-4">
-                        <a class="r-picture-api float left"></a>
+                        <a class="r-picture-api float left" id="return-pic-style"></a>
                     </div>
 
             <!-- Flights -->
@@ -143,19 +143,21 @@
                        <h2>Flight Information</h2> 
                        <hr/>
 
-                        <div class="scroll-container">
+                        <div class="scroll-container" id="return-trip-scroll">
                             <div class="r-flight-api"></div>
                         </div>
                     </div>
 
             <!-- Weather -->
                     <div class="cell small-3 align-self-top">
-
+                        <h6 class="depart-current-forecast">Current Forecast:</h6>
                         <div id="return-today"></div>
+                        <br/>
+                        <h6 class="return-city-forecast">When you get back: </h6>
+                        <div id="return-today-destination">
+                        </div>
                     </div>
-                    <div class="cell small-4 align-self-top">
-                        <div id="return-today-destination"></div>
-                    </div>
+                    
 
                 </div>
             </div>

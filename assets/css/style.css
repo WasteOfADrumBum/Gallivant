@@ -218,7 +218,10 @@ input[type=submit]:hover {
 	overflow-y: auto;
 	height: 300px;
 	text-align: left;
-	border: #333;
+	position: relative;
+	z-index: 2;
+	box-shadow: 3px 3px 3px 3px #ccc inset;
+	
 }
 
 #disclaimer-depart {
@@ -227,6 +230,43 @@ input[type=submit]:hover {
 
 #return-today {
 	border: 30px #000 ! important
+}
+
+.arrival-forecast {
+	color: #a9cf54;
+	font-size: 1.5rem;
+	border-bottom: 4px solid #f7e967;
+	margin-bottom: 10px;
+}
+
+.current-forecast {
+	color: #a9cf54;
+	border-bottom: 4px dotted #f7e967;
+	margin-bottom: 7px;
+}
+
+#depart-pic-style {
+	box-shadow:  3px 3px 3px 3px #cccccc;
+}
+
+#return-pic-style {
+	box-shadow:  3px 3px 3px 3px #cccccc;
+}
+
+#return-trip-scroll {
+
+}
+
+.depart-current-forecast {
+	color: #a9cf54;
+	border-bottom: 4px dotted #f7e967;
+	margin-bottom: 7px;
+}
+
+.return-city-forecast {
+	color: #a9cf54;
+	border-bottom: 4px dotted #f7e967;
+	margin-bottom: 7px;
 }
 
 
@@ -316,33 +356,60 @@ input[type=submit]:hover {
 	border-bottom: 1px solid #3d4c53;
 }
 
+/* Current Weather Cards */
 #weather1 {
-	background-color: red;
+	background-color: #70b7ba;
+	border: 2px solid #3d4c53;
+	width: 18%;
+	margin: 5px;
+	text-align: center;
+	padding: 10px;
+	color: white;
 
 }
 
 #weather2 {
-	background-color: red;
+	background-color: #70b7ba;
+	border: 2px solid #3d4c53;
+	width: 50%;
+	margin: 5px;
+	text-align: center;
+	padding: 10px;
+	color: white;
 }
 
 #departing-current1 {
+	background-color: #70b7ba;
+	border: 2px solid #3d4c53;
+	width: 18%;
+	margin: 5px;
+	text-align: center;
+	padding: 10px;
+	color: white;
 
 }
 
-#departing-current2{
+#departing-current2 {
+	background-color: #70b7ba;
+	border: 2px solid #3d4c53;
+	width: 18%;
+	margin: 5px;
+	text-align: center;
+	padding: 10px;
+	color: white;
 
 }
 
 #disclaimer-depart {
-
+	color: #f1433f
 }
 
 #disclaimer-return {
-
+	color: #f1433f
 }
 
 #disclaiminer-return-destination {
-	
+	color: #f1433f
 }
 
 
