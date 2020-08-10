@@ -158,19 +158,10 @@ input[type="submit"] {
 #rtn-trip-container {
 	display: none;
 }
-
-/* UnSplash City Img */
-
-/* .d-picture-api,
-.r-picture-api {
-	text-align: center;
-} */
-
-/* #r-img-div,
-#d-img-div {
-	height: 300px;
-	margin: 25px;
-}   */
+.d-attractions-api,
+.r-attractions-api {
+	margin-bottom: 50px;
+}
 
 /*--Chelsea Haviland CSS--*/
 
