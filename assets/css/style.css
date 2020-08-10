@@ -229,19 +229,6 @@ input[type="submit"] {
 	display: none;
 }
 
-/* UnSplash City Img */
-
-/* .d-picture-api,
-.r-picture-api {
-	text-align: center;
-} */
-
-/* #r-img-div,
-#d-img-div {
-	height: 150px;
-	margin: 25px;
-}   */
-
 /*--Chelsea Haviland CSS--*/
 
 #big-image {
@@ -486,6 +473,12 @@ input[type="submit"] {
 	padding: 12px;
 	font-weight: bolder;
 	border-radius: 5px;
+}
+
+#contact-form-container input[type="reset"]:hover,
+#contact-form-container input[type="submit"]:hover {
+	background-color: #f7e967;
+	color: #3d4c53;
 }
 
 /* Contact: Links */
