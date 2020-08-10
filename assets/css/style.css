@@ -239,39 +239,6 @@ input[type="submit"] {
 	box-shadow: 3px 3px 3px 3px #cccccc;
 }
 
-.centered {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 3em;
-	font-family: "Amatic SC", cursive;
-}
-
-#quote {
-	font-size: 4em;
-	font-family: "Kristi", cursive;
-}
-
-#return-today {
-	font: #f1433f;
-}
-
-.scroll-container {
-	overflow-y: auto;
-	height: 300px;
-	text-align: left;
-	border: #333;
-}
-
-#disclaimer-depart {
-	background: #f1433f;
-}
-
-#return-today {
-	border: 30px #000 !important;
-}
-
 /*-^-Chelsea Haviland CSS-^-*/
 
 /* PIC API */
