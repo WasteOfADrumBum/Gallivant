@@ -205,9 +205,9 @@ $(document).ready(function () {
 			dataType: "json",
 			url:
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
-				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
+				"AUDT0CAL3XRXK3GLXESAXBXNGJT2PH3DAKMVKXMUHDUEGRIF" +
 				"&client_secret=" +
-				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
+				"TW1AT2BTK5XOPBGTZAJ4TJYFO55Y31P55ZFMHOHN0S3QJ4EQ" +
 				"&v=20180323&limit=10&near=" +
 				formData[0].value,
 			data: {},
@@ -241,11 +241,6 @@ $(document).ready(function () {
 					$(".r-attractions-api").append(aContainer);
 				}
 			},
-
-			// Code for handling errors
-			error: function (jqXHR, textStatus, errorThrown) {
-				alert("Result: " + jqXHR + " " + textStatus + " " + errorThrown);
-			},
 		});
 	}
 
@@ -267,9 +262,9 @@ $(document).ready(function () {
 			dataType: "json",
 			url:
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
-				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
+				"AUDT0CAL3XRXK3GLXESAXBXNGJT2PH3DAKMVKXMUHDUEGRIF" +
 				"&client_secret=" +
-				"SCZW0ZYVTPRLYFA1QXLRISAXCBXUNFURYEMUVGHORJ5NZUQN" +
+				"TW1AT2BTK5XOPBGTZAJ4TJYFO55Y31P55ZFMHOHN0S3QJ4EQ" +
 				"&v=20180323&limit=10&near=" +
 				formData[2].value,
 			data: {},
@@ -292,10 +287,6 @@ $(document).ready(function () {
 					// Merge and display
 					$(".d-attractions-api").append(rContainer);
 				}
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				// Code for handling errors
-				alert("Result: " + jqXHR + " " + textStatus + " " + errorThrown);
 			},
 		});
 	}
@@ -434,7 +425,7 @@ $(document).ready(function () {
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
 												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
-												var airportCodeTo = data.data[i].cityCodeTo
+												var airportCodeTo = data.data[i].cityCodeTo;
 												if (data.data[i].cityFrom !== formData[2].value) {
 													$(".r-flight-api").append(
 														"Airport flight information not availble for this location",
@@ -596,7 +587,7 @@ $(document).ready(function () {
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
 				if (correctFinalDate1 !== departDateStr) {
-					var returnCurrentWeather1a = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather1a = `<div class="card bg-light" id="departing-current1" style="width: 100%;">
         <div class="card-body">
                     <h5 class="card-title">${data.name}'s Departing Weather</h5>
                     <p class="card-text">${departDateStr}</p>
@@ -609,7 +600,7 @@ $(document).ready(function () {
       </div>`;
 					$("#return-today").html(returnCurrentWeather1a);
 				} else {
-					var returnCurrentWeather2a = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather2a = `<div class="card bg-light" id="departing-current2" style="width: 100%;">
         <div class="card-body">
                     <h5 class="card-title">${data.name}</h5>
                     <p class="card-text">${departDateStr}</p>
@@ -643,7 +634,7 @@ $(document).ready(function () {
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
 				if (correctFinalDate2 !== departDateStr) {
-					var returnCurrentWeather1b = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather1b = `<div class="card bg-light" id="return-destination1" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">${data.name}'s Current Weather</h5>
                         <p class="card-text">${departDateStr}</p>
@@ -656,7 +647,7 @@ $(document).ready(function () {
                 </div>`;
 					$("#return-today-destination").html(returnCurrentWeather1b);
 				} else {
-					var returnCurrentWeather2b = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather2b = `<div class="card bg-light" id "return-destination2" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">${data.name}</h5>
                         <p class="card-text">${departDateStr}</p>
