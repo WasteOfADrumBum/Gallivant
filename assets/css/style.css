@@ -34,7 +34,7 @@ header .container {
 }
 
 #gallivant-logo {
-	width: 30%;
+	width: 20%;
 }
 
 /* || NAV || */
@@ -96,6 +96,10 @@ body {
 	padding: 25px;
 	float: left;
 	width: 25%;
+	background: white;
+	box-shadow: 3px 3px 3px 3px #cccccc;
+
+	
 }
 
 input[type="submit"] {
@@ -103,7 +107,16 @@ input[type="submit"] {
 	background-color: #70b7ba;
 	border: 1px solid #3d4c53;
 	padding: 12px;
+	box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+	border-radius: 5px;
+	
 }
+
+
+input[type=submit]:hover {
+	box-shadow:  3px 3px 3px 3px #cccccc;
+  }
+
 
 /* || CONTENT || */
 
@@ -169,7 +182,7 @@ input[type="submit"] {
 
 /* #r-img-div,
 #d-img-div {
-	height: 300px;
+	height: 150px;
 	margin: 25px;
 }   */
 
@@ -179,6 +192,7 @@ input[type="submit"] {
 	position: relative;
 	text-align: center;
 	color: white;
+	box-shadow:  3px 3px 3px 3px #cccccc;
   }
 
   .centered {
@@ -195,6 +209,28 @@ input[type="submit"] {
 	  font-size: 4em;
 	  font-family: 'Kristi', cursive;
   }
+
+  #return-today {
+	  font: #f1433f
+  }
+
+  .scroll-container {
+	overflow-y: auto;
+	height: 300px;
+	text-align: left;
+	border: #333;
+}
+
+#disclaimer-depart {
+	background: #f1433f;
+}
+
+#return-today {
+	border: 30px #000 ! important
+}
+
+
+
 
 /*-^-Chelsea Haviland CSS-^-*/
 
@@ -494,11 +530,7 @@ footer a:visited {
 	/* Older Phones */
 }
 
-.scroll-container {
-	overflow-y: auto;
-	height: 250px;
-	text-align: left;
-}
+
 
 /* CSS Primary Front-end Layout/Styling/Color Scheme, Initial Commit & POI © Joshua M. Small */
 /* CSS results.html Layout and content styling © Chelsea Haviland */
