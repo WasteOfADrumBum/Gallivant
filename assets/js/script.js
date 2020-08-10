@@ -131,7 +131,7 @@ $(document).ready(function () {
 	function getCalloutTitles(formData) {
 		$("#city-name-1").append("Plan Your Trip To: " + formData[2].value);
 		$("#city-name-1-5-day").append(formData[2].value);
-		$("#city-name-2").append("Plan Your Trip To: " + formData[0].value);
+		$("#city-name-2").append("Plan Your Return Trip To: " + formData[0].value);
 	}
 
 	/* -- || UnSplash API || -- */
