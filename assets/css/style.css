@@ -577,6 +577,10 @@ footer a:visited {
 		float: none;
 		width: 100%;
 	}
+	#weather-card,
+	#weather-card-2 {
+		width: 45%;
+	}
 }
 
 @media screen and (max-width: 640px) {
