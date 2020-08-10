@@ -205,9 +205,9 @@ $(document).ready(function () {
 			dataType: "json",
 			url:
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
-				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
+				"AUDT0CAL3XRXK3GLXESAXBXNGJT2PH3DAKMVKXMUHDUEGRIF" +
 				"&client_secret=" +
-				"KRQBJQCD2U4FU44A0Y5L1IRAGKG4WJ51VFQADHRXPC5OOZKG" +
+				"TW1AT2BTK5XOPBGTZAJ4TJYFO55Y31P55ZFMHOHN0S3QJ4EQ" +
 				"&v=20180323&limit=10&near=" +
 				formData[0].value,
 			data: {},
@@ -262,9 +262,9 @@ $(document).ready(function () {
 			dataType: "json",
 			url:
 				"https://api.foursquare.com/v2/venues/explore?client_id=" +
-				"QAEJY0NAQYS0IHBYU1NXNCWNBTMMIESQ0URVCHIVYXO2YBEC" +
+				"AUDT0CAL3XRXK3GLXESAXBXNGJT2PH3DAKMVKXMUHDUEGRIF" +
 				"&client_secret=" +
-				"KRQBJQCD2U4FU44A0Y5L1IRAGKG4WJ51VFQADHRXPC5OOZKG" +
+				"TW1AT2BTK5XOPBGTZAJ4TJYFO55Y31P55ZFMHOHN0S3QJ4EQ" +
 				"&v=20180323&limit=10&near=" +
 				formData[2].value,
 			data: {},
