@@ -93,12 +93,7 @@ body {
 
 #search-bar {
 	padding: 25px;
-	float: left;
-	width: 25%;
-	background: white;
-	box-shadow: 3px 3px 3px 3px #cccccc;
-
-	
+	width: 100%;
 }
 
 input[type="submit"] {
@@ -106,23 +101,53 @@ input[type="submit"] {
 	background-color: #70b7ba;
 	border: 1px solid #3d4c53;
 	padding: 12px;
-	box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+	box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 	border-radius: 5px;
-	
 }
 
+#loc-date-form {
+	background-color: #fff;
+	border: 1px solid #3d4c53;
+}
+#loc-date-form input[type="submit"] {
+	margin: 0px 0px 15px 15px;
+}
 
-input[type=submit]:hover {
-	box-shadow:  3px 3px 3px 3px #cccccc;
-  }
+#loc-date-form input[type="submit"]:hover {
+	box-shadow: 3px 3px 3px 3px #cccccc;
+}
 
+#loc-date-form hr {
+	border: none;
+	border-top: 12px dotted #f7e967;
+}
+
+#departing-form {
+	text-align: left;
+	float: left;
+	width: 50%;
+	padding: 15px;
+}
+
+#destination-form {
+	text-align: right;
+	float: right;
+	width: 50%;
+	padding: 15px;
+}
+
+#form-title {
+	text-align: center;
+	background-color: #70b7ba;
+	color: #fff;
+}
 
 /* || CONTENT || */
 
 #content-container {
 	padding: 25px;
-	float: right;
-	width: 75%;
+	width: 100%;
+	height: 100%;
 }
 
 #logo-container {
@@ -131,6 +156,38 @@ input[type=submit]:hover {
 
 #gallivant-logo-bg {
 	width: 30%;
+}
+
+#about-tex-pic-wrapper,
+#about-gallivant-wrapper,
+#gallivant-tag-wrapper {
+	clear: both;
+}
+
+#about-gallivant-pic,
+#gallivant-tag-text {
+	float: left;
+	width: 45%;
+	margin: 15px;
+}
+#about-gallivant-text,
+#gallivant-tag-pic {
+	float: right;
+	width: 45%;
+	margin: 15px;
+}
+
+#about-gallivant-text {
+	font-size: 1.9vw;
+}
+
+#gallivant-tag-pic,
+#about-gallivant-pic {
+	border: 2px solid #3d4c53;
+}
+
+#gallivant-tag-pic {
+	margin-bottom: 65px;
 }
 
 /* Trip Selection */
@@ -174,7 +231,7 @@ input[type=submit]:hover {
 
 /* UnSplash City Img */
 
- /* .d-picture-api,
+/* .d-picture-api,
 .r-picture-api {
 	text-align: center;
 } */
@@ -192,9 +249,8 @@ input[type=submit]:hover {
 	text-align: center;
 	color: white;
 
-	box-shadow:  3px 3px 3px 3px #cccccc;
-  }
-
+	box-shadow: 3px 3px 3px 3px #cccccc;
+}
 
 .centered {
 	position: absolute;
@@ -210,11 +266,11 @@ input[type=submit]:hover {
 	font-family: "Kristi", cursive;
 }
 
-  #return-today {
-	  font: #f1433f
-  }
+#return-today {
+	font: #f1433f;
+}
 
-  .scroll-container {
+.scroll-container {
 	overflow-y: auto;
 	height: 300px;
 	text-align: left;
@@ -226,11 +282,8 @@ input[type=submit]:hover {
 }
 
 #return-today {
-	border: 30px #000 ! important
+	border: 30px #000 !important;
 }
-
-
-
 
 /*-^-Chelsea Haviland CSS-^-*/
 
@@ -318,7 +371,6 @@ input[type=submit]:hover {
 
 #weather1 {
 	background-color: red;
-
 }
 
 #weather2 {
@@ -326,25 +378,19 @@ input[type=submit]:hover {
 }
 
 #departing-current1 {
-
 }
 
-#departing-current2{
-
+#departing-current2 {
 }
 
 #disclaimer-depart {
-
 }
 
 #disclaimer-return {
-
 }
 
 #disclaiminer-return-destination {
-	
 }
-
 
 /* CONTACT */
 
@@ -439,6 +485,7 @@ input[type=submit]:hover {
 	border: 1px solid #3d4c53;
 	padding: 12px;
 	font-weight: bolder;
+	border-radius: 5px;
 }
 
 /* Contact: Links */
@@ -502,10 +549,6 @@ footer a:visited {
 	}
 	#gallivant-logo-bg {
 		width: 70%;
-	}
-	#content-container {
-		float: none;
-		width: 100%;
 	}
 	#nav-contact {
 		padding-right: 35px;
@@ -597,13 +640,32 @@ footer a:visited {
 	#contact-form-container label {
 		font-size: 18px;
 	}
+	#about-gallivant-pic,
+	#gallivant-tag-text,
+	#about-gallivant-text,
+	#gallivant-tag-pic {
+		float: none;
+		width: 100%;
+		margin: 0;
+	}
+	#destination-form,
+	#departing-form {
+		float: none;
+		text-align: left;
+		width: 100%;
+	}
+	#about-gallivant-text {
+		font-size: 5vw;
+		margin-top: 25px;
+	}
+	#loc-date-form hr {
+		border-top: 6px dotted #f7e967;
+	}
 }
 
 @media screen and (max-width: 320px) {
 	/* Older Phones */
 }
-
-
 
 /* CSS Primary Front-end Layout/Styling/Color Scheme, Initial Commit & POI © Joshua M. Small */
 /* CSS results.html Layout and content styling © Chelsea Haviland */
