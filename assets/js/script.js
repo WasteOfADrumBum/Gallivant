@@ -587,7 +587,7 @@ $(document).ready(function () {
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
 				if (correctFinalDate1 !== departDateStr) {
-					var returnCurrentWeather1a = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather1a = `<div class="card bg-light" id="departing-current1" style="width: 100%;">
         <div class="card-body">
                     <h5 class="card-title">${data.name}'s Departing Weather</h5>
                     <p class="card-text">${departDateStr}</p>
@@ -600,7 +600,7 @@ $(document).ready(function () {
       </div>`;
 					$("#return-today").html(returnCurrentWeather1a);
 				} else {
-					var returnCurrentWeather2a = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather2a = `<div class="card bg-light" id="departing-current2" style="width: 100%;">
         <div class="card-body">
                     <h5 class="card-title">${data.name}</h5>
                     <p class="card-text">${departDateStr}</p>
@@ -634,7 +634,7 @@ $(document).ready(function () {
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
 				if (correctFinalDate2 !== departDateStr) {
-					var returnCurrentWeather1b = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather1b = `<div class="card bg-light" id="return-destination1" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">${data.name}'s Current Weather</h5>
                         <p class="card-text">${departDateStr}</p>
@@ -647,7 +647,7 @@ $(document).ready(function () {
                 </div>`;
 					$("#return-today-destination").html(returnCurrentWeather1b);
 				} else {
-					var returnCurrentWeather2b = `<div class="card bg-light" style="width: 100%;">
+					var returnCurrentWeather2b = `<div class="card bg-light" id "return-destination2" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">${data.name}</h5>
                         <p class="card-text">${departDateStr}</p>
