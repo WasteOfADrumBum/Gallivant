@@ -581,7 +581,7 @@ $(document).ready(function () {
 			dataType: "json",
 			success: function (data) {
 				// Moment Date Conversion
-				var correctFinalDate3 = moment(formData[3].value).format("l");
+				var correctFinalDate3 = moment(formData[1].value).format("l");
 				// Weather Date Conversion
 				var currentDate = data.dt;
 				var todaysDate = new Date(currentDate * 1000);
@@ -677,7 +677,7 @@ $(document).ready(function () {
 			dataType: "json",
 			success: function (data) {
 				// Moment Date Conversion
-				var correctFinalDate2 = moment(formData[1].value).format("l");
+				var correctFinalDate2 = moment(formData[3].value).format("l");
 				// Weather Date Conversion
 				var currentDate = data.dt;
 				var todaysDate = new Date(currentDate * 1000);
