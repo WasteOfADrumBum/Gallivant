@@ -75,3 +75,13 @@ You are required to submit the following:
 - The URL of the GitHub repository
 
   - https://github.com/WasteOfADrumBum/Gallivant
+
+## Demo Pictures
+
+The following image demonstrates the end result of the application functionality:
+
+![dashboard demo](./assets/images/demo/desktop.png)
+
+The following image demonstrates the mobile result of the application functionality:
+
+![mobile demo](./assets/images/demo/mobile.png)
