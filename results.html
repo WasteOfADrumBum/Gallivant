@@ -78,81 +78,41 @@
 
         <!--Departure-->
         <section id="int-trip-container">
-            <!-- Title -->
-            <div class="callout clearfix">
-                <h3>Plan Your Trip to:</h3>
+            <div id="r-display-container">
+                <!--Picture-->
+                <a class="d-picture-api"></a>
+                <!-- Weather -->
+                <div id="today"></div>
+                <div id="weather-today-destination"></div>
+                <!-- Title -->
                 <h1 id="city-name-1"></h1>
-
-
-                <div class="grid-x grid-padding-x">
-                    <!--Picture-->
-                    <div class="cell small-4">
-                        <a class="d-picture-api "></a>
-                    </div>
-                    <!-- Flights -->
-
-                    <div class="cell small-5">
-                        <h2>Flight Information</h2>
-                        <hr />
-                        <div class="scroll-container">
-                            <div class="d-flight-api"></div>
-                        </div>
-                    </div>
-                    <!-- Weather -->
-                    <div class="cell small-3">
-                        <!-- <br/>
-                            <h6>Current Forecast</h6>
-                            <hr/> -->
-                        <div id="today"></div>
-                        <br />
-                    </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <!-- Forecast -->
-                <div class="d-weather-api">
-                    <h2 id="city-name-1-5-day"> Forecast For Your Trip to: </h2>
-
-                    <div id="forecast" class="mt-3"></div>
-                </div>
-
-                <!-- POI Containers -->
-                <div class="d-attractions-api-title"></div>
-                <div class="d-attractions-api"></div>
+                <!-- Flights -->
+                <h2>Flight Information</h2>
+                <div class="d-flight-api"></div>
+            </div>
+            <!-- Forecast -->
+            <div class="d-weather-api">
+                <h2 id="city-name-1-5-day"> Forecast For Your Trip to: </h2>
+                <div id="forecast" class="mt-3"></div>
+            </div>
+            <!-- POI Containers -->
+            <div class="d-attractions-api-title"></div>
+            <div class="d-attractions-api"></div>
         </section>
 
         <!----Return Trip----->
         <section id="rtn-trip-container">
-            <!-- Title -->
-            <div class="callout clearfix">
-                <h3>Plan Your Trip to:</h3>
+            <div id="r-display-container">
+                <!-- Picture -->
+                <a class="r-picture-api"></a>
+                <!-- Weather -->
+                <div id="return-today"></div>
+                <div id="return-today-destination"></div>
+                <!-- Title -->
                 <h1 id="city-name-2"></h1>
-
-                <div class="grid-x grid-padding-x">
-                    <!-- Picture -->
-                    <div class="cell small-4">
-                        <a class="r-picture-api float left"></a>
-                    </div>
-                    <!-- Flights -->
-                    <div class="cell small-5">
-                        <h2>Flight Information</h2>
-                        <hr />
-
-                        <div class="scroll-container">
-                            <div class="r-flight-api"></div>
-                        </div>
-                    </div>
-                    <!-- Weather -->
-                    <div class="cell small-3 align-self-top">
-
-                        <div id="return-today"></div>
-                    </div>
-                    <div class="cell small-4 align-self-top">
-                        <div id="return-today-destination"></div>
-                    </div>
-
-                </div>
+                <!-- Flights -->
+                <h2>Flight Information</h2>
+                <div class="r-flight-api"></div>
             </div>
             <!-- POI Containers -->
             <div class="r-attractions-api-title"></div>

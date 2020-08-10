@@ -274,6 +274,24 @@ input[type="submit"] {
 
 /*-^-Chelsea Haviland CSS-^-*/
 
+/* PIC API */
+
+.r-picture-api img,
+.d-picture-api img {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+#city-name-1,
+#city-name-2 {
+	clear: both;
+	text-align: center;
+	background-color: #70b7ba;
+	color: #fff;
+	padding: 15px;
+}
+
 /* POI */
 
 .d-attractions-api,
@@ -314,14 +332,20 @@ input[type="submit"] {
 	font-weight: bold;
 }
 
-.poiTitle {
+.poiTitle,
+#city-name-1-5-day {
 	flex: none;
 	text-transform: uppercase;
 	margin-top: 15px;
 }
-
 .r-attractions-api-title,
 .d-attractions-api-title {
+	margin-bottom: 50px;
+}
+
+.r-attractions-api-title,
+.d-attractions-api-title,
+#city-name-1-5-day {
 	color: #a9cf54;
 	font-size: 1.5rem;
 	border-bottom: 4px solid #f7e967;
@@ -356,27 +380,40 @@ input[type="submit"] {
 	border-bottom: 1px solid #3d4c53;
 }
 
-#weather1 {
-	background-color: red;
+#weather-card .card-title,
+#weather-card-2 .card-title {
+	color: #a9cf54;
 }
 
-#weather2 {
-	background-color: red;
+#weather-card,
+#weather-card-2 {
+	background-color: #fff;
+	border: 2px solid #3d4c53;
+	width: 47%;
+	margin: 15px 15px 35px 15px;
+	text-align: center;
+	padding: 10px;
+	color: #70b7ba;
+	float: left;
+}
+#weather-card-2 {
+	float: right;
 }
 
-#departing-current1 {
+#disclaimer {
+	color: #f1433f;
+	font-size: 0.7rem;
 }
 
-#departing-current2 {
-}
+/* Flight */
 
-#disclaimer-depart {
-}
-
-#disclaimer-return {
-}
-
-#disclaiminer-return-destination {
+.d-flight-api,
+.r-flight-api {
+	width: 100%;
+	margin: 15px;
+	height: 170px;
+	overflow-y: auto;
+	margin-bottom: 35px;
 }
 
 /* CONTACT */
@@ -653,6 +690,22 @@ footer a:visited {
 	}
 	#loc-date-form hr {
 		border-top: 6px dotted #f7e967;
+	}
+	#weather-card,
+	#weather-card-2 {
+		float: none;
+		width: 100%;
+		margin: 0 0 15px 0;
+	}
+	#int-trip-container h2,
+	#rtn-trip-container h2 {
+		text-align: center;
+	}
+	.d-flight-api,
+	.r-flight-api {
+		width: 91%;
+		height: 220px;
+		text-align: center;
 	}
 }
 
