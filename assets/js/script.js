@@ -132,6 +132,8 @@ $(document).ready(function () {
 		$("#city-name-1").append("Plan Your Trip To: " + formData[2].value);
 		$("#city-name-1-5-day").append(formData[2].value);
 		$("#city-name-2").append("Plan Your Return Trip To: " + formData[0].value);
+		$("#d-location-name-pic").append(formData[2].value);
+		$("#r-location-name-pic").append(formData[0].value);
 	}
 
 	/* -- || UnSplash API || -- */
