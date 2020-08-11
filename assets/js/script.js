@@ -448,13 +448,8 @@ $(document).ready(function () {
 													$(".r-flight-api").append(
 														`<p  class="airport-time">${arrivalTime}</p>`,
 													);
-													$(".r-flight-api").append(
-														`<h6 class="airport-code">${airportCodeTo}</h6>`,
-													);
 
-													$(".r-flight-api").append(
-														`<p class="airport-time">${departTime}</p>`,
-													);
+
 												}
 											}
 										},
