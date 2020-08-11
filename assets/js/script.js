@@ -346,7 +346,7 @@ $(document).ready(function () {
 										"&fly_to=" +
 										apiCodeDepart +
 										"&dateFrom=" +
-										departRearrange +
+										arriveRearrange +
 										"&dateTo=" +
 										arriveRearrange +
 										"&partner=picky&v=3&limit=5";
@@ -359,7 +359,7 @@ $(document).ready(function () {
 										"&dateFrom=" +
 										departRearrange +
 										"&dateTo=" +
-										arriveRearrange +
+										departRearrange +
 										"&partner=picky&v=3&limit=5";
 									// Departing AJAX
 
@@ -373,8 +373,9 @@ $(document).ready(function () {
 												var utcSeconds = data.data[i].dTimeUTC;
 												var departTime = new Date(0);
 												departTime.setUTCSeconds(utcSeconds);
+												var utcSeconds2 = data.data[i].aTimeUTC;
 												var arrivalTime = new Date(0);
-												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
+												arrivalTime.setUTCSeconds(utcSeconds2);
 
 												// if(data.data[i].dTimeUTC === null) {
 												// 	$(".d-flight-api").append(
@@ -425,8 +426,9 @@ $(document).ready(function () {
 												var utcSeconds = data.data[i].dTimeUTC;
 												var departTime = new Date(0);
 												departTime.setUTCSeconds(utcSeconds);
+												var utcSeconds2 = data.data[i].aTimeUTC;
 												var arrivalTime = new Date(0);
-												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
+												arrivalTime.setUTCSeconds(utcSeconds2);
 												// If Null
 												if (apiCodeDepart === null) {
 													$(".d-flight-api").append(
@@ -442,7 +444,7 @@ $(document).ready(function () {
 														`<h6 class="airport-code">${data.data[i].cityCodeFrom}</h6>`,
 													);
 													$(".r-flight-api").append(
-														`<p  class="airport-time">${arrivalTime}</p>`,
+														`<p  class="airport-time">${departTime}</p>`,
 													);
 
 
