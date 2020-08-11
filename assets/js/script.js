@@ -427,12 +427,6 @@ $(document).ready(function () {
 												departTime.setUTCSeconds(utcSeconds);
 												var arrivalTime = new Date(0);
 												arrivalTime.setUTCSeconds(data.data[i].aTimeUTC);
-												var airportCodeTo = data.data[i].cityCodeTo;
-												if (data.data[i].cityFrom !== formData[2].value) {
-													$(".r-flight-api").append(
-														"Airport flight information not availble for this location",
-													);
-												}
 												// If Null
 												if (apiCodeDepart === null) {
 													$(".d-flight-api").append(
