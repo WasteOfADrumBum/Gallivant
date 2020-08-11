@@ -402,11 +402,18 @@ input[type="submit"] {
 
 /* Flight */
 
-.d-flight-api,
-.r-flight-api {
+.d-flight-api {
 	width: 100%;
 	margin: 15px;
 	height: 170px;
+	overflow-y: auto;
+	margin-bottom: 35px;
+}
+
+.r-flight-api {
+	width: 100%;
+	margin: 15px;
+	height: 100px;
 	overflow-y: auto;
 	margin-bottom: 35px;
 }
@@ -665,10 +672,12 @@ footer a:visited {
 	}
 	#trip-selection {
 		flex-direction: column;
+		margin-bottom: 15px;
 	}
 	.d-attractions-api,
 	.r-attractions-api {
 		flex-direction: column;
+		margin: 15px;
 	}
 	.poiTitle {
 		text-align: center;
@@ -678,6 +687,7 @@ footer a:visited {
 	}
 	.d-weather-api #forecast {
 		flex-direction: column;
+		margin: 15px;
 	}
 	.card-forecast {
 		width: 100% !important;
@@ -727,10 +737,14 @@ footer a:visited {
 	#rtn-trip-container h2 {
 		text-align: center;
 	}
-	.d-flight-api,
-	.r-flight-api {
+	.d-flight-api {
 		width: 91%;
 		height: 310px;
+		text-align: center;
+	}
+	.r-flight-api {
+		width: 91%;
+		height: 190px;
 		text-align: center;
 	}
 	.centered {
@@ -739,6 +753,12 @@ footer a:visited {
 	#r-display-container .centered,
 	#d-display-container .centered {
 		top: 62%;
+	}
+	#weather-today-destination,
+	#today,
+	#return-today,
+	#return-today-destination {
+		margin: 15px;
 	}
 }
 
