@@ -411,6 +411,25 @@ input[type="submit"] {
 	margin-bottom: 35px;
 }
 
+.airport-code {
+	letter-spacing: 0.2rem;
+	font-weight: bold;
+	color: #a9cf54;
+}
+
+.airport-time {
+	letter-spacing: 0.3rem;
+	color: #3d4c53;
+}
+
+.d-flight-api h5,
+.r-flight-api h5 {
+	font-size: 1.5rem;
+	font-weight: bolder;
+	letter-spacing: 0.2rem;
+	color: #70b7ba;
+}
+
 /* CONTACT */
 
 #contact-info {
@@ -711,7 +730,7 @@ footer a:visited {
 	.d-flight-api,
 	.r-flight-api {
 		width: 91%;
-		height: 220px;
+		height: 310px;
 		text-align: center;
 	}
 	.centered {
