@@ -257,6 +257,18 @@ input[type="submit"] {
 	text-shadow: 2px 2px 5px #3d4c53;
 }
 
+#r-display-container .centered,
+#d-display-container .centered {
+	text-align: center;
+	position: absolute;
+	top: 69%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 4rem;
+	font-family: "Amatic SC", cursive;
+	color: white;
+}
+
 .r-picture-api img,
 .d-picture-api img {
 	width: 100%;
@@ -372,7 +384,7 @@ input[type="submit"] {
 #weather-card-2 {
 	background-color: #fff;
 	border: 2px solid #3d4c53;
-	width: 47%;
+	width: 45%;
 	margin: 15px 15px 35px 15px;
 	text-align: center;
 	padding: 10px;
@@ -584,7 +596,15 @@ footer a:visited {
 	}
 	#weather-card,
 	#weather-card-2 {
-		width: 45%;
+		width: 41%;
+	}
+	.r-picture-api img,
+	.d-picture-api img {
+		height: 100%;
+	}
+	#r-display-container .centered,
+	#d-display-container .centered {
+		top: 52%;
 	}
 }
 
@@ -696,6 +716,10 @@ footer a:visited {
 	}
 	.centered {
 		font-size: 2rem;
+	}
+	#r-display-container .centered,
+	#d-display-container .centered {
+		top: 62%;
 	}
 }
 
