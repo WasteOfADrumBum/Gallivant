@@ -248,9 +248,17 @@ input[type="submit"] {
 	font-family: "Amatic SC", cursive;
 }
 
-#d-flight-api h2, #r-flight-api h2 {
+
+
+/* need correnct id's/fix typos on js */
+/* 
+#d-flight-api  {
+	color: #f7e967;
+}
 	
-	background-color: #f7e967;
+#r-flight-api  h5 {
+	
+	color: #f7e967;
 }
 .airport-code {
 	color: green;
@@ -258,18 +266,18 @@ input[type="submit"] {
 
 .airport-time {
 	font: green;
-}
+} */
 
 #airport, #airport2 {
-	height: 300px;
+	height: 275px;
 	position: absolute;
-	left: 475px;
+	left: 525px;
 	padding: 20px;
 }
 #airplane, #terminal {
-	height: 300px;
+	height: 275px;
 	position: absolute;
-	left: 828px;
+	left: 840px;
 	padding: 20px;
 	
 }
@@ -278,6 +286,20 @@ input[type="submit"] {
 	img#airport, img#airplane, img#airport2, img#terminal {
 		display: none;
 	}
+}
+
+
+ #weather-storm, #depart-arrive-weather {
+	
+	text-align: center;
+	color: #fff;
+	
+}
+
+.weather-alert {
+	clear: both;
+	background-color: #70b7ba;
+	border-bottom: 4px solid #f7e967;
 }
 
 /*-^-Chelsea Haviland CSS-^-*/
@@ -290,6 +312,7 @@ input[type="submit"] {
 	float: left;
 	padding: 15px;
 }
+
 
 #city-name-1,
 #city-name-2 {
@@ -419,7 +442,7 @@ input[type="submit"] {
 
 .d-flight-api,
 .r-flight-api {
-	width: 100%;
+	width: 40%;
 	margin: 15px;
 	height: 220px;
 	overflow-y: auto;
@@ -732,4 +755,4 @@ footer a:visited {
 }
 
 /* CSS Primary Front-end Layout/Styling/Color Scheme, Initial Commit & POI © Joshua M. Small */
-/* CSS results.html Layout and content styling © Chelsea Haviland */
+/* CSS index.html/results.html Layout and content styling © Chelsea Haviland */
