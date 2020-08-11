@@ -86,7 +86,8 @@ body {
 /* || WRAPPER || */
 
 #wrapper {
-	margin: 15px;
+	margin: auto;
+	width: 85%;
 }
 
 /* || SEARCH BAR || */
@@ -309,7 +310,7 @@ input[type="submit"] {
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 1.5px;
-	font-size: 1rem;
+	font-size: 1.3vw;
 }
 
 .poiContainer img {
@@ -630,7 +631,7 @@ footer a:visited {
 	}
 	#r-display-container .centered,
 	#d-display-container .centered {
-		top: 52%;
+		top: 49%;
 	}
 }
 
@@ -681,6 +682,9 @@ footer a:visited {
 	}
 	.poiTitle {
 		text-align: center;
+	}
+	.poiName {
+		font-size: calc(12px + 0.6vw);
 	}
 	.poiContainer {
 		width: 100%;
@@ -752,7 +756,7 @@ footer a:visited {
 	}
 	#r-display-container .centered,
 	#d-display-container .centered {
-		top: 62%;
+		top: 60%;
 	}
 	#weather-today-destination,
 	#today,
