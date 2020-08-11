@@ -129,9 +129,9 @@ $(document).ready(function () {
 	/* © Joshua M. Small */
 
 	function getCalloutTitles(formData) {
-		$("#city-name-1").append(formData[2].value);
+		$("#city-name-1").append("Plan Your Trip To: " + formData[2].value);
 		$("#city-name-1-5-day").append(formData[2].value);
-		$("#city-name-2").append(formData[0].value);
+		$("#city-name-2").append("Plan Your Return Trip To: " + formData[0].value);
 	}
 
 	/* -- || UnSplash API || -- */
@@ -540,22 +540,22 @@ $(document).ready(function () {
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
 				if (correctFinalDate0 !== departDateStr) {
-					var currentWeather0a = `<div class="card bg-light" id="weather1" style="width: 100%;">
+					var currentWeather0a = `<div class="card bg-light" id="weather-card">
         <div class="card-body">
-                    <h5 class="card-title">${data.name}</h5>
+                    <h5 class="card-title">${data.name}'s Departing Weather</h5>
                     <p class="card-text">${departDateStr}</p>
                     <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
           <p class="card-text">Temperature: ${data.main.temp} °F</p>
           <p class="card-text">Humidity: ${data.main.humidity}%</p>
                     <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
-                    <p class="card-text" id="disclaimer-depart">Weather for ${correctFinalDate0} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+                    <p class="card-text" id="disclaimer">Weather for ${correctFinalDate0} is currently unavailable. <BR> Displaying current weather for ${departDateStr} </p>
         </div>
             </div>`;
 					$("#today").html(currentWeather0a);
 				} else {
-					var currentWeather0b = `<div class="card bg-light" id ="weather2" style="width: 100%;">
+					var currentWeather0b = `<div class="card bg-light" id="weather-card">
         <div class="card-body">
-                    <h5 class="card-title">${data.name}</h5>
+                    <h5 class="card-title">${data.name}'s Departing Weather</h5>
                     <p class="card-text">${departDateStr}</p>
                     <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
           <p class="card-text">Temperature: ${data.main.temp} °F</p>
@@ -564,6 +564,55 @@ $(document).ready(function () {
         </div>
             </div>`;
 					$("#today").html(currentWeather0b);
+				}
+			},
+		});
+	}
+
+	// Initial Trip: Desitnation City Weather
+	function searchWeatherArrival(formData) {
+		$.ajax({
+			url:
+				"https://api.openweathermap.org/data/2.5/weather?q=" +
+				formData[2].value +
+				"&units=imperial" +
+				apiWeatherKey,
+			type: "GET",
+			dataType: "json",
+			success: function (data) {
+				// Moment Date Conversion
+				var correctFinalDate3 = moment(formData[1].value).format("l");
+				// Weather Date Conversion
+				var currentDate = data.dt;
+				var todaysDate = new Date(currentDate * 1000);
+				var departDateStr = todaysDate.toLocaleDateString();
+				if (correctFinalDate3 !== departDateStr) {
+					var returnCurrentWeather1d = `
+					<div class="card bg-light" id="weather-card-2">
+						<div class="card-body">
+							<h5 class="card-title">${data.name}'s Arrival Weather</h5>
+							<p class="card-text">${departDateStr}</p>
+							<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+							<p class="card-text">Temperature: ${data.main.temp} °F</p>
+							<p class="card-text">Humidity: ${data.main.humidity}%</p>
+							<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+							<p class="card-text" id="disclaimer">Weather for ${correctFinalDate3} is currently unavailable. <BR> Displaying current weather for ${departDateStr} </p>
+						</div>
+					</div>`;
+					$("#weather-today-destination").html(returnCurrentWeather1d);
+				} else {
+					var returnCurrentWeather2d = `
+					<div class="card bg-light" id="weather-card-2">
+						<div class="card-body">
+							<h5 class="card-title">${data.name}</h5>
+							<p class="card-text">${departDateStr}</p>
+							<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+							<p class="card-text">Temperature: ${data.main.temp} °F</p>
+							<p class="card-text">Humidity: ${data.main.humidity}%</p>
+							<p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
+						</div>
+					</div>`;
+					$("#weather-today-destination").html(returnCurrentWeather2d);
 				}
 			},
 		});
@@ -587,7 +636,7 @@ $(document).ready(function () {
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
 				if (correctFinalDate1 !== departDateStr) {
-					var returnCurrentWeather1a = `<div class="card bg-light" id="departing-current1" style="width: 100%;">
+					var returnCurrentWeather1a = `<div class="card bg-light" id="weather-card">
         <div class="card-body">
                     <h5 class="card-title">${data.name}'s Departing Weather</h5>
                     <p class="card-text">${departDateStr}</p>
@@ -595,14 +644,14 @@ $(document).ready(function () {
           <p class="card-text">Temperature: ${data.main.temp} °F</p>
           <p class="card-text">Humidity: ${data.main.humidity}%</p>
                     <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
-                    <p class="card-text" id="disclaimer-return">Weather for ${correctFinalDate1} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+                    <p class="card-text" id="disclaimer">Weather for ${correctFinalDate1} is currently unavailable. <br> Displaying current weather for ${departDateStr} </p>
         </div>
       </div>`;
 					$("#return-today").html(returnCurrentWeather1a);
 				} else {
-					var returnCurrentWeather2a = `<div class="card bg-light" id="departing-current2" style="width: 100%;">
+					var returnCurrentWeather2a = `<div class="card bg-light" id="weather-card">
         <div class="card-body">
-                    <h5 class="card-title">${data.name}</h5>
+                    <h5 class="card-title">${data.name}'s Departing Weather</h5>
                     <p class="card-text">${departDateStr}</p>
                     <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
           <p class="card-text">Temperature: ${data.main.temp} °F</p>
@@ -628,28 +677,28 @@ $(document).ready(function () {
 			dataType: "json",
 			success: function (data) {
 				// Moment Date Conversion
-				var correctFinalDate2 = moment(formData[1].value).format("l");
+				var correctFinalDate2 = moment(formData[3].value).format("l");
 				// Weather Date Conversion
 				var currentDate = data.dt;
 				var todaysDate = new Date(currentDate * 1000);
 				var departDateStr = todaysDate.toLocaleDateString();
 				if (correctFinalDate2 !== departDateStr) {
-					var returnCurrentWeather1b = `<div class="card bg-light" id="return-destination1" style="width: 100%;">
+					var returnCurrentWeather1b = `<div class="card bg-light" id="weather-card-2">
                     <div class="card-body">
-                        <h5 class="card-title">${data.name}'s Current Weather</h5>
+                        <h5 class="card-title">${data.name}'s Arrival Weather</h5>
                         <p class="card-text">${departDateStr}</p>
                         <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
                         <p class="card-text">Temperature: ${data.main.temp} °F</p>
                         <p class="card-text">Humidity: ${data.main.humidity}%</p>
                         <p class="card-text">Wind Speed: ${data.wind.speed} MPH</p>
-                        <p class="card-text" id="disclaimer-return-destination">Weather for ${correctFinalDate2} is currently unavailable. Displaying current weather for ${departDateStr} </p>
+                        <p class="card-text" id="disclaimer">Weather for ${correctFinalDate2} is currently unavailable. <BR> Displaying current weather for ${departDateStr} </p>
                     </div>
                 </div>`;
 					$("#return-today-destination").html(returnCurrentWeather1b);
 				} else {
-					var returnCurrentWeather2b = `<div class="card bg-light" id "return-destination2" style="width: 100%;">
+					var returnCurrentWeather2b = `<div class="card bg-light" id="weather-card-2">
                     <div class="card-body">
-                        <h5 class="card-title">${data.name}</h5>
+                        <h5 class="card-title">${data.name}'s Arrival Weather</h5>
                         <p class="card-text">${departDateStr}</p>
                         <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
                         <p class="card-text">Temperature: ${data.main.temp} °F</p>
@@ -675,6 +724,7 @@ $(document).ready(function () {
 	// Open Weather Map API
 	getForecast(formData);
 	searchWeather(formData);
+	searchWeatherArrival(formData);
 	searchWeatherReturn(formData);
 	searchWeatherReturnDepart(formData);
 });

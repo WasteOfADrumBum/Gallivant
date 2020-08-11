@@ -93,12 +93,7 @@ body {
 
 #search-bar {
 	padding: 25px;
-	float: left;
-	width: 25%;
-	background: white;
-	box-shadow: 3px 3px 3px 3px #cccccc;
-
-	
+	width: 100%;
 }
 
 input[type="submit"] {
@@ -106,23 +101,53 @@ input[type="submit"] {
 	background-color: #70b7ba;
 	border: 1px solid #3d4c53;
 	padding: 12px;
-	box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+	box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 	border-radius: 5px;
-	
 }
 
+#loc-date-form {
+	background-color: #fff;
+	border: 1px solid #3d4c53;
+}
+#loc-date-form input[type="submit"] {
+	margin: 0px 0px 15px 15px;
+}
 
-input[type=submit]:hover {
-	box-shadow:  3px 3px 3px 3px #cccccc;
-  }
+#loc-date-form input[type="submit"]:hover {
+	box-shadow: 3px 3px 3px 3px #cccccc;
+}
 
+#loc-date-form hr {
+	border: none;
+	border-top: 12px dotted #f7e967;
+}
+
+#departing-form {
+	text-align: left;
+	float: left;
+	width: 50%;
+	padding: 15px;
+}
+
+#destination-form {
+	text-align: right;
+	float: right;
+	width: 50%;
+	padding: 15px;
+}
+
+#form-title {
+	text-align: center;
+	background-color: #70b7ba;
+	color: #fff;
+}
 
 /* || CONTENT || */
 
 #content-container {
 	padding: 25px;
-	float: right;
-	width: 75%;
+	width: 100%;
+	height: 100%;
 }
 
 #logo-container {
@@ -131,6 +156,38 @@ input[type=submit]:hover {
 
 #gallivant-logo-bg {
 	width: 30%;
+}
+
+#about-tex-pic-wrapper,
+#about-gallivant-wrapper,
+#gallivant-tag-wrapper {
+	clear: both;
+}
+
+#about-gallivant-pic,
+#gallivant-tag-text {
+	float: left;
+	width: 45%;
+	margin: 15px;
+}
+#about-gallivant-text,
+#gallivant-tag-pic {
+	float: right;
+	width: 45%;
+	margin: 15px;
+}
+
+#about-gallivant-text {
+	font-size: 1.9vw;
+}
+
+#gallivant-tag-pic,
+#about-gallivant-pic {
+	border: 2px solid #3d4c53;
+}
+
+#gallivant-tag-pic {
+	margin-bottom: 65px;
 }
 
 /* Trip Selection */
@@ -172,19 +229,6 @@ input[type=submit]:hover {
 	display: none;
 }
 
-/* UnSplash City Img */
-
- /* .d-picture-api,
-.r-picture-api {
-	text-align: center;
-} */
-
-/* #r-img-div,
-#d-img-div {
-	height: 150px;
-	margin: 25px;
-}   */
-
 /*--Chelsea Haviland CSS--*/
 
 #big-image {
@@ -192,87 +236,37 @@ input[type=submit]:hover {
 	text-align: center;
 	color: white;
 
-	box-shadow:  3px 3px 3px 3px #cccccc;
-  }
-
+	box-shadow: 3px 3px 3px 3px #cccccc;
+}
 
 .centered {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	font-size: 3em;
+	font-size: 4rem;
 	font-family: "Amatic SC", cursive;
 }
 
-#quote {
-	font-size: 4em;
-	font-family: "Kristi", cursive;
-}
-
-  #return-today {
-	  font: #f1433f
-  }
-
-  .scroll-container {
-	overflow-y: auto;
-	height: 300px;
-	text-align: left;
-	position: relative;
-	z-index: 2;
-	box-shadow: 3px 3px 3px 3px #ccc inset;
-	
-}
-
-#disclaimer-depart {
-	background: #f1433f;
-}
-
-#return-today {
-	border: 30px #000 ! important
-}
-
-.arrival-forecast {
-	color: #a9cf54;
-	font-size: 1.5rem;
-	border-bottom: 4px solid #f7e967;
-	margin-bottom: 10px;
-}
-
-.current-forecast {
-	color: #a9cf54;
-	border-bottom: 4px dotted #f7e967;
-	margin-bottom: 7px;
-}
-
-#depart-pic-style {
-	box-shadow:  3px 3px 3px 3px #cccccc;
-}
-
-#return-pic-style {
-	box-shadow:  3px 3px 3px 3px #cccccc;
-}
-
-#return-trip-scroll {
-
-}
-
-.depart-current-forecast {
-	color: #a9cf54;
-	border-bottom: 4px dotted #f7e967;
-	margin-bottom: 7px;
-}
-
-.return-city-forecast {
-	color: #a9cf54;
-	border-bottom: 4px dotted #f7e967;
-	margin-bottom: 7px;
-}
-
-
-
-
 /*-^-Chelsea Haviland CSS-^-*/
+
+/* PIC API */
+
+.r-picture-api img,
+.d-picture-api img {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+#city-name-1,
+#city-name-2 {
+	clear: both;
+	text-align: center;
+	background-color: #70b7ba;
+	color: #fff;
+	padding: 15px;
+}
 
 /* POI */
 
@@ -298,7 +292,7 @@ input[type=submit]:hover {
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 1.5px;
-	font-size: large;
+	font-size: 1rem;
 }
 
 .poiContainer img {
@@ -314,14 +308,22 @@ input[type=submit]:hover {
 	font-weight: bold;
 }
 
-.poiTitle {
+.poiTitle,
+#flight-info-title,
+#city-name-1-5-day {
 	flex: none;
 	text-transform: uppercase;
 	margin-top: 15px;
 }
+.r-attractions-api,
+.d-attractions-api {
+	margin-bottom: 50px;
+}
 
 .r-attractions-api-title,
-.d-attractions-api-title {
+.d-attractions-api-title,
+#flight-info-title,
+#city-name-1-5-day {
 	color: #a9cf54;
 	font-size: 1.5rem;
 	border-bottom: 4px solid #f7e967;
@@ -351,67 +353,46 @@ input[type=submit]:hover {
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 1.5px;
-	font-size: large;
+	font-size: 1rem;
 	padding-bottom: 2px;
 	border-bottom: 1px solid #3d4c53;
 }
 
-/* Current Weather Cards */
-#weather1 {
-	background-color: #70b7ba;
+#weather-card .card-title,
+#weather-card-2 .card-title {
+	color: #a9cf54;
+}
+
+#weather-card,
+#weather-card-2 {
+	background-color: #fff;
 	border: 2px solid #3d4c53;
-	width: 18%;
-	margin: 5px;
+	width: 47%;
+	margin: 15px 15px 35px 15px;
 	text-align: center;
 	padding: 10px;
-	color: white;
-
+	color: #70b7ba;
+	float: left;
+}
+#weather-card-2 {
+	float: right;
 }
 
-#weather2 {
-	background-color: #70b7ba;
-	border: 2px solid #3d4c53;
-	width: 50%;
-	margin: 5px;
-	text-align: center;
-	padding: 10px;
-	color: white;
+#disclaimer {
+	color: #f1433f;
+	font-size: 0.7rem;
 }
 
-#departing-current1 {
-	background-color: #70b7ba;
-	border: 2px solid #3d4c53;
-	width: 18%;
-	margin: 5px;
-	text-align: center;
-	padding: 10px;
-	color: white;
+/* Flight */
 
+.d-flight-api,
+.r-flight-api {
+	width: 100%;
+	margin: 15px;
+	height: 170px;
+	overflow-y: auto;
+	margin-bottom: 35px;
 }
-
-#departing-current2 {
-	background-color: #70b7ba;
-	border: 2px solid #3d4c53;
-	width: 18%;
-	margin: 5px;
-	text-align: center;
-	padding: 10px;
-	color: white;
-
-}
-
-#disclaimer-depart {
-	color: #f1433f
-}
-
-#disclaimer-return {
-	color: #f1433f
-}
-
-#disclaiminer-return-destination {
-	color: #f1433f
-}
-
 
 /* CONTACT */
 
@@ -506,6 +487,13 @@ input[type=submit]:hover {
 	border: 1px solid #3d4c53;
 	padding: 12px;
 	font-weight: bolder;
+	border-radius: 5px;
+}
+
+#contact-form-container input[type="reset"]:hover,
+#contact-form-container input[type="submit"]:hover {
+	background-color: #f7e967;
+	color: #3d4c53;
 }
 
 /* Contact: Links */
@@ -570,10 +558,6 @@ footer a:visited {
 	#gallivant-logo-bg {
 		width: 70%;
 	}
-	#content-container {
-		float: none;
-		width: 100%;
-	}
 	#nav-contact {
 		padding-right: 35px;
 	}
@@ -592,6 +576,10 @@ footer a:visited {
 	#contact-info {
 		float: none;
 		width: 100%;
+	}
+	#weather-card,
+	#weather-card-2 {
+		width: 45%;
 	}
 }
 
@@ -664,13 +652,51 @@ footer a:visited {
 	#contact-form-container label {
 		font-size: 18px;
 	}
+	#about-gallivant-pic,
+	#gallivant-tag-text,
+	#about-gallivant-text,
+	#gallivant-tag-pic {
+		float: none;
+		width: 100%;
+		margin: 0;
+	}
+	#destination-form,
+	#departing-form {
+		float: none;
+		text-align: left;
+		width: 100%;
+	}
+	#about-gallivant-text {
+		font-size: 5vw;
+		margin-top: 25px;
+	}
+	#loc-date-form hr {
+		border-top: 6px dotted #f7e967;
+	}
+	#weather-card,
+	#weather-card-2 {
+		float: none;
+		width: 100%;
+		margin: 0 0 15px 0;
+	}
+	#int-trip-container h2,
+	#rtn-trip-container h2 {
+		text-align: center;
+	}
+	.d-flight-api,
+	.r-flight-api {
+		width: 91%;
+		height: 220px;
+		text-align: center;
+	}
+	.centered {
+		font-size: 2rem;
+	}
 }
 
 @media screen and (max-width: 320px) {
 	/* Older Phones */
 }
-
-
 
 /* CSS Primary Front-end Layout/Styling/Color Scheme, Initial Commit & POI © Joshua M. Small */
 /* CSS results.html Layout and content styling © Chelsea Haviland */
