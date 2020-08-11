@@ -260,8 +260,8 @@ input[type="submit"] {
 .r-picture-api img,
 .d-picture-api img {
 	width: 100%;
-	float: left;
 	padding: 15px;
+	height: min-content;
 }
 
 #city-name-1,
