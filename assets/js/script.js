@@ -399,13 +399,13 @@ $(document).ready(function () {
 														`<h5>From ${data.data[i].cityFrom} to ${data.data[i].cityTo}</h5>`,
 													);
 													$(".d-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeFrom}</h6>`,
+														`<h6 class="airport-code">${data.data[i].cityCodeFrom}</h6>`,
 													);
 													$(".d-flight-api").append(
 														`<p class="airport-time">${departTime}</p>`,
 													);
 													$(".d-flight-api").append(
-														`<h6 class="apirport-code">${data.data[i].cityCodeTo}</h6>`,
+														`<h6 class="airport-code">${data.data[i].cityCodeTo}</h6>`,
 													);
 													$(".d-flight-api").append(
 														`<p class="airport-time">${arrivalTime}</p>`,
