@@ -78,6 +78,8 @@ You are required to submit the following:
 
 ## Demo Pictures
 
+![gif demo](./assets/images/demo/gallivant.gif)
+
 The following image demonstrates the end result of the application functionality:
 
 ![dashboard demo](./assets/images/demo/desktop.png)
