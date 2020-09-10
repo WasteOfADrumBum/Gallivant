@@ -73,6 +73,10 @@ https://wasteofadrumbum.github.io/Gallivant/
 
 ## Contributors
 
+![GitHub contributors](https://img.shields.io/github/contributors/WasteOfADrumBum/Gallivant)
+![GitHub Forks](https://img.shields.io/github/forks/WasteOfADrumBum/Gallivant?label=Fork)
+![GitHub Watchers](https://img.shields.io/github/watchers/WasteOfADrumBum/Gallivant?label=Watch)
+
 <img src="https://avatars0.githubusercontent.com/u/66432859?v=460" width="50" />
 
 - [Joshua M. Small](https://github.com/WasteOfADrumBum)
@@ -88,10 +92,6 @@ https://wasteofadrumbum.github.io/Gallivant/
 <img src="https://avatars0.githubusercontent.com/u/66326002?s=460" width="50" />
 
 - [Tanner Cook](https://github.com/Tanner336)
-
-![GitHub contributors](https://img.shields.io/github/contributors/WasteOfADrumBum/Gallivant)
-![GitHub Forks](https://img.shields.io/github/forks/WasteOfADrumBum/Gallivant?label=Fork)
-![GitHub Watchers](https://img.shields.io/github/watchers/WasteOfADrumBum/Gallivant?label=Watch)
 
 ## Test
 
