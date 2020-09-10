@@ -35,7 +35,8 @@ Gallivant is a weather-based travel guide the utilizes several APIs. The site wa
 
 ## Installation
 
-- API's: Skypicker, Open Weather Map, Four Square and UnSplash - Moment.js and Foundation CSS Libraries
+- API's: Skypicker, Open Weather Map, Four Square and UnSplash
+- Moment.js and Foundation CSS Libraries
 
 ## Instructions
 
@@ -43,7 +44,14 @@ wasteofadrumbum.github.io/gallivant/
 
 ## Features
 
-- Server-side api access - Foundation Framework - Interactive user search input - Polished UI - Location images - Flight information - Weather information - POI information
+- Server-side api access
+- Foundation Framework
+- Interactive user search input
+- Polished UI
+- Location images
+- Flight information
+- Weather information
+- POI information
 
 ## Example Gif
 
