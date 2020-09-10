@@ -40,7 +40,7 @@ Gallivant is a weather-based travel guide the utilizes several APIs. The site wa
 
 ## Instructions
 
-wasteofadrumbum.github.io/gallivant/
+https://wasteofadrumbum.github.io/Gallivant/
 
 ## Features
 
