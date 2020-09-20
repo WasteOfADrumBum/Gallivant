@@ -1,6 +1,9 @@
 # **Gallivant**
 
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40WasteOfADrumBum-green)
+![GitHub license](https://img.shields.io/badge/Made%20by-%40gdobson93-green)
+![GitHub license](https://img.shields.io/badge/Made%20by-%40Tanner336-green)
+![GitHub license](https://img.shields.io/badge/Made%20by-%40ChelSEA-88-green)
 
 ## Description
 
